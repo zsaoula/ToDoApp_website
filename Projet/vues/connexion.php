@@ -79,9 +79,9 @@
 					<a class="nav-link active" aria-current="page" href="index.php?action=inscription">Home</a>
 					</li>
 					<li class="nav-item">
-					<a class="nav-link" href="#">Link</a>
+					<a class="nav-link" href="index.php?action=afficherTaches">Link</a>
 					</li>
-					<li class="nav-item dropdown">
+					<!-- <li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
 						aria-expanded="false">
 						Dropdown
@@ -94,7 +94,7 @@
 						</li>
 						<li><a class="dropdown-item" href="#">Something else here</a></li>
 					</ul>
-					</li>
+					</li> -->
 					<li class="nav-item">
 					<a class="nav-link disabled">Disabled</a>
 					</li>
@@ -106,19 +106,6 @@
 				</div>
 			</div>
 			</nav>
-
-		<form methode="">
-			<button type="submit">
-				Passer la connexion
-			</button>
-			<input type="hidden" name="action" value="afficherTaches">
-		</form>
-		<form methode="">
-			<button type="submit">
-				Inscription
-			</button>
-			<input type="hidden" name="action" value="inscription">
-		</form>
 		<h2>Personne - formulaire</h2>
 		<hr>
 		<!-- affichage de donn�es provenant du mod�le --> 

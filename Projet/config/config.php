@@ -11,7 +11,7 @@ $rep=__DIR__.'/../';
 
 //BD
 
-$dsn="mysql:host=localhost;dname=dbnorandon";
+$dsn="mysql:host=localhost;dbname=dbnorandon";
 $username="norandon";
 $password="achanger";
 
