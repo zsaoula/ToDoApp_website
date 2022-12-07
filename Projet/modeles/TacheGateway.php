@@ -39,7 +39,7 @@ class TacheGateway {
 
     public function getTaches(int $noListe): array
     {
-        $query = "SELECT * FROM tache WHERE noListe=$noListe";
+        $query = "SELECT * FROM Tache WHERE noListe=$noListe";
         $this->con->executeQuery($query);
         return $this->con->getResults();
     }

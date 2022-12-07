@@ -67,6 +67,7 @@ class Controleur {
 function AfficherTaches() {
 	global $rep,$vues; // nécessaire pour utiliser variables globales
 	$mdl = new Model();
+	$listesTachesPublic = array();
 	$listesTachesPublic = $mdl->getListesPublic();
 	require ($rep.$vues['vueAfficherTaches']);
 }

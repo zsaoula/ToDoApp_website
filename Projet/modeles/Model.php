@@ -31,20 +31,22 @@ class Model
         global $dsn, $username, $password;
 
         $gwTache = new TacheGateway(new Connection($dsn,$username,$password));
-        $gwListeTache = new ListeTacheGateway(new Connection($dsn,$username,$password));
+        $gwListeTache = new ListeTachesGateway(new Connection($dsn,$username,$password));
 
         $listePublic = $gwListeTache->getPublicLists();
         
         foreach($listePublic as $listTaches)
         {
-            $taches = $gwTache->getTaches($listTache['id']);
+            $taches = $gwTache->getTaches($listTaches['id']);
             $tache = array();
             foreach($taches as $tacheAdd)
             {
-                $tache[] = new Tache($tacheAdd['id'],$tacheAdd['name'],$tacheAdd['creationDate'],$tacheAdd['finish'],$tacheAdd['idList']);
+                #$time_input = strtotime($tacheAdd['creationDate']); 
+                #$newformat = date('Y-m-d',$time_input);
+                $tache[] = new Tache($tacheAdd['id'],$tacheAdd['name'],$tacheAdd['creationDate'],$tacheAdd['finish'],$tacheAdd['noListe']);
             }
 
-            $listeTacheTableau[] = new ListeTache($listTache['id'],$listTache['name'],$listTache['type'],$taches);
+            $listeTacheTableau[] = new ListeTaches($listTaches['id'],$listTaches['name'],$listTaches['type'],$tache);
         }
         return $listeTacheTableau;
     }

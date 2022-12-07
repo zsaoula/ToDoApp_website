@@ -2,28 +2,28 @@
 class Tache{
     private int $id;
     private string $name;
-    private date $creationDate
+    private string $creationDate;
     private bool $finish;
     private int $noList;
 
-    public function __construct(int $id, string $name, date $creationDate, bool $finish, int $noList){
+    public function __construct(int $id, string $name, string $creationDate, bool $finish, int $noList){
         $this->id = $id;
         $this->name =$name;
         $this->creationDate = $creationDate;
         $this->finish = $finish;
-        $this->noListe = $noListe;
+        $this->noList = $noList;
     }
 
     public function getNom() : string {
-        return $name;
+        return $this->name;
     }
 
     public function getTerminer() : bool {
-        return $finish;
+        return $this->finish;
     }
 
-    public function getDateCreation() : date {
-        return $creationDate;
+    public function getCreationTache() : string {
+        return $this->creationDate;
     }
 }
 ?>

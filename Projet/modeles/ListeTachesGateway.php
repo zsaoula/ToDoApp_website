@@ -1,6 +1,6 @@
 <?php
 
-//require_once "config/Connection.php";
+require_once "config/Connection.php";
 
 class ListeTachesGateway {
 
@@ -13,7 +13,7 @@ class ListeTachesGateway {
 
     public function getPublicLists(): array
     {
-        $query = "SELECT * FROM listeTaches WHERE type='0' ";
+        $query = "SELECT * FROM ListeTaches WHERE type='1' ";
 
         $this->con->executeQuery($query);
 
@@ -22,7 +22,7 @@ class ListeTachesGateway {
 
     public function getPrivateLists(): array
     {
-        $query = "SELECT * FROM listeTaches WHERE type='1' ";
+        $query = "SELECT * FROM ListeTaches WHERE type=0 ";
 
         $this->con->executeQuery($query);
 

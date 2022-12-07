@@ -20,6 +20,5 @@ class UtilisateurGateway {
         $query = "INSERT INTO `user`(`nom`, `name`, `mdp`) VALUES ('$nom', '$email', '$mdp');";
         $this->con->executeQuery($query);
     }
-
-    public function inscription($nom,$email,$mdp)
 }
+?>

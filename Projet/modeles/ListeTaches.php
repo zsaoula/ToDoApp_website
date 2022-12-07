@@ -5,7 +5,7 @@ class ListeTaches{
     private bool $type;
     private $taches = array();
     
-    public function __construct(int $id, int $name, bool $type, array $taches){
+    public function __construct(int $id, string $name, bool $type, array $taches){
         $this->id = $id;
         $this->name =$name;
         $this->type = $type;
@@ -13,15 +13,15 @@ class ListeTaches{
     }
 
     public function getNom() : string {
-        return $name;
+        return $this->name;
     }
 
     public function getType() : bool {
-        return $type;
+        return $this->type;
     }
 
     public function getTaches() : array {
-        return $taches;
+        return $this->taches;
     }
     
 }

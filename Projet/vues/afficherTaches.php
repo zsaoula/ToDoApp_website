@@ -30,33 +30,16 @@
 		<hr>
 		<!-- affichage de donn�es provenant du mod�le --> 
 		<!-- <?= $dVue['data']  ?> -->
-
-
-		<form method="post" name="formulaireAjoutList" id="myform">
-			<p>Nom</p>
-			<input name="txtNom" value="<?= $dVue['nom']  ?>" type="text" size="20">
-			<p>>Son type</p>
-			<input type="radio" id="private" value="private">
-			<label for="html">HTML</label>
-			<input type="radio" id="public"  value="public">
-			<label for="css">CSS</label><br>
-		
-			<input type="submit" value="Envoyer">
-			
-			<input type="button" value="Effacer" onclick="clearForm(this.form);">
-
-		<!-- action !!!!!!!!!! --> 
-		<input type="hidden" name="action" value="validationFormulaire">
-		</form></div>
+	</div>
 		<?php
 			foreach($listesTachesPublic as $listes)
 			{
 				echo $listes->getNom();
-				foreach($listes->getTaches as $tache)
+				foreach($listes->getTaches() as $tache)
 				{
 					echo $tache->getNom();
 					echo $tache->getCreationTache();
-					echo $tache->getCreationTache();
+					echo $tache->getTerminer();
 				}
 
 			}
