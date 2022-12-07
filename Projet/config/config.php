@@ -11,14 +11,15 @@ $rep=__DIR__.'/../';
 
 //BD
 
-$base="sasa";
-$login="";
-$mdp="";
+$dsn="mysql:host=localhost;dname=dbnorandon";
+$username="norandon";
+$password="achanger";
 
 //Vues
 
 $vues['erreur']='vues/erreur.php';
-$vues['vuephp1']='vues/vuephp1.php';
-
+$vues['vueConnexion']='vues/connexion.php';
+$vues['vueInscription']='vues/inscription.php';
+$vues['vueAfficherTaches']='vues/afficherTaches.php';
 
 ?>

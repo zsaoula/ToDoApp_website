@@ -5,7 +5,7 @@ class Validation {
 static function val_action($action) {
 
 if (!isset($action)) {
-throw new Exception('pas d\'action');
+    throw new Exception('pas d\'action');
     //on pourrait aussi utiliser
 //$action = $_GET['action'] ?? 'no';
     // This is equivalent to:
@@ -13,7 +13,7 @@ throw new Exception('pas d\'action');
 }
 }
 
-    static function val_form(string &$nom, string &$age, array &$dVueEreur) {
+    static function val_form(string &$nom, string &$email, string &$mdp, array &$dVueEreur) {
 
         if (!isset($nom)||$nom=="") {
             $dVueEreur[] =	"pas de nom";
@@ -26,12 +26,6 @@ throw new Exception('pas d\'action');
             $nom="";
 
         }
-
-        if (!isset($age)||$age==""||!filter_var($age, FILTER_VALIDATE_INT)) {
-            $dVueEreur[] =	"pas d'age ";
-            $age=0;
-        }
-
     }
 
 }

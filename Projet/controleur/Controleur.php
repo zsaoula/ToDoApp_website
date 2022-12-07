@@ -2,86 +2,139 @@
 
 class Controleur {
 
-function __construct() {
+	function __construct() {
+		global $rep,$vues; // nécessaire pour utiliser variables globales
+		
+		// on démarre ou reprend la session si necessaire (préférez utiliser un modèle pour gérer vos session ou cookies)
+		session_start();
+
+		//on initialise un tableau d'erreur
+		$dVueEreur = array ();
+
+		try{
+			if (empty($_REQUEST['action'])) {
+                $action = NULL;
+            } else {
+                $action = $_REQUEST['action'];
+            }
+
+			switch($action) {
+
+				//pas d'action, on r�initialise 1er appel
+				case NULL:
+					$this->Connexion();
+					break;
+
+
+				case "validationFormulaire":
+					$this->ValidationFormulaire($dVueEreur);
+				break;
+
+				case "afficherTaches":
+					$this->AfficherTaches();
+				break;
+
+				case "validationFormulaireInscription":
+					$this->ValidationFormulaire($dVueEreur);
+				break;
+
+				case "inscription":
+					$this->Inscription();
+				break;
+
+				//mauvaise action
+				default:
+				$dVueEreur[] =	"Erreur d'appel php";
+				require ($rep.$vues['vueConnexion']);
+				break;
+			}
+		} catch (PDOException $e)
+		{
+			//si erreur BD, pas le cas ici
+			$dVueEreur[] =	"Erreur inattendue!!! ";
+			require ($rep.$vues['vueConnexion']);
+		}
+		catch (Exception $e2)
+		{
+			$dVueEreur[] =	"Erreur inattendue!!! ";
+			require ($rep.$vues['erreur']);
+		}
+	
+		exit(0);
+	}//fin constructeur
+
+
+function AfficherTaches() {
 	global $rep,$vues; // nécessaire pour utiliser variables globales
-// on démarre ou reprend la session si necessaire (préférez utiliser un modèle pour gérer vos session ou cookies)
-session_start();
-
-
-//debut
-
-//on initialise un tableau d'erreur
-$dVueEreur = array ();
-
-try{
-$action=$_REQUEST['action'];
-
-switch($action) {
-
-//pas d'action, on r�initialise 1er appel
-case NULL:
-	$this->Reinit();
-	break;
-
-
-case "validationFormulaire":
-	$this->ValidationFormulaire($dVueEreur);
-	break;
-
-//mauvaise action
-default:
-$dVueEreur[] =	"Erreur d'appel php";
-require ($rep.$vues['vuephp1']);
-break;
+	$mdl = new Model();
+	$listesTachesPublic = $mdl->getListesPublic();
+	require ($rep.$vues['vueAfficherTaches']);
 }
 
-} catch (PDOException $e)
-{
-	//si erreur BD, pas le cas ici
-	$dVueEreur[] =	"Erreur inattendue!!! ";
-	require ($rep.$vues['erreur']);
+function Inscription() {
+	global $rep,$vues; // nécessaire pour utiliser variables globales
 
-}
-catch (Exception $e2)
-	{
-	$dVueEreur[] =	"Erreur inattendue!!! ";
-	require ($rep.$vues['erreur']);
-	}
-
-
-//fin
-exit(0);
-}//fin constructeur
-
-
-function Reinit() {
-global $rep,$vues; // nécessaire pour utiliser variables globales
-
-$dVue = array (
-	'nom' => "",
-	'age' => 0,
+	$dVue = array (
+		'nom' => "",
+		'email' => "",
+		'mdp' => ""
 	);
-	require ($rep.$vues['vuephp1']);
+
+	require ($rep.$vues['vueInscription']);
+}
+
+function Connexion() {
+	global $rep,$vues; // nécessaire pour utiliser variables globales
+
+	$dVue = array (
+		'nom' => "",
+		'email' => "",
+		'mdp' => ""
+	);
+	require ($rep.$vues['vueConnexion']);
 }
 
 function ValidationFormulaire(array $dVueEreur) {
-global $rep,$vues;
+	global $rep,$vues;
 
 
-//si exception, ca remonte !!!
-$nom=$_POST['txtNom']; // txtNom = nom du champ texte dans le formulaire
-$age=$_POST['txtAge'];
-Validation::val_form($nom,$age,$dVueEreur);
+	//si exception, ca remonte !!!
+	$nom=$_POST['txtNom']; // txtNom = nom du champ texte dans le formulaire
+	$email=$_POST['txtEmail'];
+	$mdp=$_POST['txtMdp'];
+	Validation::val_form($nom,$email,$mdp,$dVueEreur);
 
-$model = new Simplemodel();
-$data=$model->get_data();
+	$model = new Model();
+	$data=$model->verifierConnexion();
 
-$dVue = array (
-	'nom' => $nom,
-	'age' => $age,
-        'data' => $data,
+	$dVue = array (
+		'nom' => $nom,
+		'email' => $email,
+		'mdp' => $mdp,
+		'data' => $data,
 	);
-	require ($rep.$vues['vuephp1']);
+	require ($rep.$vues['vueConnexion']);
+}
+
+function ValidationFormulaireInscription(array $dVueEreur) {
+	global $rep,$vues;
+
+	//si exception, ca remonte !!!
+	$nom=$_POST['txtNom']; // txtNom = nom du champ texte dans le formulaire
+	$email=$_POST['txtEmail'];
+	$mdp=$_POST['txtMdp'];
+	Validation::val_form($nom,$email,$mdp,$dVueEreur);
+
+	$model = new Model();
+	$data=$model->verifierConnexion();
+
+	$dVue = array (
+		'nom' => $nom,
+		'email' => $email,
+		'mdp' => $mdp,
+		'data' => $data,
+	);
+	require ($rep.$vues['vueConnexion']);
 }
 
 }//fin class
