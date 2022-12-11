@@ -16,12 +16,6 @@
 		<div align="center">
 		<form methode="">
 			<button type="submit">
-				Passer la connexion
-			</button>
-			<input type="hidden" name="action" value="afficherTaches">
-		</form>
-		<form methode="">
-			<button type="submit">
 				Inscription
 			</button>
 			<input type="hidden" name="action" value="inscription">
@@ -31,6 +25,19 @@
 		<!-- affichage de donn�es provenant du mod�le --> 
 		<!-- <?= $dVue['data']  ?> -->
 	</div>
+	<form method="post" name="myform" id="myform">
+		<table> <tr>
+		<td>Nom</td>
+		<td><input name="txtNom" value="<?= $dVue['nom']  ?>" type="text" size="20"></td>
+		</tr>
+		</table>
+		<table> <tr>
+		<td><input type="submit" value="Envoyer"></td>
+		</td> </tr> </table>
+
+		<!-- action !!!!!!!!!! --> 
+		<input type="hidden" name="action" value="validationFormulaire">
+		</form>
 		<?php
 			foreach($listesTachesPublic as $listes)
 			{
