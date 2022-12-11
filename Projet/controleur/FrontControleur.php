@@ -17,22 +17,23 @@ class FrontControleur{
             //verif action
             if( in_array($action,$liste_actions_admin)){
                 if($admin == null){
-                    new UserControlleur();
+                    //new UtilisateurControleur();
                 }
                 else{
-                    new AdminControlleur();
+                    new AdminControleur($action);
                 }
             }
             elseif( in_array($action,$liste_actions_utilisateur)){
                 if($utilisateur == null){
-                    new VisiteurControlleur();
+                    new VisiteurControleur($action);
+                    //require ($rep.$vues['Connexion']);
                 }
                 else{
-                    new UserControlleur();
+                    new UtilisateurControleur($action);
                 }
             }
             else {
-                new ControleurVisiteur();
+                new VisiteurControleur($action);
             }
         }
     }

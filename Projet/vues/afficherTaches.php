@@ -63,19 +63,19 @@
 		<!-- action !!!!!!!!!! --> 
 		<input type="hidden" name="action" value="validationFormulaire">
 		</form>
-		<?php
-			foreach($listesTachesPublic as $listes)
-			{
-				echo $listes->getNom();
-				foreach($listes->getTaches() as $tache)
-				{
-					echo $tache->getNom();
-					echo $tache->getCreationTache();
-					echo $tache->getTerminer();
-				}
+		<!-- <?php
+			// foreach($listesTachesPublic as $listes)
+			// {
+			// 	echo $listes->getNom();
+			// 	foreach($listes->getTaches() as $tache)
+			// 	{
+			// 		echo $tache->getNom();
+			// 		echo $tache->getCreationTache();
+			// 		echo $tache->getTerminer();
+			// 	}
 
-			}
-		?>
+			// }
+		?> -->
 		
 		<section class="vh-100">
 			<div class="container py-5">
@@ -84,35 +84,49 @@
 
 					<div class="card">
 					<div class="card-header p-3">
-						<h5 class="mb-0"><i class="fas fa-tasks me-2"></i>Task List</h5>
+						<h5 class="mb-0"><i class="fas fa-tasks me-2"></i>
+						<?php foreach($listesTachesPublic as $listes)
+							{
+								echo $listes->getNom();
+							
+					?>
+					</h5>
 					</div>
 					<div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative">
 
 						<table class="table mb-0">
 						<thead>
 							<tr>
-							<th scope="col">Team Member</th>
+							<!-- <th scope="col">Team Member</th> -->
 							<th scope="col">Task</th>
-							<th scope="col">Priority</th>
+							<!-- <th scope="col">Priority</th> -->
 							<th scope="col">Actions</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr class="fw-normal">
-							<th>
+							<!-- <th>
 								<img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-5.webp"
 								class="shadow-1-strong rounded-circle" alt="avatar 1"
 								style="width: 55px; height: auto;">
 								<span class="ms-2">Alice Mayer</span>
-							</th>
+							</th> -->
 							<td class="align-middle">
-								<span>Call Sam For payments</span>
+								<span>
+								<?php
+										foreach($listes->getTaches() as $tache)
+										{
+											echo $tache->getNom();
+										}
+									}
+								?>
+								</span>
 							</td>
-							<td class="align-middle">
+							<!-- <td class="align-middle">
 								<h6 class="mb-0"><span class="badge bg-danger">High priority</span></h6>
-							</td>
+							</td> -->
 							<td class="align-middle">
-								<a href="#!" data-mdb-toggle="tooltip" title="Done"><i
+								 <a href="#!" data-mdb-toggle="tooltip" title="Done"><i
 									class="fas fa-check text-success me-3"></i></a>
 								<a href="#!" data-mdb-toggle="tooltip" title="Remove"><i
 									class="fas fa-trash-alt text-danger"></i></a>
@@ -132,6 +146,6 @@
 				</div>
 			</div>
 		</section>
-	
+
 	</body> 
 </html> 
