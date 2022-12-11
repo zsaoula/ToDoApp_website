@@ -10,6 +10,10 @@ class Utilisateur{
         $this->mail = $mail;
     }
 
+    public function getPseudo(){
+        return this->pseudo
+    }
+
     public function __toString(){
         return "Pseudo: " . $this->pseudo;
     }
