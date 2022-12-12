@@ -97,6 +97,7 @@
 								<!-- <th scope="col">Team Member</th> -->
 								<th scope="col">Task</th>
 								<th scope="col">Actions</th>
+								<th scope="col"></th>
 								</tr>
 							</thead>
 							<?php foreach($listes->getTaches() as $tache){ ?>
@@ -110,53 +111,56 @@
 									</th> -->
 									<td class="align-middle">
 										<span>
-										<?php echo $tache->getNom(); ?>
+										<?php echo $tache->getNom() ?>
 										</span>
 									</td>
 									<td class="align-middle">
 										<h6 class="mb-0"><span class="badge bg-danger">High priority</span></h6>
 									</td>
 									<td class="align-middle">
-										<a href="#!" data-mdb-toggle="tooltip" title="Done"><i
+										<!-- <a href="#!" data-mdb-toggle="tooltip" title="Done"><i
 											class="fas fa-check text-success me-3"></i></a>
 										<a href="#!" data-mdb-toggle="tooltip" title="Remove"><i
-											class="fas fa-trash-alt text-danger"></i></a>
+											class="fas fa-trash-alt text-danger"></i></a> -->
 									</td>
 									</tr>
 								</tbody>
-								<?php }?>
+								<?php }
+								$idListe=$listes->getId();
+								?>
 							</table>
-
+							
 						</div>
 					<div class="card-footer text-end p-3">
 						<a class="me-2 btn btn-link" name="idSupListe" type="submit" href="index.php?action=supprimerListeTache&id=<?php echo $listes->getId();?>" >Cancel</a>
 						<!-- Button -->
-						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#popup">Ajouter Tache</button>
+						<form class="d-flex flex-row align-items-center" method="post">
+											
+                    						<input type="text" class="form-control form-control-lg" name="nameTache" id="exampleFormControlInput1"
+                      						placeholder="Nom">
+											
+											  <input type="date" class="form-control form-control-lg" name="dateTache" id="exampleFormControlInput1"
+                      						placeholder="Date">
+											  <input type="hidden" class="form-control form-control-lg" name="listeTache" value="<?php echo $listes->getId(); ?>" id="exampleFormControlInput1"
+                      						placeholder="Liste">
+
+                    				<div>
+                     					 <input type="submit" class="btn btn-primary" value="Ajouter">
+                    				</div>
+										<input type="hidden" name="action" value="ajoutTache">
+				   					</form>
+
+						<!-- <button type="button" class="btn btn-primary">Ajouter Tache</button> -->
 						<!-- Pop-up -->
-						<div id="popup" class="modal">
-							<div class="modal-dialog modal-dialog-centered">
-								<div class="modal-content">
-									<div class="modal-header">
-										<p> Entête du pop-up </p>
-									</div>
-									<div class="modal-body">
-										<p> Je suis un magnifique pop-up</p>
-									</div>
-									<div class="modal-footer">
-										<p> Footer du pop-up</p>
-										<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer le popup</button>
-									</div>
-								</div>
-							</div>
+						
+							</div>			
 						</div>
 					</div>
 					</div>
-
 				</div>
 				</div>
 			</div>
 		</section>
 		<?php }?>
-
 	</body> 
 </html> 
