@@ -163,7 +163,6 @@ function SupprimerListeTache(){
 	$mdl = new Model();
 
 	$id = $_REQUEST['id'];
-	var_dump($id);
 	$mdl->supprimerListePublic($id);
 
 	$this->AfficherTaches();

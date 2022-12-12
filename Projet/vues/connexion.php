@@ -122,9 +122,9 @@
 			</style>
 
 			<!-- Jumbotron -->
-			<div class="container py-3">
-				<div class="row g-0 align-items-center">
-				<div class="col-lg-6 mb-5 mb-lg-5">
+			<div class="container  py-3">
+				<div class="row  g-0 align-items-center">
+				<div class="col-lg-6 mb-5 mb-lg-5 ">
 					<div class="card cascading-right" style="
 						background: hsla(0, 0%, 100%, 0.55);
 						backdrop-filter: blur(30px);
@@ -171,7 +171,7 @@
 					</div>
 				</div>
 
-				<div class="col-lg-6 mb-2 mb-lg-0">
+				<div class="col-lg-6 mb-2 mb-lg-0 ">
 					<img src="./vues/todo.png" class=" rounded-4 shadow-4"
 					alt="" />
 				</div>

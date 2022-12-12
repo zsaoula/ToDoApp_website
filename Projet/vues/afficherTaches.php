@@ -50,19 +50,20 @@
 					</div>
 				</div>
 			</nav>
-	<form method="post" name="myform" id="myform">
-		<table> <tr>
-		<td>Nom</td>
-		<td><input name="nomTache"  type="text" size="20"></td>
-		</tr>
-		</table>
-		<table> <tr>
-		<td><input type="submit" value="Envoyer"></td>
-		</td> </tr> </table>
-
-		<!-- action !!!!!!!!!! --> 
-		<input type="hidden" name="action" value="ajoutListeTache">
-		</form>
+	<div class="pb-2 w-50 ">
+              <div class="card">
+                <div class="card-body">
+                  <form class="d-flex flex-row align-items-center" method="post">
+                    <input type="text" class="form-control form-control-lg" name="nomTache" id="exampleFormControlInput1"
+                      placeholder="Nom">
+                    <div>
+                      <input type="submit" class="btn btn-primary" value="Ajouter">
+                    </div>
+					<input type="hidden" name="action" value="ajoutListeTache">
+				   </form>
+                </div>
+              </div>
+            </div>
 		<!-- <?php
 			// foreach($listesTachesPublic as $listes)
 			// {
@@ -128,8 +129,26 @@
 
 						</div>
 					<div class="card-footer text-end p-3">
-						<button class="me-2 btn btn-link" name="idSupListe" type="button" href="index.php?action=supprimerListeTache&id=<?php echo $listes->getId();?>" >Cancel</button>
-						<button class="btn btn-primary">Add Task</button>
+						<a class="me-2 btn btn-link" name="idSupListe" type="submit" href="index.php?action=supprimerListeTache&id=<?php echo $listes->getId();?>" >Cancel</a>
+						<!-- Button -->
+						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#popup">Ajouter Tache</button>
+						<!-- Pop-up -->
+						<div id="popup" class="modal">
+							<div class="modal-dialog modal-dialog-centered">
+								<div class="modal-content">
+									<div class="modal-header">
+										<p> Entête du pop-up </p>
+									</div>
+									<div class="modal-body">
+										<p> Je suis un magnifique pop-up</p>
+									</div>
+									<div class="modal-footer">
+										<p> Footer du pop-up</p>
+										<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer le popup</button>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 					</div>
 
