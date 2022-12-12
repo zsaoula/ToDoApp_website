@@ -42,6 +42,14 @@ class Controleur {
 					$this->Inscription();
 				break;
 
+				case "ajoutListeTache":
+					$this->AjouterListeTache();
+				break;
+
+				case "supprimerListeTache":
+					$this->SupprimerListeTache();
+				break;
+
 				//mauvaise action
 				default:
 				$dVueEreur[] =	"Erreur d'appel php";
@@ -136,6 +144,30 @@ function ValidationFormulaireInscription(array $dVueEreur) {
 		'data' => $data,
 	);
 	require ($rep.$vues['vueConnexion']);
+}
+
+function AjouterListeTache(){
+	global $rep,$vues;
+	$mdl = new Model();
+
+	$nom = $_POST['nomTache'];
+	$mdl->ajoutListePublic($nom);
+
+	$this->AfficherTaches();
+
+	//require ($rep.$vues['vueAfficherTaches']);
+}
+
+function SupprimerListeTache(){
+	global $rep,$vues;
+	$mdl = new Model();
+
+	$id = $_REQUEST['id'];
+	var_dump($id);
+	$mdl->supprimerListePublic($id);
+
+	$this->AfficherTaches();
+	//require ($rep.$vues['vueAfficherTaches']);
 }
 
 }//fin class

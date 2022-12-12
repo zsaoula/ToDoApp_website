@@ -54,6 +54,12 @@ class TacheGateway {
 
     }
 
+    public function supprimerTacheIdListe($idListe)
+    {
+        $query = "DELETE FROM `tache` where `noListe`=$idListe";
+
+        $this->con->executeQuery($query);
+    }
 
     public function supprimerTache($idTache)
     {

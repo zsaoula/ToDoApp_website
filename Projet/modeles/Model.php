@@ -27,6 +27,21 @@ class Model
         $gwInscription->ajoutUtilisateur($nom,$email,$mdp);
     }
 
+    function ajoutListePublic($nom) : void {
+        global $dsn, $username, $password;
+        $gwListeTache = new ListeTachesGateway(new Connection($dsn,$username,$password));
+        $gwListeTache->ajoutListePublic($nom);
+    }
+
+    function supprimerListePublic($id) : void {
+        global $dsn, $username, $password;
+        $gwListeTache = new ListeTachesGateway(new Connection($dsn,$username,$password));
+        $gwTache = new TacheGateway(new Connection($dsn,$username,$password));
+
+        $gwTache->supprimerTacheIdListe($id);
+        $gwListeTache->supprimerListePublic($id);
+    }
+
     public function getListesPublic(): array {
         global $dsn, $username, $password;
 

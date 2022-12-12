@@ -11,13 +11,13 @@ $rep=__DIR__.'/../';
 
 //BD
 
-// $dsn="mysql:host=localhost;dbname=dbnorandon;port=3308;";
-// $username="norandon";
-// $password="achanger";
+ $dsn="mysql:host=localhost;dbname=dbnorandon;port=3308;";
+ $username="norandon";
+ $password="achanger";
 
-$dsn="mysql:host=localhost;dbname=dbnorandon;port=3306;";
-$username="root";
-$password="";
+//$dsn="mysql:host=localhost;dbname=dbnorandon;port=3306;";
+//$username="root";
+//$password="";
 
 //Vues
 

@@ -61,7 +61,7 @@
 		</td> </tr> </table>
 
 		<!-- action !!!!!!!!!! --> 
-		<input type="hidden" name="action" value="validationFormulaire">
+		<input type="hidden" name="action" value="ajoutListeTache">
 		</form>
 		<!-- <?php
 			// foreach($listesTachesPublic as $listes)
@@ -76,8 +76,8 @@
 
 			// }
 		?> -->
-		
-		<section class="vh-100">
+		<?php foreach($listesTachesPublic as $listes){ ?>
+		<section class="">
 			<div class="container py-5">
 				<div class="row d-flex justify-content-center align-items-center">
 				<div class="col-md-12 col-xl-10">
@@ -85,59 +85,50 @@
 					<div class="card">
 					<div class="card-header p-3">
 						<h5 class="mb-0"><i class="fas fa-tasks me-2"></i>
-						<?php foreach($listesTachesPublic as $listes)
-							{
-								echo $listes->getNom();
-							
-					?>
+						<?php echo $listes->getNom();?>
 					</h5>
 					</div>
-					<div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative">
+						<div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative">
 
-						<table class="table mb-0">
-						<thead>
-							<tr>
-							<!-- <th scope="col">Team Member</th> -->
-							<th scope="col">Task</th>
-							<!-- <th scope="col">Priority</th> -->
-							<th scope="col">Actions</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr class="fw-normal">
-							<!-- <th>
-								<img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-5.webp"
-								class="shadow-1-strong rounded-circle" alt="avatar 1"
-								style="width: 55px; height: auto;">
-								<span class="ms-2">Alice Mayer</span>
-							</th> -->
-							<td class="align-middle">
-								<span>
-								<?php
-										foreach($listes->getTaches() as $tache)
-										{
-											echo $tache->getNom();
-										}
-									}
-								?>
-								</span>
-							</td>
-							<!-- <td class="align-middle">
-								<h6 class="mb-0"><span class="badge bg-danger">High priority</span></h6>
-							</td> -->
-							<td class="align-middle">
-								 <a href="#!" data-mdb-toggle="tooltip" title="Done"><i
-									class="fas fa-check text-success me-3"></i></a>
-								<a href="#!" data-mdb-toggle="tooltip" title="Remove"><i
-									class="fas fa-trash-alt text-danger"></i></a>
-							</td>
-							</tr>
-						</tbody>
-						</table>
+							<table class="table mb-0">
+							<thead>
+								<tr>
+								<!-- <th scope="col">Team Member</th> -->
+								<th scope="col">Task</th>
+								<th scope="col">Actions</th>
+								</tr>
+							</thead>
+							<?php foreach($listes->getTaches() as $tache){ ?>
+								<tbody>
+									<tr class="fw-normal">
+									<!-- <th>
+										<img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-5.webp"
+										class="shadow-1-strong rounded-circle" alt="avatar 1"
+										style="width: 55px; height: auto;">
+										<span class="ms-2">Alice Mayer</span>
+									</th> -->
+									<td class="align-middle">
+										<span>
+										<?php echo $tache->getNom(); ?>
+										</span>
+									</td>
+									<td class="align-middle">
+										<h6 class="mb-0"><span class="badge bg-danger">High priority</span></h6>
+									</td>
+									<td class="align-middle">
+										<a href="#!" data-mdb-toggle="tooltip" title="Done"><i
+											class="fas fa-check text-success me-3"></i></a>
+										<a href="#!" data-mdb-toggle="tooltip" title="Remove"><i
+											class="fas fa-trash-alt text-danger"></i></a>
+									</td>
+									</tr>
+								</tbody>
+								<?php }?>
+							</table>
 
-					</div>
+						</div>
 					<div class="card-footer text-end p-3">
-						<button class="me-2 btn btn-link">Cancel</button>
+						<button class="me-2 btn btn-link" name="idSupListe" type="button" href="index.php?action=supprimerListeTache&id=<?php echo $listes->getId();?>" >Cancel</button>
 						<button class="btn btn-primary">Add Task</button>
 					</div>
 					</div>
@@ -146,6 +137,7 @@
 				</div>
 			</div>
 		</section>
+		<?php }?>
 
 	</body> 
 </html> 

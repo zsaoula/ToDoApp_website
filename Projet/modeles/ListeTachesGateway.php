@@ -29,4 +29,18 @@ class ListeTachesGateway {
         return $this->con->getResults();
     }
 
+    public function ajoutListePublic($nom): void
+    {
+        $query = "INSERT INTO `listetaches` (`name`,`type`) VALUES('$nom','1')";
+
+        $this->con->executeQuery($query);
+    }
+
+    public function supprimerListePublic($id): void 
+    {
+        $query = "DELETE FROM listetaches WHERE `id`=$id ";
+
+        $this->con->executeQuery($query);
+    }
+
 }

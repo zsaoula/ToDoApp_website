@@ -12,6 +12,10 @@ class ListeTaches{
         $this->taches = $taches;
     }
 
+    public function getId() : string {
+        return $this->id;
+    }
+
     public function getNom() : string {
         return $this->name;
     }

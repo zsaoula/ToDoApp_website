@@ -55,7 +55,6 @@
 	// on v�rifie les donn�es provenant du mod�le
 	if (isset($dVue))
 	{?>
-		<div align="center">
 
 		<?php
 			if (isset($dVueEreur) && count($dVueEreur)>0) {
@@ -106,33 +105,80 @@
 					</div>
 				</div>
 			</nav>
-		<h2>Personne - formulaire</h2>
-		<hr>
-		<!-- affichage de donn�es provenant du mod�le --> 
-		<!-- <?= $dVue['data']  ?> -->
+		
 
+		<!-- Section: Design Block -->
+		<section class="text-center text-lg-start">
+			<style>
+				.cascading-right {
+				margin-right: -50px;
+				}
 
-		<form method="post" name="myform" id="myform">
-		<table> <tr>
-		<td>Nom</td>
-		<td><input name="txtNom" value="<?= $dVue['nom']  ?>" type="text" size="20"></td>
-		</tr>
-		<tr><td>Email</td>
-		<td><input name="txtEmail" value="<?= $dVue['email'] ?>" type="text" size="3" required></td>
-		</tr>
-		<tr><td>Mot De Passe</td>
-			<td><input name="txtMdp" value="<?= $dVue['mdp'] ?>" type="text" size="3" required></td>
-		</tr>
-		<tr>
-		</table>
-		<table> <tr>
-		<td><input type="submit" value="Envoyer"></td>
-		<td><input type="button" value="Effacer" onclick="clearForm(this.form);">
-		</td> </tr> </table>
+				@media (max-width: 991.98px) {
+				.cascading-right {
+					margin-right: 0;
+				}
+				}
+			</style>
 
-		<!-- action !!!!!!!!!! --> 
-		<input type="hidden" name="action" value="validationFormulaire">
-		</form></div>
+			<!-- Jumbotron -->
+			<div class="container py-3">
+				<div class="row g-0 align-items-center">
+				<div class="col-lg-6 mb-5 mb-lg-5">
+					<div class="card cascading-right" style="
+						background: hsla(0, 0%, 100%, 0.55);
+						backdrop-filter: blur(30px);
+						">
+					<div class="card-body p-5 pb-1 shadow-5 text-center">
+						<h2 class="fw-bold mb-5">Sign up now</h2>
+						<form>
+						<!-- 2 column grid layout with text inputs for the first and last names -->
+						<div class="row">
+							<div class="col-md-6 mb-4">
+							<div class="form-outline">
+								<input type="text" id="form3Example1" class="form-control" />
+								<label class="form-label" for="form3Example1">First name</label>
+							</div>
+							</div>
+							<div class="col-md-6 mb-4">
+							<div class="form-outline">
+								<input type="text" id="form3Example2" class="form-control" />
+								<label class="form-label" for="form3Example2">Last name</label>
+							</div>
+							</div>
+						</div>
+
+						<!-- Email input -->
+						<div class="form-outline mb-4">
+							<input type="email" id="form3Example3" class="form-control" />
+							<label class="form-label" for="form3Example3">Email address</label>
+						</div>
+
+						<!-- Password input -->
+						<div class="form-outline mb-4">
+							<input type="password" id="form3Example4" class="form-control" />
+							<label class="form-label" for="form3Example4">Password</label>
+						</div>
+
+						<!-- Submit button -->
+						<button type="submit" class="btn btn-primary btn-block mb-4">
+							Sign up
+						</button>
+
+						
+						</form>
+					</div>
+					</div>
+				</div>
+
+				<div class="col-lg-6 mb-2 mb-lg-0">
+					<img src="./vues/todo.png" class=" rounded-4 shadow-4"
+					alt="" />
+				</div>
+				</div>
+			</div>
+		<!-- Jumbotron -->
+		</section>
 
 		<?php }
 		else {
