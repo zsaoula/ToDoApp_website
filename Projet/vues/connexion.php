@@ -131,13 +131,13 @@
 						">
 					<div class="card-body p-5 pb-1 shadow-5 text-center">
 						<h2 class="fw-bold mb-5">Sign up now</h2>
-						<form>
+						<form method="post">
 						<!-- 2 column grid layout with text inputs for the first and last names -->
-						<div class="row">
+						<!-- <div class="row">
 							<div class="col-md-6 mb-4">
 							<div class="form-outline">
-								<input type="text" id="form3Example1" class="form-control" />
-								<label class="form-label" for="form3Example1">First name</label>
+								<input type="text"  name="name" class="form-control" />
+								<label class="form-label" >First name</label>
 							</div>
 							</div>
 							<div class="col-md-6 mb-4">
@@ -146,18 +146,23 @@
 								<label class="form-label" for="form3Example2">Last name</label>
 							</div>
 							</div>
-						</div>
+						</div> -->
+						<!-- Name input -->
+						<!-- <div class="form-outline mb-4">
+							<input type="text" name="name" class="form-control" />
+							<label class="form-label">Name</label>
+						</div> -->
 
 						<!-- Email input -->
 						<div class="form-outline mb-4">
-							<input type="email" id="form3Example3" class="form-control" />
-							<label class="form-label" for="form3Example3">Email address</label>
+							<input type="email" name="email" class="form-control" />
+							<label class="form-label">Email address</label>
 						</div>
 
 						<!-- Password input -->
 						<div class="form-outline mb-4">
-							<input type="password" id="form3Example4" class="form-control" />
-							<label class="form-label" for="form3Example4">Password</label>
+							<input type="password" name="mdp" class="form-control" />
+							<label class="form-label">Password</label>
 						</div>
 
 						<!-- Submit button -->
@@ -165,7 +170,7 @@
 							Sign up
 						</button>
 
-						
+						<input type="hidden" name="action" value="validationFormulaire">
 						</form>
 					</div>
 					</div>

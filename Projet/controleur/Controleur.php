@@ -110,21 +110,27 @@ function ValidationFormulaire(array $dVueEreur) {
 
 
 	//si exception, ca remonte !!!
-	$nom=$_POST['txtNom']; // txtNom = nom du champ texte dans le formulaire
-	$email=$_POST['txtEmail'];
-	$mdp=$_POST['txtMdp'];
-	Validation::val_form($nom,$email,$mdp,$dVueEreur);
-
+	//$nom=$_POST['nom']; // txtNom = nom du champ texte dans le formulaire
+	$email=$_POST['email'];
+	$mdp=$_POST['mdp'];
+	//Validation::val_form($nom,$email,$mdp,$dVueEreur);
+	var_dump($email);
 	$model = new Model();
-	$data=$model->verifierConnexion();
+	$data=$model->verifier_connexion($email,$mdp);
 
-	$dVue = array (
-		'nom' => $nom,
-		'email' => $email,
-		'mdp' => $mdp,
-		'data' => $data,
-	);
-	require ($rep.$vues['vueConnexion']);
+	//require ($rep.$vues['vueConnexion']);
+	
+	if($data!=NULL){
+		$this->AfficherTaches();
+	}
+
+	// $dVue = array (
+	// 	'nom' => $nom,
+	// 	'email' => $email,
+	// 	'mdp' => $mdp,
+	// 	'data' => $data,
+	// );
+	// require ($rep.$vues['vueConnexion']);
 }
 
 function ValidationFormulaireInscription(array $dVueEreur) {

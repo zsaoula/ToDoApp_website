@@ -7,18 +7,23 @@ class Model
     return "Mon modèle ne fait rien";
     }
 
-    function verifier_connexion($nom,$email,$mdp) : bool
+    function verifier_connexion($email,$mdp) 
     {
         global $dsn, $username, $password;
+        //$email = Validation::clearString($email);
+        //$mdp = Validation::clearString($mdp);
 
         $gwUtilisateur = new UtilisateurGateway(new Connection($dsn,$username,$password));
-
-        $utilisateur = $gwUtilisateur->connexion($nom,$email,$mdp);
-
-        if(empty($utilisateur)){
-            return false;
+        $hash = $gwUtilisateur->getCredentiale($email);
+        //password_verify($mdp,$hash[0]['mdp'])
+        $nom = $hash[0]['nom'];
+        if($mdp == $hash[0]['mdp']){
+               $_SESSION['role']='utilisateur';
+               $_SESSION['login']=$hash[0]['nom'];
+               return new Utilisateur($nom,$email,$mdp);
         }
-        return true;
+        // return new Utilisateur($hash['nom'],$email,$mdp);
+        return NULL;
     }
 
     function inscription($nom,$email,$mdp) : void {
