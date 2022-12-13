@@ -51,6 +51,10 @@ class Controleur {
 				break;
 				case "ajoutTache":
 					$this->AjouterTachePublique();
+				break;
+				case "supprimerTache":
+					$this->SupprimerTache();
+				break;
 
 				//mauvaise action
 				default:
@@ -161,6 +165,8 @@ function AjouterListeTache(){
 	$nom = $_POST['nomTache'];
 	$mdl->ajoutListePublic($nom);
 
+	
+
 	$this->AfficherTaches();
 
 	//require ($rep.$vues['vueAfficherTaches']);
@@ -172,7 +178,7 @@ function SupprimerListeTache(){
 
 	$id = $_REQUEST['id'];
 	$mdl->supprimerListePublic($id);
-
+	
 	$this->AfficherTaches();
 	//require ($rep.$vues['vueAfficherTaches']);
 }
@@ -185,6 +191,17 @@ function AjouterTachePublique(){
 	$dateTache = $_POST['dateTache'];
 	$listeTache = $_POST['listeTache'];
 	$mdl->ajouterTache($nameTache,$dateTache,$listeTache);
+
+	$this->AfficherTaches();
+	//require ($rep.$vues['vueAfficherTaches']);
+}
+
+function SupprimerTache(){
+	global $rep,$vues;
+	$mdl = new Model();
+
+	$idTache = $_REQUEST['idTache'];
+	$mdl->supprimerTache($idTache);
 
 	$this->AfficherTaches();
 	//require ($rep.$vues['vueAfficherTaches']);

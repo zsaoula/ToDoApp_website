@@ -13,6 +13,9 @@ class Tache{
         $this->finish = $finish;
         $this->noList = $noList;
     }
+    public function getId() : string {
+        return $this->id;
+    }
 
     public function getNom() : string {
         return $this->name;
@@ -24,6 +27,10 @@ class Tache{
 
     public function getCreationTache() : string {
         return $this->creationDate;
+    }
+
+    public function getChecked() : string {
+        return $this->finish;
     }
 }
 ?>

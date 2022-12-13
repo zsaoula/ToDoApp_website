@@ -38,12 +38,6 @@ class Model
         $gwListeTache->ajoutListePublic($nom);
     }
 
-    function ajouterTache(string $name, string $creationDate, int $noListe) : void {
-        global $dsn, $username, $password;
-        $gwTache = new TacheGateway(new Connection($dsn,$username,$password));
-        $gwTache->ajouterTache($name, $creationDate, $noListe);
-    }
-
     function supprimerListePublic($id) : void {
         global $dsn, $username, $password;
         $gwListeTache = new ListeTachesGateway(new Connection($dsn,$username,$password));
@@ -51,6 +45,18 @@ class Model
 
         $gwTache->supprimerTacheIdListe($id);
         $gwListeTache->supprimerListePublic($id);
+    }
+
+    function ajouterTache(string $name, string $creationDate, int $noListe) : void {
+        global $dsn, $username, $password;
+        $gwTache = new TacheGateway(new Connection($dsn,$username,$password));
+        $gwTache->ajouterTache($name, $creationDate, $noListe);
+    }
+
+    function supprimerTache(string $idTache) : void {
+        global $dsn, $username, $password;
+        $gwTache = new TacheGateway(new Connection($dsn,$username,$password));
+        $gwTache->supprimerTache($idTache);
     }
 
     public function getListesPublic(): array {
