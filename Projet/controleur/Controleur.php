@@ -227,8 +227,6 @@ function CheckTache(){
 	
 	}
 	}
-	var_dump($listeTache);
-	var_dump($tachesAChecker);
 
 	$mdl->checkerTaches($listeTache,$tachesAChecker);
 
