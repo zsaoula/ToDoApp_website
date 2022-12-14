@@ -112,7 +112,7 @@
 									</th> -->
 									<td class="align-middle">
 										<span>
-										<?php echo $tache->getNom() ?>
+										<?php echo $tache->getNom(); ?>
 										</span>
 									</td>
 									<td class="align-middle">
@@ -120,9 +120,17 @@
 									</td>
 									<td class="align-middle">
 										<form method="post">
-										<input type="checkbox">
-									</input>
-									</form>	
+											<?php //var_dump($tache->getChecked()) ;
+											
+											if(($tache->getChecked()) == 1){
+												echo '<input type="checkbox" checked="true" name="tacheAlreadyChecked'. $tache->getId(). '" value="' .$tache->getId(). '"></input>';
+											}
+											else {
+												echo '<input type="checkbox" name="tacheChecked'. $tache->getId(). '" value="' .$tache->getId(). '"></input>';
+											}?>
+										<!-- <input type="checkbox" name="tacheChecked" value="1">
+									</input> -->
+									<!-- </form>	 -->
 									</td>
 									<td class="align-middle">
 										<a href="#!" class="text-info" data-mdb-toggle="tooltip" title="Edit todo">
@@ -143,7 +151,10 @@
 								// $idListe=$listes->getId();
 								?>
 							</table>
-							
+							<input type="hidden" name="listeTache" value="<?php echo $listes->getId(); ?>"/>
+							<input type="hidden" name="action" value="checkTache"/>
+							<input type="submit" class="btn btn-primary" value="Confirmer Tache Check"/>
+							</form>
 						</div>
 					<div class="card-footer text-end p-3">
 						<a class="me-2 btn btn-link" name="idSupListe" type="submit" href="index.php?action=supprimerListeTache&id=<?php echo $listes->getId();?>" >Cancel</a>

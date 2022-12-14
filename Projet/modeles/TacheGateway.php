@@ -69,4 +69,31 @@ class TacheGateway {
         $this->con->executeQuery($query);
     }
 
+    public function checkerTaches($listeTache,$taches){
+        $tachesUncheck=array();
+        $tachesListe=array();
+        $query = "SELECT id FROM tache WHERE noListe=$listeTache";
+        $this->con->executeQuery($query);
+        $tachesListe=$this->con->getResults();
+        // for ($i=0)
+            foreach($tachesListe as $tache){
+                var_dump($tache['id']);
+            if (in_array($tache['id'],$taches)==false){
+                $tachesUncheck[] = $tache['id'];
+            }
+        
+        }
+        
+        var_dump($tachesUncheck);
+
+        foreach ($taches as $tache){
+            $query = "UPDATE `tache` SET finish=1 WHERE noListe=$listeTache AND id=$tache";
+            $this->con->executeQuery($query);
+        }
+        foreach ($tachesUncheck as $tache){
+            $query = "UPDATE `tache` SET finish=0 WHERE noListe=$listeTache AND id=$tache";
+            $this->con->executeQuery($query);
+        }
+    }
+
 }

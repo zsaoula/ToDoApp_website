@@ -55,6 +55,9 @@ class Controleur {
 				case "supprimerTache":
 					$this->SupprimerTache();
 				break;
+				case "checkTache":
+					$this->CheckTache();
+				break;
 
 				//mauvaise action
 				default:
@@ -202,6 +205,32 @@ function SupprimerTache(){
 
 	$idTache = $_REQUEST['idTache'];
 	$mdl->supprimerTache($idTache);
+
+	$this->AfficherTaches();
+	//require ($rep.$vues['vueAfficherTaches']);
+}
+
+function CheckTache(){
+	global $rep,$vues;
+	$mdl = new Model();
+
+	$tachesAChecker=array();
+
+	foreach ($_POST as $key => $value) {
+		if($key != 'action'){
+			if ($key == 'listeTache'){
+			$listeTache=$value;
+			}
+			else{
+			$tachesAChecker[] = $value;
+		}
+	
+	}
+	}
+	var_dump($listeTache);
+	var_dump($tachesAChecker);
+
+	$mdl->checkerTaches($listeTache,$tachesAChecker);
 
 	$this->AfficherTaches();
 	//require ($rep.$vues['vueAfficherTaches']);
