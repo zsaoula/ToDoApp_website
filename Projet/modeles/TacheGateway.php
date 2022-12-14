@@ -75,16 +75,12 @@ class TacheGateway {
         $query = "SELECT id FROM tache WHERE noListe=$listeTache";
         $this->con->executeQuery($query);
         $tachesListe=$this->con->getResults();
-        // for ($i=0)
             foreach($tachesListe as $tache){
-                var_dump($tache['id']);
             if (in_array($tache['id'],$taches)==false){
                 $tachesUncheck[] = $tache['id'];
             }
         
         }
-        
-        var_dump($tachesUncheck);
 
         foreach ($taches as $tache){
             $query = "UPDATE `tache` SET finish=1 WHERE noListe=$listeTache AND id=$tache";
