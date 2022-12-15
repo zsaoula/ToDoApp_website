@@ -17,10 +17,11 @@ class Model
         $hash = $gwUtilisateur->getCredentiale($email);
         //password_verify($mdp,$hash[0]['mdp'])
         $nom = $hash[0]['nom'];
-        if($mdp == $hash[0]['mdp']){
+        if(strcmp($mdp,$hash[0]['mdp'])){
                $_SESSION['role']='utilisateur';
                $_SESSION['login']=$hash[0]['nom'];
-               return new Utilisateur($nom,$email,$mdp);
+               $_SESSION['id']=$hash[0]['id'];
+               return new Utilisateur($hash[0]['id'],$email,$mdp);
         }
         // return new Utilisateur($hash['nom'],$email,$mdp);
         return NULL;
@@ -38,6 +39,12 @@ class Model
         $gwListeTache->ajoutListePublic($nom);
     }
 
+    function ajoutListePrivee($nom,$id) : void {
+        global $dsn, $username, $password;
+        $gwListeTache = new ListeTachesGateway(new Connection($dsn,$username,$password));
+        $gwListeTache->ajoutListePrivee($nom,$id);
+    }
+
     function supprimerListePublic($id) : void {
         global $dsn, $username, $password;
         $gwListeTache = new ListeTachesGateway(new Connection($dsn,$username,$password));
@@ -53,10 +60,10 @@ class Model
         $gwTache->checkerTaches($listeTache,$taches);
     }
 
-    function ajouterTache(string $name, string $creationDate, int $noListe) : void {
+    function ajouterTache(string $name, string $creationDate, string $priorite, int $noListe ) : void {
         global $dsn, $username, $password;
         $gwTache = new TacheGateway(new Connection($dsn,$username,$password));
-        $gwTache->ajouterTache($name, $creationDate, $noListe);
+        $gwTache->ajouterTache($name,$creationDate,$priorite, $noListe);
     }
 
     function supprimerTache(string $idTache) : void {
@@ -81,7 +88,33 @@ class Model
             {
                 #$time_input = strtotime($tacheAdd['creationDate']); 
                 #$newformat = date('Y-m-d',$time_input);
-                $tache[] = new Tache($tacheAdd['id'],$tacheAdd['name'],$tacheAdd['creationDate'],$tacheAdd['finish'],$tacheAdd['noListe']);
+                $tache[] = new Tache($tacheAdd['id'],$tacheAdd['name'],$tacheAdd['creationDate'],$tacheAdd['finish'],$tacheAdd['priorite'],$tacheAdd['noListe']);
+            }
+
+            $listeTacheTableau[] = new ListeTaches($listTaches['id'],$listTaches['name'],$listTaches['type'],$tache);
+        }
+        return $listeTacheTableau;
+    }
+
+    public function getListesPrivee(int $id): array {
+        global $dsn, $username, $password;
+
+        $gwTache = new TacheGateway(new Connection($dsn,$username,$password));
+        $gwListeTache = new ListeTachesGateway(new Connection($dsn,$username,$password));
+
+        $listePublic = $gwListeTache->getPriveeLists($id);
+        
+        $listeTacheTableau = array();
+
+        foreach($listePublic as $listTaches)
+        {
+            $taches = $gwTache->getTaches($listTaches['id']);
+            $tache = array();
+            foreach($taches as $tacheAdd)
+            {
+                #$time_input = strtotime($tacheAdd['creationDate']); 
+                #$newformat = date('Y-m-d',$time_input);
+                $tache[] = new Tache($tacheAdd['id'],$tacheAdd['name'],$tacheAdd['creationDate'],$tacheAdd['finish'],$tacheAdd['priorite'],$tacheAdd['noListe']);
             }
 
             $listeTacheTableau[] = new ListeTaches($listTaches['id'],$listTaches['name'],$listTaches['type'],$tache);

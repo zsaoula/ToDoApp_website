@@ -20,9 +20,9 @@ class ListeTachesGateway {
         return $this->con->getResults();
     }
 
-    public function getPrivateLists(): array
+    public function getPriveeLists($idUtilisateur): array
     {
-        $query = "SELECT * FROM listetaches WHERE type='0' ";
+        $query = "SELECT * FROM `listetaches` WHERE type='0' AND `idutilisateur`=$idUtilisateur ";
 
         $this->con->executeQuery($query);
 
@@ -35,6 +35,14 @@ class ListeTachesGateway {
 
         $this->con->executeQuery($query);
     }
+
+    public function ajoutListePrivee($nom,$id): void
+    {
+        $query = "INSERT INTO `listetaches` (`name`,`type`,`idUtilisateur`) VALUES('$nom','0','$id')";
+
+        $this->con->executeQuery($query);
+    }
+
 
     public function supprimerListePublic($id): void 
     {

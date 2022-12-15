@@ -42,16 +42,33 @@ class Controleur {
 					$this->Inscription();
 				break;
 
+				case "deconnexion":
+					$this->Deconnexion();
+				break;
+
 				case "ajoutListeTache":
 					$this->AjouterListeTache();
+				break;
+				case "ajoutListeTachePrivee":
+					$this->AjouterListeTachePrivee();
 				break;
 
 				case "supprimerListeTache":
 					$this->SupprimerListeTache();
 				break;
+
+				case 'afficherTachesPrivee':
+					$this->AfficherTachesPrivee();
+				break;
+
 				case "ajoutTache":
 					$this->AjouterTachePublique();
 				break;
+
+				case "ajoutTachePrivee":
+					$this->AjouterTachePrivee();
+				break;
+
 				case "supprimerTache":
 					$this->SupprimerTache();
 				break;
@@ -61,8 +78,8 @@ class Controleur {
 
 				//mauvaise action
 				default:
-				$dVueEreur[] =	"Erreur d'appel php";
-				require ($rep.$vues['vueConnexion']);
+					$dVueEreur[] =	"Erreur d'appel php";
+					require ($rep.$vues['vueConnexion']);
 				break;
 			}
 		} catch (PDOException $e)
@@ -112,6 +129,15 @@ function Connexion() {
 	require ($rep.$vues['vueConnexion']);
 }
 
+function Deconnexion() {
+	global $rep,$vues; // nécessaire pour utiliser variables globales
+
+	$model = new ModelUtilisateur();
+	$model->deconnexion();
+
+	$this->Connexion();
+}
+
 function ValidationFormulaire(array $dVueEreur) {
 	global $rep,$vues;
 
@@ -121,7 +147,6 @@ function ValidationFormulaire(array $dVueEreur) {
 	$email=$_POST['email'];
 	$mdp=$_POST['mdp'];
 	//Validation::val_form($nom,$email,$mdp,$dVueEreur);
-	var_dump($email);
 	$model = new Model();
 	$data=$model->verifier_connexion($email,$mdp);
 
@@ -175,6 +200,21 @@ function AjouterListeTache(){
 	//require ($rep.$vues['vueAfficherTaches']);
 }
 
+function AjouterListeTachePrivee(){
+	global $rep,$vues;
+	$mdl = new Model();
+
+	$nom = $_POST['nomTache'];
+	$id = (int)$_SESSION['id'];
+	$mdl->ajoutListePrivee($nom, $id);
+
+	
+
+	$this->AfficherTachesPrivee();
+
+	//require ($rep.$vues['vueAfficherTaches']);
+}
+
 function SupprimerListeTache(){
 	global $rep,$vues;
 	$mdl = new Model();
@@ -186,18 +226,34 @@ function SupprimerListeTache(){
 	//require ($rep.$vues['vueAfficherTaches']);
 }
 
+function AjouterTachePrivee(){
+	global $rep,$vues;
+	$mdl = new Model();
+
+	$nameTache = $_POST['nameTache'];
+	$dateTache = date('m-d-Y', time());
+	$typePriorite = "Important";
+	$listeTache = $_POST['listeTache'];
+	$mdl->ajouterTache($nameTache,$dateTache,$typePriorite,$listeTache);
+
+	$this->AfficherTachesPrivee();
+	//require ($rep.$vues['vueAfficherTaches']);
+}
+
 function AjouterTachePublique(){
 	global $rep,$vues;
 	$mdl = new Model();
 
 	$nameTache = $_POST['nameTache'];
-	$dateTache = $_POST['dateTache'];
+	$dateTache = date('m-d-Y', time());
+	$typePriorite = "Important";
 	$listeTache = $_POST['listeTache'];
-	$mdl->ajouterTache($nameTache,$dateTache,$listeTache);
+	$mdl->ajouterTache($nameTache,$dateTache,$typePriorite,$listeTache);
 
 	$this->AfficherTaches();
 	//require ($rep.$vues['vueAfficherTaches']);
 }
+
 
 function SupprimerTache(){
 	global $rep,$vues;
@@ -208,6 +264,15 @@ function SupprimerTache(){
 
 	$this->AfficherTaches();
 	//require ($rep.$vues['vueAfficherTaches']);
+}
+
+function AfficherTachesPrivee(){
+	global $rep,$vues; // nécessaire pour utiliser variables globales
+	$mdl = new Model();
+	$listesTachesPrivee = array();
+	$id = (int)$_SESSION['id'];
+	$listesTachesPrivee = $mdl->getListesPrivee($id);
+	require ($rep.$vues['vueAfficherTachesPrivee']);
 }
 
 function CheckTache(){

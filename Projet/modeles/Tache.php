@@ -4,13 +4,15 @@ class Tache{
     private string $name;
     private string $creationDate;
     private bool $finish;
+    private string $priorite;
     private int $noList;
 
-    public function __construct(int $id, string $name, string $creationDate, bool $finish, int $noList){
+    public function __construct(int $id, string $name, string $creationDate, bool $finish, string $priorite, int $noList){
         $this->id = $id;
         $this->name =$name;
         $this->creationDate = $creationDate;
         $this->finish = $finish;
+        $this->priorite = $priorite;
         $this->noList = $noList;
     }
     public function getId() : string {
@@ -25,11 +27,15 @@ class Tache{
         return $this->finish;
     }
 
+    public function getPriorite() : string {
+        return $this->priorite;
+    }
+
     public function getCreationTache() : string {
         return $this->creationDate;
     }
 
-    public function getChecked() : string {
+    public function getChecked() : bool {
         return $this->finish;
     }
 }

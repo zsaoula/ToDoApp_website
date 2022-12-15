@@ -1,13 +1,13 @@
 <?php
 class Utilisateur{
+    private int $id;
     private string $pseudo;
     private string $mail;
-    private string $motDePasse;
     
-    public function __construct(string $pseudo, string $mail, string $motDePasse){
+    public function __construct(int $id,string $pseudo, string $mail){
+        $this->id = $id;
         $this->pseudo = $pseudo;
         $this->mail = $mail;
-        $this->motDePasse =$motDePasse;
     }
 
     public function getPseudo(){

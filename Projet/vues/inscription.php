@@ -59,11 +59,14 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 						<li class="nav-item">
-						<a class="nav-link active" aria-current="page" href="index.php?action=inscription">Inscription</a>
+						<a class="nav-link" href="index.php?action=afficherTaches">Listes Publics</a>
 						</li>
-						<li class="nav-item">
-						<a class="nav-link" href="index.php?action=afficherTaches">ListPublic</a>
-						</li>
+						<?php
+							if(isset($_SESSION['login'])){ ?>
+                        	<li class="nav-item">
+								<a class="nav-link" href="index.php?action=afficherTachesPrivee">Listes Privées</a>
+							</li>
+						<?php } ?>
 						<!-- <li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
 							aria-expanded="false">
@@ -82,10 +85,16 @@
 						<a class="nav-link disabled">Disabled</a>
 						</li> -->
 					</ul>
-					<!-- <form class="d-flex">
-						<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-						<button class="btn btn-outline-primary" type="submit">Search</button>
-					</form> -->
+					<ul class="d-flex mb-lg-0">
+						<?php
+							if(isset($_SESSION['login'])){ ?>
+                        		<button class="btn btn-outline-primary" href="index.php?action=deconnexion" type="submit">Deconnexion</button>
+						<?php }
+							else { ?>
+								<a class="btn  ms-3 btn-outline-primary" href="index.php" type="submit">Connexion</a>
+								<a class="btn btn-primary ms-3" href="index.php?action=inscription" type="submit">Inscription</a>
+						<?php } ?>
+					</ul>
 					</div>
 				</div>
 			</nav>

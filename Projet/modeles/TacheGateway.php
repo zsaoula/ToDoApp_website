@@ -45,10 +45,10 @@ class TacheGateway {
     }
 
 
-    public function ajouterTache(string $name, string $creationDate, int $noListe) : void
+    public function ajouterTache(string $name, string $creationDate, string $priorite, int $noListe) : void
     {
 
-        $query = "INSERT INTO `tache`(`name`, `creationDate`, `finish`, `noListe`) VALUES ('$name', '$creationDate', '0', '$noListe');";
+        $query = "INSERT INTO `tache`(`name`, `creationDate`, `finish`, `priorite`, `noListe`) VALUES ('$name', '$creationDate', '0', '$priorite', '$noListe');";
 
         $this->con->executeQuery($query);
 
