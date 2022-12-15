@@ -72,6 +72,12 @@ class Model
         $gwTache->supprimerTache($idTache);
     }
 
+    function editerTache(string $nameTache,string $idTache,string $typePriorite) : void {
+        global $dsn, $username, $password;
+        $gwTache = new TacheGateway(new Connection($dsn,$username,$password));
+        $gwTache->editerTache($nameTache,$idTache,$typePriorite);
+    }
+
     public function getListesPublic(): array {
         global $dsn, $username, $password;
 

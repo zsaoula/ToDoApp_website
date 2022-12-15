@@ -54,6 +54,16 @@ class TacheGateway {
 
     }
 
+    public function editerTache(string $nameTache,string $idTache,string $typePriorite) : void
+    {
+        
+        $query = "UPDATE `tache` SET `name`=$nameTache, `priorite`=$typePriorite WHERE id=$idTache;";
+
+        
+        $this->con->executeQuery($query);
+        var_dump("ee");
+    }
+
     public function supprimerTacheIdListe($idListe)
     {
         $query = "DELETE FROM `tache` where `noListe`=$idListe";

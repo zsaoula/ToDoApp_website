@@ -75,6 +75,8 @@ class Controleur {
 				case "checkTache":
 					$this->CheckTache();
 				break;
+				case "editerTache":
+					$this->EditerTache();
 
 				//mauvaise action
 				default:
@@ -245,8 +247,8 @@ function AjouterTachePublique(){
 	$mdl = new Model();
 
 	$nameTache = $_POST['nameTache'];
-	$dateTache = date('m-d-Y', time());
-	$typePriorite = "Important";
+	$dateTache = date('Y-m-d', time());
+	$typePriorite = $_POST['ajoutPriorite'];
 	$listeTache = $_POST['listeTache'];
 	$mdl->ajouterTache($nameTache,$dateTache,$typePriorite,$listeTache);
 
@@ -294,6 +296,22 @@ function CheckTache(){
 	}
 
 	$mdl->checkerTaches($listeTache,$tachesAChecker);
+
+	$this->AfficherTaches();
+	//require ($rep.$vues['vueAfficherTaches']);
+}
+
+function EditerTache(){
+	global $rep,$vues;
+	$mdl = new Model();
+
+	$nameTache = $_POST['nameTache'];
+	$typePriorite = $_POST['editPriorite'];
+	$idTache = $_POST['idTache'];
+	// var_dump($nameTache);
+	// var_dump($typePriorite);
+	// var_dump($idTache);
+	$mdl->editerTache($nameTache,$idTache,$typePriorite);
 
 	$this->AfficherTaches();
 	//require ($rep.$vues['vueAfficherTaches']);
