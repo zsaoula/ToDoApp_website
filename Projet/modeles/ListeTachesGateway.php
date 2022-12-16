@@ -51,4 +51,18 @@ class ListeTachesGateway {
         $this->con->executeQuery($query);
     }
 
+    public function rendrePublique($id): void 
+    {
+        $query = "UPDATE `listetaches` SET `type`='1' WHERE id='$id'";
+
+        $this->con->executeQuery($query);
+    }
+
+    public function rendrePrivée($id): void 
+    {
+        $query = "UPDATE `listetaches` SET `type`='0' WHERE id='$id'";
+
+        $this->con->executeQuery($query);
+    }
+
 }

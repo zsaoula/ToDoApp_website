@@ -124,12 +124,26 @@
 			<div class="container py-2 ">
 				<div class="row d-flex justify-content-center align-items-center">
 				<div class="col-md-12 col-xl-10">
-
 					<div class="card">
+					<!-- <form method="post">
+					<input type="hidden" name="idListe" value="<?php $listes->getId(); ?>"/>
+							<div>
+							<?php
+									// if($listes->getType()==0){//si liste taches est privée
+									// 	echo '<input type="submit" class="btn btn-primary" value="Rendre Public"/>';
+									// 	echo '<input type="hidden" name="action" value="rendrePublique"/>';
+									// }
+									// else {
+									// 	//liste tache public
+									// 	echo '<input type="submit" class="btn btn-primary" value="Rendre Privée"/>';
+									// 	echo '<input type="hidden" name="action" value="rendrePrivee"/>';
+									// }
+								?>
+						</form>	 -->
 					<div class="card-header p-3 d-flex justify-content-between align-items-center">
 						<h5 class="mb-0"><i class="fas fa-tasks me-2"></i>
 							<?php echo $listes->getNom();?>
-						</h5>
+						</h5>	
 						<div class="progress w-50">
   							<div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
 						</div>
@@ -274,7 +288,6 @@
 							<input type="hidden" name="action" value="checkTache"/>
 							<input type="submit" class="btn btn-primary" value="Confirmer Tache Check"/>
 							</form>
-							
 						</div>
 						<div class="card-footer text-end p-3">
 						<a class="me-2 btn btn-primary" name="idSupListe" type="submit" href="index.php?action=supprimerListeTache&id=<?php echo $listes->getId();?>" >Cancel</a>

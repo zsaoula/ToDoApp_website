@@ -72,6 +72,18 @@ class ModelUtilisateur
         }
         return $listeTacheTableau;
     }
+
+    public function rendrePublique(int $id){
+        global $dsn, $username, $password;
+        $gwListeTache = new ListeTachesGateway(new Connection($dsn,$username,$password));
+        $gwListeTache->rendrePublique($id);
+    }
+
+    public function rendrePrivée(int $id){
+        global $dsn, $username, $password;
+        $gwListeTache = new ListeTachesGateway(new Connection($dsn,$username,$password));
+        $gwListeTache->rendrePrivée($id);
+    }
 }
 
 ?>
