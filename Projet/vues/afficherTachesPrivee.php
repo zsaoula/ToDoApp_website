@@ -141,11 +141,11 @@
 								?>
 						</form>	 -->
 					<div class="card-header p-3 d-flex justify-content-between align-items-center">
-						<h5 class="mb-0"><i class="fas fa-tasks me-2"></i>
+						<h5 class="mb-0">
 							<?php echo $listes->getNom();?>
 						</h5>	
 						<div class="progress w-50">
-  							<div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+  										<div class="progress-bar" role="progressbar" style="width: <?php echo $listes->getProgress();?>%;" aria-valuenow="<?php echo $listes->getProgress();?>" aria-valuemin="0" aria-valuemax="100"><?php echo $listes->getProgress();?>%</div>
 						</div>
 					</div>
 						<div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative">
@@ -195,83 +195,7 @@
   												<path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
 											</svg>
 										</button>
-											<!-- Fond flouté-->
-											<div class="overlay" id="overlayEdit"></div>
-
-											<!--Pop-up-->
-											<div class="popup" id="popupEdit">
-												<div class="close-button" onclick="hidePopupEdit()">X</div>
-												<div class="popup-title">Editer tâche</div>
-												<div class="popup-content" id="popup-contentEdit"></div>
-												<div>
-												<form class="d-flex flex-row align-items-center" method="post">
 											
-                    						<input type="text" class="form-control form-control-lg" id="nomTache" name="nameTache"/>
-                      						
-											  
-											<div>
-
-											<form method="post" class="p-0 m-0">
-												
-											  <input type="hidden" class="form-control form-control-lg" name="idTache" id="idTache"/>
-											  <h5 class="mb-0"><i class="fas fa-tasks me-2"></i>
-													Priorité:
-												</h5>
-
-													<div>
-													<input type="radio" id="radioImportant" name="editPriorite" value="Important">
-													<label>Important</label>
-													</div>
-
-													<div>
-													<input type="radio" id="radioMoyen" name="editPriorite" value="Moyen">
-													<label>Moyen</label>
-													</div>
-
-													<div>
-													<input type="radio" id="radioFaible" name="editPriorite" value="Faible">
-													<label>Faible</label>
-													</div>
-										</div>
-
-                    				<div>
-                     					 <input type="submit" class="btn btn-primary" value="Editer">
-                    				</div>
-
-									
-										<input type="hidden" name="action" value="editerTache">
-				   					</form>
-												</div>	
-												
-											</div>
-											<script>
-												function showPopupEdit(nomTache,idTache,priorite) {
-												// Afficher le fond flouté et le pop-up
-												document.getElementById('overlayEdit').style.display = 'block';
-												document.getElementById('popupEdit').style.display = 'block';
-												document.getElementById('idTache').value=idTache;
-												document.getElementById('nomTache').value=nomTache;
-												var tache = document.getElementById('popup-contentEdit');
-												tache.innerHTML=nomTache;
-												if (priorite=="Important"){
-													document.getElementById('radioImportant').checked=true;
-												}
-												if (priorite=="Moyen"){
-													document.getElementById('radioMoyen').checked=true;
-												}
-												if (priorite=="Faible"){
-													document.getElementById('radioFaible').checked=true;
-												}
-												
-												}
-
-												function hidePopupEdit() {
-												// Masquer le fond flouté et le pop-up
-												document.getElementById('overlayEdit').style.display = 'none';
-												document.getElementById('popupEdit').style.display = 'none';
-												}
-											
-											</script>
                   						<a data-mdb-toggle="tooltip"  href="index.php?action=supprimerTache&idTache=<?php echo $tache->getId();?>" title="Delete todo">
 											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
   												<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
@@ -365,6 +289,82 @@
 					</div>
 			</div>
 		</section>
-		<?php }?>
+		<?php }?><!-- Fond flouté-->
+											<div class="overlay" id="overlayEdit"></div>
+
+											<!--Pop-up-->
+											<div class="popup" id="popupEdit">
+												<div class="close-button" onclick="hidePopupEdit()">X</div>
+												<div class="popup-title">Editer tâche</div>
+												<div class="popup-content" id="popup-contentEdit"></div>
+												<div>
+												<form class="d-flex flex-row align-items-center" method="post">
+											
+                    						<input type="text" class="form-control form-control-lg" id="nomTache" name="nameTache"/>
+                      						
+											  
+											<div>
+
+											<form method="post" class="p-0 m-0">
+												
+											  <input type="hidden" class="form-control form-control-lg" name="idTache" id="idTache"/>
+											  <h5 class="mb-0"><i class="fas fa-tasks me-2"></i>
+													Priorité:
+												</h5>
+
+													<div>
+													<input type="radio" id="radioImportant" name="editPriorite" value="Important">
+													<label>Important</label>
+													</div>
+
+													<div>
+													<input type="radio" id="radioMoyen" name="editPriorite" value="Moyen">
+													<label>Moyen</label>
+													</div>
+
+													<div>
+													<input type="radio" id="radioFaible" name="editPriorite" value="Faible">
+													<label>Faible</label>
+													</div>
+										</div>
+
+                    				<div>
+                     					 <input type="submit" class="btn btn-primary" value="Editer">
+                    				</div>
+
+									
+										<input type="hidden" name="action" value="editerTache">
+				   					</form>
+												</div>	
+												
+											</div>
+											<script>
+												function showPopupEdit(nomTache,idTache,priorite) {
+												// Afficher le fond flouté et le pop-up
+												document.getElementById('overlayEdit').style.display = 'block';
+												document.getElementById('popupEdit').style.display = 'block';
+												document.getElementById('idTache').value=idTache;
+												document.getElementById('nomTache').value=nomTache;
+												var tache = document.getElementById('popup-contentEdit');
+												tache.innerHTML=nomTache;
+												if (priorite=="Important"){
+													document.getElementById('radioImportant').checked=true;
+												}
+												if (priorite=="Moyen"){
+													document.getElementById('radioMoyen').checked=true;
+												}
+												if (priorite=="Faible"){
+													document.getElementById('radioFaible').checked=true;
+												}
+												
+												}
+
+												function hidePopupEdit() {
+												// Masquer le fond flouté et le pop-up
+												document.getElementById('overlayEdit').style.display = 'none';
+												document.getElementById('popupEdit').style.display = 'none';
+												}
+											
+											</script>
 	</body> 
 </html> 

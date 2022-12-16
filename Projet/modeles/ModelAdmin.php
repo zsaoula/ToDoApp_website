@@ -22,10 +22,10 @@ class ModelAdmin
 
     function isAdmin()
     {
-        if(isset $_SESSION['login'] && isset $_SESSION['role']){
-            $login = Nettoyer::nettoyer_string($_SESSION['login'])
-            $role = Nettoyer::nettoyer_string($_SESSION['role'])
-            return new Admin($login,$role)
+        if(isset($_SESSION['login']) && isset($_SESSION['role'])){
+            $login = Nettoyer::nettoyer_string($_SESSION['login']);
+            $role = Nettoyer::nettoyer_string($_SESSION['role']);
+            return new Admin($login,$role);
         }
         else
             return NULL;

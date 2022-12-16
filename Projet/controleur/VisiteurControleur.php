@@ -78,6 +78,29 @@ class VisiteurControleur{
         exit(0);
     }
 
+    // function Redirection(){
+    //     global $rep,$vues;
+    //     $mdlVisiteur = new ModelVisiteur();
+    //     $mdlUtilisateur = new ModelUtilisateur();
+    //     $mdlAdmin = new ModelAdmin();
+
+    //     if($_SESSION['role']=='utilisateur'){
+    //         var_dump("zz");
+    //         $action='afficherTachesPrivee';
+    //         $_POST['action']="afficherTachesPrivee";
+    //         var_dump($_POST['action']);
+    //         require ($rep.$vues['vueAfficherTachesPrivee']);
+           
+    //     }
+    //     // elseif($mdlAdmin->isAdmin()==NULL){
+    //     //     require ($rep.$vues['vueAfficherTaches']);
+    //     // }
+    //     else {
+    //         require ($rep.$vues['vueAfficherTaches']);
+    //     }
+
+    // }
+
     function AfficherTaches() {
         global $rep,$vues; // nécessaire pour utiliser variables globales
         $mdl = new ModelVisiteur();
@@ -194,8 +217,8 @@ class VisiteurControleur{
         $idTache = $_REQUEST['idTache'];
         $mdl->supprimerTache($idTache);
     
-        $this->AfficherTaches();
-        //require ($rep.$vues['vueAfficherTaches']);
+        // $this->Redirection();
+        require ($rep.$vues['vueAfficherTaches']);
     }
     
     function CheckTache(){

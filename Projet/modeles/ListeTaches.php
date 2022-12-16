@@ -42,7 +42,7 @@ class ListeTaches{
         if($cpt == 0){
             return 0;
         }
-        return ($cpt/(count($this->taches)))*100;
+        return number_format(($cpt/(count($this->taches)))*100,2,'.','');
     }
     
 }

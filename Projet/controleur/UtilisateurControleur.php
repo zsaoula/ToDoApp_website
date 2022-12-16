@@ -54,6 +54,26 @@ class UtilisateurControleur{
         exit(0);
     }
 
+    // function Redirection(){
+    //     global $rep,$vues;
+    //     $mdlVisiteur = new ModelVisiteur();
+    //     $mdlUtilisateur = new ModelUtilisateur();
+    //     $mdlAdmin = new ModelAdmin();
+
+    //     if($_SESSION['role']=='utilisateur'){
+    //         var_dump("zz");
+    //         require ($rep.$vues['vueAfficherTachesPrivee']);
+           
+    //     }
+    //     // elseif($mdlAdmin->isAdmin()==NULL){
+    //     //     require ($rep.$vues['vueAfficherTaches']);
+    //     // }
+    //     else {
+    //         require ($rep.$vues['vueAfficherTaches']);
+    //     }
+
+    // }
+
     function Deconnexion() {
         global $rep,$vues; // nécessaire pour utiliser variables globales
 
@@ -80,6 +100,8 @@ class UtilisateurControleur{
         $listesTachesPrivee = array();
         $id = (int)$_SESSION['id'];
         $listesTachesPrivee = $mdl->getListesPrivee($id);
+        // var_dump("zz");
+        
         require ($rep.$vues['vueAfficherTachesPrivee']);
     }
 
@@ -100,5 +122,7 @@ class UtilisateurControleur{
         $mdl->rendrePrivée($id);
         require ($rep.$vues['vueAfficherTachesPrivee']);
     }
+
+    
 }
 ?>
