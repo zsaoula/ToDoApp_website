@@ -12,7 +12,7 @@ class ListeTaches{
         $this->taches = $taches;
     }
 
-    public function getId() : string {
+    public function getId() : int {
         return $this->id;
     }
 
@@ -26,6 +26,23 @@ class ListeTaches{
 
     public function getTaches() : array {
         return $this->taches;
+    }
+
+    public function getProgress() : int {
+        $cpt=0;
+        if(empty($this->taches)){
+            return 0;
+        }
+        foreach($this->$taches as $tache){
+            if($tache->getChecked())
+            {
+                $cpt++;
+            }
+        }
+        if($cpt == 0){
+            return 0;
+        }
+        return $cpt/count($this->$taches);
     }
     
 }

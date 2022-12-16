@@ -14,56 +14,51 @@ class VisiteurControleur{
         try{
 
             switch($action) {
-
-            case NULL:
-                $this->Connexion();
-                break;
-
-            case "validationFormulaire":
-				$this->ValidationFormulaire($dVueEreur);
-				break;
-
-			case "afficherTaches":
-				$this->AfficherTaches();
-				break;
-
-			case "validationFormulaireI":
-				$this->ValidationFormulaireInscription($dVueEreur);
-				break;
-
-			case "inscription":
-				$this->Inscription();
-				break;
-
-			case "ajoutListeTache":
-				$this->AjouterListeTache();
-				break;
-
-			case "supprimerListeTache":
-				$this->SupprimerListeTache();
-				break;
-
-			case "ajoutTache":
-				$this->AjouterTachePublique();
-				break;
-
-			case "supprimerTache":
-				$this->SupprimerTache();
-				break;
-				
-            case "checkTache":
-				$this->CheckTache();
-				break;
-
-            case "editerTache":
-				$this->EditerTache();
-                break;
-
-            //mauvaise action
-            default:
-                    $dVueEreur[] =	"Erreur d'appel php";
-                    require ($rep.$vues['vueConnexion']);
+                case "validationFormulaire":
+                    $this->ValidationFormulaire($dVueEreur);
                     break;
+
+                case "afficherTaches":
+                    $this->AfficherTaches();
+                    break;
+
+                case "validationFormulaireI":
+                    $this->ValidationFormulaireInscription($dVueEreur);
+                    break;
+
+                case "inscription":
+                    $this->Inscription();
+                    break;
+
+                case "ajoutListeTache":
+                    $this->AjouterListeTache();
+                    break;
+
+                case "supprimerListeTache":
+                    $this->SupprimerListeTache();
+                    break;
+
+                case "ajoutTache":
+                    $this->AjouterTachePublique();
+                    break;
+
+                case "supprimerTache":
+                    $this->SupprimerTache();
+                    break;
+                    
+                case "checkTache":
+                    $this->CheckTache();
+                    break;
+
+                case "editerTache":
+                    $this->EditerTache();
+                    break;
+
+                //mauvaise action
+                default:
+                        $dVueEreur[] =	"Erreur d'appel php";
+                        require ($rep.$vues['vueConnexion']);
+                        break;
             }
 
         }

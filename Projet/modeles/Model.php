@@ -80,6 +80,8 @@ class Model
         $gwListeTache = new ListeTachesGateway(new Connection($dsn,$username,$password));
 
         $listePublic = $gwListeTache->getPublicLists();
+
+        $listeTacheTableau = array();
         
         foreach($listePublic as $listTaches)
         {
@@ -87,8 +89,6 @@ class Model
             $tache = array();
             foreach($taches as $tacheAdd)
             {
-                #$time_input = strtotime($tacheAdd['creationDate']); 
-                #$newformat = date('Y-m-d',$time_input);
                 $tache[] = new Tache($tacheAdd['id'],$tacheAdd['name'],$tacheAdd['creationDate'],$tacheAdd['finish'],$tacheAdd['priorite'],$tacheAdd['noListe']);
             }
 

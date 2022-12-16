@@ -11,32 +11,27 @@ class UtilisateurControleur{
         try{
 
             switch($action) {
-
-            case NULL:
-                //$this->;
-                break;
-
-            case "ajoutListeTachePrivee":
-                $this->AjouterListeTachePrivee();
-				break;
-
-            case "ajoutTachePrivee":
-                $this->AjouterTachePrivee();
-				break;
-
-            case "deconnexion":
-                $this->Deconnexion();
-				break;
-
-            case "afficherTachesPrivee":
-                $this->AfficherTachesPrivee();
-				break;
-
-            //mauvaise action
-            default:
-                    $dVueEreur[] =	"Erreur d'appel php";
-                    require ($rep.$vues['erreur']);
+                case "ajoutListeTachePrivee":
+                    $this->AjouterListeTachePrivee();
                     break;
+
+                case "ajoutTachePrivee":
+                    $this->AjouterTachePrivee();
+                    break;
+
+                case "deconnexion":
+                    $this->Deconnexion();
+                    break;
+
+                case "afficherTachesPrivee":
+                    $this->AfficherTachesPrivee();
+                    break;
+
+                //mauvaise action
+                default:
+                        $dVueEreur[] =	"Erreur d'appel php";
+                        require ($rep.$vues['erreur']);
+                        break;
             }
 
         }

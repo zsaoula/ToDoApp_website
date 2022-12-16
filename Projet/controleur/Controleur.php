@@ -19,13 +19,6 @@ class Controleur {
             }
 
 			switch($action) {
-
-				//pas d'action, on r�initialise 1er appel
-				case NULL:
-					$this->Connexion();
-					break;
-
-
 				case "validationFormulaire":
 					$this->ValidationFormulaire($dVueEreur);
 				break;
