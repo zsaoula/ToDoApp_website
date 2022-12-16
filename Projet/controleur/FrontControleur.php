@@ -5,10 +5,8 @@ class FrontControleur{
         session_start();
         $liste_actions_utilisateur = array('ajoutListeTachePrivee','deconnexion','afficherTachesPrivee','rendrePublique','rendrePrivee');
         $liste_actions_visiteur = array('validationFormulaire','afficherTaches','validationFormulaireI','inscription','ajoutListeTache','supprimerListeTache','ajoutTache','supprimerTache','checkTache');
-        $liste_actions_admin = array();
         global $rep,$vues;
         try{
-            //$admin = mdlAdmin.isAdmin();
             $MdlUtilisateur = new ModelUtilisateur();
             $admin= 'NULL';
             $utilisateur = $MdlUtilisateur->isUtilisateur();
@@ -17,25 +15,16 @@ class FrontControleur{
 
 
             //verif action
-            if( in_array($action,$liste_actions_admin)){
-                if($admin == null){
-                    //new UtilisateurControleur();
-                }
-                else{
-                    new AdminControleur($action);
-                }
-            }
-            elseif( in_array($action,$liste_actions_utilisateur)){
+            if( in_array($action,$liste_actions_utilisateur)){
                 if($utilisateur == null){
-                    new VisiteurControleur($action);
-                    //require ($rep.$vues['Connexion']);
+                    new VisiteurControleur();
                 }
                 else{
-                    new UtilisateurControleur($action);
+                    new UtilisateurControleur();
                 }
             }
             else {
-                new VisiteurControleur($action);
+                new VisiteurControleur();
             }
         }
         catch (PDOException $e)
