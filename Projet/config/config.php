@@ -18,7 +18,6 @@ $password="achanger";
 //$dsn="mysql:host=localhost;dbname=dbnorandon;port=3306;";
 //$username="root";
 //$password="";
-
 //Vues
 
 $vues['erreur']='vues/erreur.php';

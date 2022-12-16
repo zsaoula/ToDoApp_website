@@ -57,49 +57,25 @@ class VisiteurControleur{
                 //mauvaise action
                 default:
                         $dVueEreur[] =	"Erreur d'appel php";
-                        require ($rep.$vues['vueConnexion']);
+                        require ($rep.$vues['erreur']);
                         break;
             }
 
         }
-         catch (PDOException $e)
-		{
-			//si erreur BD, pas le cas ici
-			$dVueEreur[] =	"Erreur inattendue!!! ";
-			require ($rep.$vues['erreur']);
-		}
-		catch (Exception $e2)
-		{
-			$dVueEreur[] =	"Erreur inattendue!!! ";
-			require ($rep.$vues['erreur']);
-		}
+        catch (PDOException $e)
+        {
+            $dVueEreur[] =	"Erreur liée à la base de donnée! ";
+            require ($rep.$vues['erreur']);
+        }
+        catch (Exception $e2)
+        {
+            $dVueEreur[] =	"Erreur inattendue dans le controleur Visiteur! ";
+            require ($rep.$vues['erreur']);
+        }
 
         
         exit(0);
     }
-
-    // function Redirection(){
-    //     global $rep,$vues;
-    //     $mdlVisiteur = new ModelVisiteur();
-    //     $mdlUtilisateur = new ModelUtilisateur();
-    //     $mdlAdmin = new ModelAdmin();
-
-    //     if($_SESSION['role']=='utilisateur'){
-    //         var_dump("zz");
-    //         $action='afficherTachesPrivee';
-    //         $_POST['action']="afficherTachesPrivee";
-    //         var_dump($_POST['action']);
-    //         require ($rep.$vues['vueAfficherTachesPrivee']);
-           
-    //     }
-    //     // elseif($mdlAdmin->isAdmin()==NULL){
-    //     //     require ($rep.$vues['vueAfficherTaches']);
-    //     // }
-    //     else {
-    //         require ($rep.$vues['vueAfficherTaches']);
-    //     }
-
-    // }
 
     function AfficherTaches() {
         global $rep,$vues; // nécessaire pour utiliser variables globales
@@ -150,15 +126,10 @@ class VisiteurControleur{
             if($data!=NULL){
                 $this->AfficherTaches();
             }
+            else{
+                require ($rep.$vues['vueConnexion']);
+            }
         }
-    
-        // $dVue = array (
-        // 	'nom' => $nom,
-        // 	'email' => $email,
-        // 	'mdp' => $mdp,
-        // 	'data' => $data,
-        // );
-        // require ($rep.$vues['vueConnexion']);
     }
     
     function ValidationFormulaireInscription() {

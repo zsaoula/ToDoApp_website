@@ -119,10 +119,10 @@
 								<table class="table mb-0">
 									<thead>
 										<tr>
-											<th scope="col">Task</th>
+											<th scope="col">Tache</th>
+											<th scope="col">Priorité</th>
+											<th scope="col">Status</th>
 											<th scope="col">Actions</th>
-											<th scope="col">Checked</th>
-											<th scope="col"></th>
 										</tr>
 									</thead>
 									<?php foreach($listes->getTaches() as $tache){ ?>
@@ -158,79 +158,6 @@
 															<path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
 														</svg>
 													</button>
-													<!-- Fond flouté
-													<div class="overlay" id="overlayEdit"></div>
-
-													Pop-up-->
-													<!-- <div class="popup" id="popupEdit">
-														<div class="close-button" onclick="hidePopupEdit()">X</div>
-														<div class="popup-title">Editer tâche</div>
-														<div class="popup-content" id="popup-contentEdit"></div>
-														<div>
-															<form class="d-flex flex-row align-items-center" method="post">
-															<input type="text" class="form-control form-control-lg" id="nomTache" name="nameTache"/>
-															<div>
-
-																<form method="post" class="p-0 m-0">
-															
-																<input type="hidden" class="form-control form-control-lg" name="idTache" id="idTache"/>
-																<h5 class="mb-0">
-																	Priorité:
-																</h5>
-
-																<div>
-																	<input type="radio" id="radioImportant" name="editPriorite" value="Important">
-																	<label>Important</label>
-																</div>
-
-																<div>
-																	<input type="radio" id="radioMoyen" name="editPriorite" value="Moyen">
-																	<label>Moyen</label>
-																</div>
-
-																<div>
-																	<input type="radio" id="radioFaible" name="editPriorite" value="Faible">
-																	<label>Faible</label>
-																</div>
-															</div>
-
-															<div>
-																<input type="submit" class="btn btn-primary" value="Editer">
-															</div>
-
-												
-															<input type="hidden" name="action" value="editerTache">
-															</form>
-														</div>
-													</div>
-													<script>
-														function showPopupEdit(nomTache,idTache,priorite) {
-														// Afficher le fond flouté et le pop-up
-														document.getElementById('overlayEdit').style.display = 'block';
-														document.getElementById('popupEdit').style.display = 'block';
-														document.getElementById('idTache').value=idTache;
-														document.getElementById('nomTache').value=nomTache;
-														var tache = document.getElementById('popup-contentEdit');
-														tache.innerHTML=nomTache;
-														if (priorite=="Important"){
-															document.getElementById('radioImportant').checked=true;
-														}
-														if (priorite=="Moyen"){
-															document.getElementById('radioMoyen').checked=true;
-														}
-														if (priorite=="Faible"){
-															document.getElementById('radioFaible').checked=true;
-														}
-														
-														}
-
-														function hidePopupEdit() {
-														// Masquer le fond flouté et le pop-up
-														document.getElementById('overlayEdit').style.display = 'none';
-														document.getElementById('popupEdit').style.display = 'none';
-														}
-													
-													</script> -->
 													<a name="idSup" type="submit" href="index.php?action=supprimerTache&idTache=<?php echo $tache->getId();?>" data-mdb-toggle="tooltip" title="Delete todo">
 														<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
 															<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
@@ -248,48 +175,57 @@
 							</form>
 							</div>
 							<div class="card-footer text-end p-3">
-								<a class="me-2 btn btn-primary" name="idSupListe" type="submit" href="index.php?action=supprimerListeTache&id=<?php echo $listes->getId();?>" >Cancel</a>
+								<a class="me-2 btn btn-primary" name="idSupListe" type="submit" href="index.php?action=supprimerListeTache&id=<?php echo $listes->getId();?>" >Quitter</a>
 								<button class="me-2 btn btn-primary" onclick="showPopup('<?php echo $listes->getNom(); ?>','<?php echo $listes->getId(); ?> ')">Ajouter tâche</button>
 
 								<!-- Fond flouté-->
 								<div class="overlay" id="overlay"></div>
 
 								<!--Pop-up-->
-								<div class="popup" id="popup">
-									<div class="close-button" onclick="hidePopup()">X</div>
-									<div class="popup-title">Ajouter tâche</div>
-									<div class="popup-content" id="popup-content"></div>
-								<div>
-								<form class="d-flex flex-colunm align-items-center" method="post">
-								
-									<input type="text" class="form-control form-control-lg" name="nameTache" placeholder="Nom">
-									<div>
-										<input type="hidden" class="form-control form-control-lg" name="listeTache" id="tacheListe">
-										<h5 class="mb-0"><i class="fas fa-tasks me-2"></i>
-											Priorité:
-										</h5>
-										<div>
-											<input type="radio" name="ajoutPriorite" value="Important">
-											<label>Important</label>
-										</div>
+								<div class="popup rounded" id="popup">
+									<div class="popup-dialog">
+										<div class="popup-content">
+											<div class="popup-header d-flex flex-row justify-content-between align-items-center border-bottom">
+												<h5 class="popup-title" id="staticBackdropLabel">Ajouter tâche</h5>
+												<div class="popup-content" id="popup-content"></div>
+												<button type="button" class="btn-close" onclick="hidePopup()" aria-label="Close"></button>
+     										</div>
+											<div class="d-flex flex-colunm align-items-start pt-2">
+												<form  method="post">
+													<input type="text" class="form-control w-30 " name="nameTache" placeholder="Nom">
+													<div class="popup-body d-flex flex-row">
+														<input type="hidden" class="form-control form-control-lg" name="listeTache" id="tacheListe">
+														<span class="mb-0 pe-2">
+															Priorité:
+														</span>
+														<div lass="d-flex flex-colunm align-items-start">
+															<div>
+																<input type="radio" name="ajoutPriorite" value="Important">
+																<label>Important</label>
+															</div>
 
-										<div>
-											<input type="radio" name="ajoutPriorite" value="Moyen">
-											<label>Moyen</label>
-										</div>
+															<div>
+																<input type="radio" name="ajoutPriorite" value="Moyen">
+																<label>Moyen</label>
+															</div>
 
-										<div>
-											<input type="radio" name="ajoutPriorite" value="Faible">
-											<label>Faible</label>
-										</div>
-									</div>
-									<div>
-                     					 <input type="submit" class="btn btn-primary" value="Ajouter">
-                    				</div>
-									<input type="hidden" name="action" value="ajoutTache">
-				   				</form>
-							</div>		
-						</div>
+															<div>
+																<input type="radio" name="ajoutPriorite" value="Faible">
+																<label>Faible</label>
+															</div>
+														</div>
+													</div>
+
+													<div class="py-3 ">
+														<button type="button" class="btn btn-secondary" onclick="hidePopup()">Quitter</button>
+														<input type="submit" class="btn btn-primary" >
+														<input type="hidden" name="action" value="ajoutTache">
+													</div>
+				   								</form>
+											</div>		
+										</div>	
+									</div>	
+								</div>			
 
 						<script>
 							function showPopup(nomListe,idListe) {
@@ -317,41 +253,43 @@
 		<div class="overlay" id="overlayEdit"></div>
 
 <!--Pop-up-->
-<div class="popup" id="popupEdit">
+<div class="popup rounded" id="popupEdit">
 	<div class="popup-dialog">
 		<div class="popup-content">
-      		<div class="popup-header">
+      		<div class="popup-header d-flex flex-row justify-content-between align-items-center border-bottom">
 			  	<h5 class="popup-title" id="staticBackdropLabel">Editer tâche</h5>
 				<button type="button" class="btn-close" onclick="hidePopupEdit()" aria-label="Close"></button>
      		</div>
 			<div>
-				<form class="d-flex flex-column align-items-center" method="post" class="p-0 m-0">
-					<input type="text" class="form-control form-control-lg" id="nomTache" name="nameTache"/>
-					<div class="popup-body">
-					
+				<form class="d-flex flex-column align-items-start " method="post" >
+					<span>Nom</span>
+					<input type="text" class="form-control w-30" id="nomTache" name="nameTache"/>
+					<div class="popup-body d-flex flex-row">
+						
 						<input type="hidden" class="form-control form-control-lg" name="idTache" id="idTache"/>
-						<h5 class="mb-0">
+						<span class="mb-0 pe-2">
 							Priorité:
-						</h5>
-
+						</span>
 						<div>
-							<input type="radio" id="radioImportant" name="editPriorite" value="Important">
-							<label>Important</label>
-						</div>
+							<div>
+								<input type="radio" id="radioImportant" name="editPriorite" value="Important">
+								<label>Important</label>
+							</div>
 
-						<div>
-							<input type="radio" id="radioMoyen" name="editPriorite" value="Moyen">
-							<label>Moyen</label>
-						</div>
+							<div>
+								<input type="radio" id="radioMoyen" name="editPriorite" value="Moyen">
+								<label>Moyen</label>
+							</div>
 
-						<div>
-							<input type="radio" id="radioFaible" name="editPriorite" value="Faible">
-							<label>Faible</label>
+							<div>
+								<input type="radio" id="radioFaible" name="editPriorite" value="Faible">
+								<label>Faible</label>
+							</div>
 						</div>
 					</div>
 
-					<div class="popup-footer">
-						<button type="button" class="btn btn-secondary" onclick="hidePopupEdit()">Close</button>
+					<div class="py-3 ">
+						<button type="button" class="btn btn-secondary" onclick="hidePopupEdit()">Quitter</button>
 						<input type="submit" class="btn btn-primary" value="Editer">
 					</div>
 
