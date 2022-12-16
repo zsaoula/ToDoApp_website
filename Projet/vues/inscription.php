@@ -50,7 +50,7 @@
                         		<button class="btn btn-outline-primary" href="index.php?action=deconnexion" type="submit">Deconnexion</button>
 						<?php }
 							else { ?>
-								<a class="btn  ms-3 btn-outline-primary" href="index.php" type="submit">Connexion</a>
+								<a class="btn  ms-3 btn-outline-primary" href="index.php?action=connexion" type="submit">Connexion</a>
 								<a class="btn btn-primary ms-3" href="index.php?action=inscription" type="submit">Inscription</a>
 						<?php } ?>
 					</ul>

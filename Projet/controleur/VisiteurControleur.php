@@ -53,6 +53,10 @@ class VisiteurControleur{
                 case "editerTache":
                     $this->EditerTache();
                     break;
+                
+                case "connexion":
+                    $this->Connexion();
+                     break;
 
                 //mauvaise action
                 default:

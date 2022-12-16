@@ -4,7 +4,7 @@ class FrontControleur{
     public function __construct(){
         session_start();
         $liste_actions_utilisateur = array('ajoutListeTachePrivee','deconnexion','afficherTachesPrivee');
-        $liste_actions_visiteur = array('validationFormulaire','afficherTaches','validationFormulaireI','inscription','ajoutListeTache','supprimerListeTache','ajoutTache','supprimerTache','checkTache');
+        $liste_actions_visiteur = array('validationFormulaire','afficherTaches','validationFormulaireI','connexion','inscription','ajoutListeTache','supprimerListeTache','ajoutTache','supprimerTache','checkTache');
         global $rep,$vues;
         try{
             $MdlUtilisateur = new ModelUtilisateur();
