@@ -26,7 +26,7 @@ class ModelVisiteur
     function inscription($nom,$email,$mdp) : void {
         global $dsn, $username, $password;
         $gwInscription = new UtilisateurGateway(new Connection($dsn,$username,$password));
-        $mdp =password_hash($mdp,PASSWORD_DEFAULT);
+        $mdp = password_hash($mdp,PASSWORD_DEFAULT);
         $gwInscription->ajoutUtilisateur($nom,$email,$mdp);
     }
 

@@ -114,11 +114,9 @@ class VisiteurControleur{
         $dVueEreur = array();
         $email=$_POST['email'];
         $mdp=$_POST['mdp'];
-        Validation::val_form($nom,$email,$mdp,$dVueEreur);
+        //Validation::val_form($nom,$email,$mdp,$dVueEreur);
         $model = new ModelVisiteur();
         $data=$model->connexion($email,$mdp);
-    
-        //require ($rep.$vues['vueConnexion']);
         
         if($data!=NULL){
             $this->AfficherTaches();
@@ -133,20 +131,24 @@ class VisiteurControleur{
         // require ($rep.$vues['vueConnexion']);
     }
     
-    function ValidationFormulaireInscription(array $dVueEreur) {
+    function ValidationFormulaireInscription() {
         global $rep,$vues;
-    
-    
-        //si exception, ca remonte !!!
-        $nom=$_POST['name']; 
+        $model = new ModelVisiteur();
+        $dVueEreur = array();
+
+        $nom=$_POST['nom']; 
         $email=$_POST['email'];
         $mdp=$_POST['mdp'];
-        //Validation::val_form($nom,$email,$mdp,$dVueEreur);
-        $model = new ModelVisiteur();
-        var_dump($mdp);
-        $data=$model->inscription($nom,$email,$mdp);
-    
-        $this->Connexion();
+        $mdp2=$_POST['mdp2'];
+        Validation::val_form_inscription($nom,$email,$mdp,$mdp2,$dVueEreur);
+        if(!empty($dVueEreur)){
+            require ($rep.$vues['vueInscription']);
+        }
+        else{
+            $model->inscription($nom,$email,$mdp);
+            var_dump($dVueEreur);
+            $this->Connexion();
+        }
     }
     
     function AjouterListeTache(){
@@ -155,8 +157,6 @@ class VisiteurControleur{
     
         $nom = $_POST['nomTache'];
         $mdl->ajoutListePublic($nom);
-    
-        
     
         $this->AfficherTaches();
     
