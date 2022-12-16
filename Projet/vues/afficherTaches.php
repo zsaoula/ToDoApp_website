@@ -130,7 +130,10 @@
 											<tr class="fw-normal">
 												<td class="align-middle">
 													<span>
-														<?php echo $tache->getNom(); ?>
+														<div <?php if($tache->getChecked() == 1){
+															echo 'style="text-decoration:line-through;"';
+														} ?> > <?php echo $tache->getNom(); ?> </div>
+														
 													</span>
 												</td>
 												<td class="align-middle">
