@@ -22,6 +22,14 @@ class UtilisateurControleur{
                 case "afficherTachesPrivee":
                     $this->AfficherTachesPrivee();
                     break;
+                
+                case "rendrePublique":
+                    $this->RendrePublique();
+                    break;
+                
+                case "rendrePrivee":
+                    $this->RendrePrivée();
+                    break;
 
                 //mauvaise action
                 default:
@@ -72,6 +80,24 @@ class UtilisateurControleur{
         $listesTachesPrivee = array();
         $id = (int)$_SESSION['id'];
         $listesTachesPrivee = $mdl->getListesPrivee($id);
+        require ($rep.$vues['vueAfficherTachesPrivee']);
+    }
+
+    function RendrePublique(){
+        global $rep,$vues; // nécessaire pour utiliser variables globales
+        $mdl = new ModelUtilisateur();
+        $idListe = (int)$_SESSION['idListe'];
+        var_dump($idListe);
+        $mdl->rendrePublique($id);
+        require ($rep.$vues['vueAfficherTachesPrivee']);
+    }
+
+    function RendrePrivée(){
+        global $rep,$vues; // nécessaire pour utiliser variables globales
+        $mdl = new ModelUtilisateur();
+        $idListe = (int)$_SESSION['idListe'];
+        var_dump($idListe);
+        $mdl->rendrePrivée($id);
         require ($rep.$vues['vueAfficherTachesPrivee']);
     }
 }
