@@ -137,12 +137,19 @@ class VisiteurControleur{
         $dVueEreur = array();
         $email=$_POST['email'];
         $mdp=$_POST['mdp'];
-        //Validation::val_form($nom,$email,$mdp,$dVueEreur);
-        $model = new ModelVisiteur();
-        $data=$model->connexion($email,$mdp);
         
-        if($data!=NULL){
-            $this->AfficherTaches();
+        Validation::val_form_connexion($email,$mdp,$dVueEreur);
+        $model = new ModelVisiteur();
+        var_dump($dVueEreur);
+        if(!empty($dVueEreur)){
+            
+            require ($rep.$vues['vueConnexion']);
+        }
+        else{
+            $data=$model->connexion($email,$mdp);
+            if($data!=NULL){
+                $this->AfficherTaches();
+            }
         }
     
         // $dVue = array (

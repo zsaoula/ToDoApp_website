@@ -7,22 +7,31 @@ class Validation {
     }
 
     static function val_form_connexion(string &$email, string &$mdp, array &$dVueEreur) {
+        if ((!isset($email)||$email==="") && (!isset($mdp)||$mdp==="")) {
+            $dVueEreur["all"] =	"Remplissez les champs.";
+            return;
+        }
         if (!isset($email)||$email==="") {
-            $dVueEreur[] =	"Email manquant.";
+            $dVueEreur["email"] =	"Email manquant.";
+            return;
         }
 
-        if(filter_var($email, FILTER_VALIDATE_EMAIL)){
-            $dVueEreur[] =	"Email invalide.";
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+            $dVueEreur["email"] =	"Email invalide.";
+            return;
         }
 
         if (!isset($mdp)||$mdp==="") {
-            $dVueEreur[] =	"Mot de passe manquant.";
+            $dVueEreur["mdp"] = "Mot de passe manquant.";
+            return;
         }
 
-        $mdp = $this->nettoyer_string($mdp);
+        $mdp = Validation::nettoyer_string($mdp);
         if(!$mdp){
-            $dVueEreur[] =	"Mot de passe invalide.";
+            $dVueEreur["mdp"] =	"Mot de passe invalide.";
+            return;
         }
+
     }
 
     static function val_form_inscription(string &$nom, string &$email, string &$mdp, string &$mdpS, array &$dVueEreur) {

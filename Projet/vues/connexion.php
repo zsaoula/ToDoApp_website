@@ -150,16 +150,29 @@
 						</div> -->
 
 						<!-- Email input -->
-						<div class="form-outline mb-4">
+						<!-- <div class="form-outline mb-4">
 							<input type="email" name="email" class="form-control" />
 							<label class="form-label">Email address</label>
-						</div>
+						</div> -->
+						<div class="form-groupe mb-4">
+								<input type="email" name="email" id="email" class="form-control" placeholder="Email" <?php if (isset($email)) { echo 'value="'.$email.'"';}  ?>/>
+								<?php if(isset($dVueEreur['email'])){?>
+									<p class="p-0 m-0 text-danger"><?php echo $dVueEreur['email']?> </p>
+								<?php }?>
+								<!-- <label class="form-label">Email address</label> -->
+							</div>
 
 						<!-- Password input -->
-						<div class="form-outline mb-4">
+						<!-- <div class="form-outline mb-4">
 							<input type="password" name="mdp" class="form-control" />
 							<label class="form-label">Password</label>
-						</div>
+						</div> -->
+						<div class="form-outline mb-4 ">
+								<input type="password" name="mdp" class="form-control m-0" placeholder="Password" <?php if (isset($mdp)) { echo 'value="'.$mdp.'"';}  ?>/>
+								<?php if(isset($dVueEreur['mdp'])){?>
+									<p class="p-0 m-0 text-danger"><?php echo $dVueEreur['mdp']?> </p>
+								<?php }?>
+							</div>
 
 						<!-- Submit button -->
 						<button type="submit" class="btn btn-primary btn-block mb-4">
@@ -167,6 +180,9 @@
 						</button>
 
 						<input type="hidden" name="action" value="validationFormulaire">
+						<?php if(isset($dVueEreur['all'])){?>
+								<p class="p-0 m-0 text-danger"><?php echo $dVueEreur['all']?> </p>
+							<?php }?>
 						</form>
 					</div>
 					</div>

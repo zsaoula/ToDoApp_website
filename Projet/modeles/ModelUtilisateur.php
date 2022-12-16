@@ -15,6 +15,7 @@ class ModelUtilisateur
         $mdpHash = $hash[0]['mdp'];
         var_dump($mdpHash);
         if(password_verify($mdp,$mdpHash)){
+            var_dump("rr");
                $_SESSION['role']='utilisateur';
                $_SESSION['login']=$hash[0]['nom'];
                $_SESSION['id']=$hash[0]['id'];
