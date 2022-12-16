@@ -111,7 +111,7 @@
 										<?php echo $listes->getNom();?>
 									</h5>
 									<div class="progress w-50">
-  										<div class="progress-bar" role="progressbar" style="width: <?php echo (string)$listes->getProgress();?>%;" aria-valuenow="<?php echo (string)$listes->getProgress();?>" aria-valuemin="0" aria-valuemax="100"><?php echo (string)$listes->getProgress();?>%</div>
+  										<div class="progress-bar" role="progressbar" style="width: <?php echo $listes->getProgress();?>%;" aria-valuenow="<?php echo $listes->getProgress();?>" aria-valuemin="0" aria-valuemax="100"><?php echo $listes->getProgress();?>%</div>
 									</div>
 								</div>
 								<div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative">
@@ -315,44 +315,48 @@
 
 <!--Pop-up-->
 <div class="popup" id="popupEdit">
-	<div class="close-button" onclick="hidePopupEdit()">X</div>
-	<div class="popup-title">Editer tâche</div>
-	<div class="popup-content" id="popup-contentEdit"></div>
-	<div>
-		<form class="d-flex flex-row align-items-center" method="post">
-		<input type="text" class="form-control form-control-lg" id="nomTache" name="nameTache"/>
-		<div>
-
-			<form method="post" class="p-0 m-0">
-		
-			<input type="hidden" class="form-control form-control-lg" name="idTache" id="idTache"/>
-			<h5 class="mb-0">
-				Priorité:
-			</h5>
-
+	<div class="popup-dialog">
+		<div class="popup-content">
+      		<div class="popup-header">
+			  	<h5 class="popup-title" id="staticBackdropLabel">Editer tâche</h5>
+				<button type="button" class="btn-close" onclick="hidePopupEdit()" aria-label="Close"></button>
+     		</div>
 			<div>
-				<input type="radio" id="radioImportant" name="editPriorite" value="Important">
-				<label>Important</label>
-			</div>
+				<form class="d-flex flex-column align-items-center" method="post" class="p-0 m-0">
+					<input type="text" class="form-control form-control-lg" id="nomTache" name="nameTache"/>
+					<div class="popup-body">
+					
+						<input type="hidden" class="form-control form-control-lg" name="idTache" id="idTache"/>
+						<h5 class="mb-0">
+							Priorité:
+						</h5>
 
-			<div>
-				<input type="radio" id="radioMoyen" name="editPriorite" value="Moyen">
-				<label>Moyen</label>
-			</div>
+						<div>
+							<input type="radio" id="radioImportant" name="editPriorite" value="Important">
+							<label>Important</label>
+						</div>
 
-			<div>
-				<input type="radio" id="radioFaible" name="editPriorite" value="Faible">
-				<label>Faible</label>
+						<div>
+							<input type="radio" id="radioMoyen" name="editPriorite" value="Moyen">
+							<label>Moyen</label>
+						</div>
+
+						<div>
+							<input type="radio" id="radioFaible" name="editPriorite" value="Faible">
+							<label>Faible</label>
+						</div>
+					</div>
+
+					<div class="popup-footer">
+						<button type="button" class="btn btn-secondary" onclick="hidePopupEdit()">Close</button>
+						<input type="submit" class="btn btn-primary" value="Editer">
+					</div>
+
+
+					<input type="hidden" name="action" value="editerTache">
+				</form>
 			</div>
 		</div>
-
-		<div>
-			<input type="submit" class="btn btn-primary" value="Editer">
-		</div>
-
-
-		<input type="hidden" name="action" value="editerTache">
-		</form>
 	</div>
 </div>
 <script>

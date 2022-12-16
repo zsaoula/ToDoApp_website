@@ -33,11 +33,8 @@ class ListeTaches{
         if(empty($this->taches)){
             return 0;
         }
-        foreach($this->$taches as $tache){
-            if($tache->getChecked())
-            {
-                $cpt++;
-            }
+        foreach((array)$this->$taches as $tache){
+            $cpt++;
         }
         if($cpt == 0){
             return 0;
