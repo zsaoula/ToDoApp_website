@@ -100,7 +100,7 @@
             </div>
         </div>
 
-		<?php foreach($listesTachesPublic as $listes){ ?>
+		<?php foreach($listesTachesPrivee as $listes){ ?>
 			<section class="t-0">
 				<div class="container py-2">
 					<div class="row d-flex justify-content-center align-items-center">
@@ -129,8 +129,11 @@
 										<tbody>
 											<tr class="fw-normal">
 												<td class="align-middle">
-													<span>
-														<?php echo $tache->getNom(); ?>
+												<span>
+														<div <?php if($tache->getChecked() == 1){
+															echo 'style="text-decoration:line-through;"';
+														} ?> > <?php echo $tache->getNom(); ?> </div>
+														
 													</span>
 												</td>
 												<td class="align-middle">
