@@ -2,26 +2,6 @@
 
 class ModelVisiteur
 {
-    function connexion($email,$mdp) 
-    {
-        global $dsn, $username, $password;
-        //$email = Validation::clearString($email);
-        //$mdp = Validation::clearString($mdp);
-
-        $gwUtilisateur = new UtilisateurGateway(new Connection($dsn,$username,$password));
-        $hash = $gwUtilisateur->getCredentiale($email);
-        //password_verify($mdp,$hash[0]['mdp'])
-        $nom = $hash[0]['nom'];
-        $mdpHash = $hash[0]['mdp'];
-        if(password_verify($mdp,$mdpHash)){
-               $_SESSION['role']='utilisateur';
-               $_SESSION['login']=$hash[0]['nom'];
-               $_SESSION['id']=$hash[0]['id'];
-               return new Utilisateur($hash[0]['id'],$email,$mdp);
-        }
-        // return new Utilisateur($hash['nom'],$email,$mdp);
-        return NULL;
-    }
 
     function inscription($nom,$email,$mdp) : void {
         global $dsn, $username, $password;
@@ -92,7 +72,21 @@ class ModelVisiteur
         }
         return $listeTacheTableau;
     }
-   
+    function connexion($email,$mdp) 
+    {
+        global $dsn, $username, $password;
+        $gwUtilisateur = new UtilisateurGateway(new Connection($dsn,$username,$password));
+        $hash = $gwUtilisateur->getCredentiale($email);
+        $nom = $hash[0]['nom'];
+        $mdpHash = $hash[0]['mdp'];
+        if(password_verify($mdp,$mdpHash)){
+            $_SESSION['role']='utilisateur';
+            $_SESSION['login']=$hash[0]['nom'];
+            $_SESSION['id']=$hash[0]['id'];
+            return new Utilisateur($hash[0]['id'],$nom,$email);
+        }
+        return NULL;
+    }
 }
 
 ?>

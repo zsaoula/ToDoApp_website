@@ -70,23 +70,6 @@
 								<a class="nav-link" href="index.php?action=afficherTachesPrivee">Listes Privées</a>
 							</li>
 						<?php } ?>
-						<!-- <li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-							aria-expanded="false">
-							Dropdown
-						</a>
-						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="#">Action</a></li>
-							<li><a class="dropdown-item" href="#">Another action</a></li>
-							<li>
-							<hr class="dropdown-divider">
-							</li>
-							<li><a class="dropdown-item" href="#">Something else here</a></li>
-						</ul>
-						</li> -->
-						<!-- <li class="nav-item">
-						<a class="nav-link disabled">Disabled</a>
-						</li> -->
 					</ul>
 					<ul class="d-flex mb-lg-0">
 						<?php
@@ -128,32 +111,6 @@
 					<div class="card-body p-5 pb-1 shadow-5 text-center">
 						<h2 class="fw-bold mb-5">Sign up now</h2>
 						<form method="post">
-						<!-- 2 column grid layout with text inputs for the first and last names -->
-						<!-- <div class="row">
-							<div class="col-md-6 mb-4">
-							<div class="form-outline">
-								<input type="text"  name="name" class="form-control" />
-								<label class="form-label" >First name</label>
-							</div>
-							</div>
-							<div class="col-md-6 mb-4">
-							<div class="form-outline">
-								<input type="text" id="form3Example2" class="form-control" />
-								<label class="form-label" for="form3Example2">Last name</label>
-							</div>
-							</div>
-						</div> -->
-						<!-- Name input -->
-						<!-- <div class="form-outline mb-4">
-							<input type="text" name="name" class="form-control" />
-							<label class="form-label">Name</label>
-						</div> -->
-
-						<!-- Email input -->
-						<!-- <div class="form-outline mb-4">
-							<input type="email" name="email" class="form-control" />
-							<label class="form-label">Email address</label>
-						</div> -->
 						<div class="form-groupe mb-4">
 								<input type="email" name="email" id="email" class="form-control" placeholder="Email" <?php if (isset($email)) { echo 'value="'.$email.'"';}  ?>/>
 								<?php if(isset($dVueEreur['email'])){?>
@@ -161,12 +118,6 @@
 								<?php }?>
 								<!-- <label class="form-label">Email address</label> -->
 							</div>
-
-						<!-- Password input -->
-						<!-- <div class="form-outline mb-4">
-							<input type="password" name="mdp" class="form-control" />
-							<label class="form-label">Password</label>
-						</div> -->
 						<div class="form-outline mb-4 ">
 								<input type="password" name="mdp" class="form-control m-0" placeholder="Password" <?php if (isset($mdp)) { echo 'value="'.$mdp.'"';}  ?>/>
 								<?php if(isset($dVueEreur['mdp'])){?>
@@ -183,6 +134,9 @@
 						<?php if(isset($dVueEreur['all'])){?>
 								<p class="p-0 m-0 text-danger"><?php echo $dVueEreur['all']?> </p>
 							<?php }?>
+						<?php if(isset($dVueEreur['all2'])){?>
+							<p class="p-0 m-0 text-danger"><?php echo $dVueEreur['all']?> </p>
+						<?php }?>
 						</form>
 					</div>
 					</div>

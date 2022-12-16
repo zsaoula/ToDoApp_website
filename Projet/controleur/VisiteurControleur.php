@@ -91,24 +91,11 @@ class VisiteurControleur{
     
     function Inscription() {
         global $rep,$vues; // nécessaire pour utiliser variables globales
-    
-        $dVue = array (
-            'nom' => "",
-            'email' => "",
-            'mdp' => ""
-        );
-    
         require ($rep.$vues['vueInscription']);
     }
     
     function Connexion() {
-        global $rep,$vues; // nécessaire pour utiliser variables globales
-    
-        $dVue = array (
-            'nom' => "",
-            'email' => "",
-            'mdp' => ""
-        );
+        global $rep,$vues; 
         require ($rep.$vues['vueConnexion']);
     }
     
@@ -120,7 +107,6 @@ class VisiteurControleur{
         
         Validation::val_form_connexion($email,$mdp,$dVueEreur);
         $model = new ModelVisiteur();
-        var_dump($dVueEreur);
         if(!empty($dVueEreur)){
             
             require ($rep.$vues['vueConnexion']);
@@ -131,6 +117,7 @@ class VisiteurControleur{
                 $this->AfficherTaches();
             }
             else{
+                $dVueEreur['all2'] = "Mot de passe ou adresse mail incorrect!";
                 require ($rep.$vues['vueConnexion']);
             }
         }
@@ -164,18 +151,15 @@ class VisiteurControleur{
         $mdl->ajoutListePublic($nom);
     
         $this->AfficherTaches();
-    
-        //require ($rep.$vues['vueAfficherTaches']);
     }
+
     function SupprimerListeTache(){
         global $rep,$vues;
         $mdl = new ModelVisiteur();
-    
         $id = $_REQUEST['id'];
         $mdl->supprimerListePublic($id);
         
         $this->AfficherTaches();
-        //require ($rep.$vues['vueAfficherTaches']);
     }
     
     function AjouterTachePublique(){
@@ -198,8 +182,7 @@ class VisiteurControleur{
     
         $idTache = $_REQUEST['idTache'];
         $mdl->supprimerTache($idTache);
-    
-        // $this->Redirection();
+
         require ($rep.$vues['vueAfficherTaches']);
     }
     
@@ -224,7 +207,6 @@ class VisiteurControleur{
         $mdl->checkerTaches($listeTache,$tachesAChecker);
     
         $this->AfficherTaches();
-        //require ($rep.$vues['vueAfficherTaches']);
     }
 
     function EditerTache(){
@@ -234,13 +216,9 @@ class VisiteurControleur{
         $nameTache = $_POST['nameTache'];
         $typePriorite = $_POST['editPriorite'];
         $idTache = $_POST['idTache'];
-        // var_dump($nameTache);
-        // var_dump($typePriorite);
-        // var_dump($idTache);
         $mdl->editerTache($nameTache,$idTache,$typePriorite);
     
         $this->AfficherTaches();
-        //require ($rep.$vues['vueAfficherTaches']);
     }
 }
 ?>
