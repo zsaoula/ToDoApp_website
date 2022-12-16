@@ -1,4 +1,5 @@
 <?php
+
 class ListeTaches{
     private int $id;
     private string $name;
@@ -33,7 +34,7 @@ class ListeTaches{
         if(empty($this->taches)){
             return 0;
         }
-        foreach((array)$this->$taches as $tache){
+        foreach($this->$taches as Tache::$tache){
             $cpt++;
         }
         if($cpt == 0){

@@ -2,7 +2,7 @@
 
 class ModelVisiteur
 {
-    function verifier_connexion($email,$mdp) 
+    function connexion($email,$mdp) 
     {
         global $dsn, $username, $password;
         //$email = Validation::clearString($email);
@@ -12,7 +12,8 @@ class ModelVisiteur
         $hash = $gwUtilisateur->getCredentiale($email);
         //password_verify($mdp,$hash[0]['mdp'])
         $nom = $hash[0]['nom'];
-        if($mdp==$hash[0]['mdp']){
+        $mdpHash = $hash[0]['mdp'];
+        if(password_verify($mdp,$mdpHash)){
                $_SESSION['role']='utilisateur';
                $_SESSION['login']=$hash[0]['nom'];
                $_SESSION['id']=$hash[0]['id'];
@@ -25,6 +26,7 @@ class ModelVisiteur
     function inscription($nom,$email,$mdp) : void {
         global $dsn, $username, $password;
         $gwInscription = new UtilisateurGateway(new Connection($dsn,$username,$password));
+        $mdp =password_hash($mdp,PASSWORD_DEFAULT);
         $gwInscription->ajoutUtilisateur($nom,$email,$mdp);
     }
 

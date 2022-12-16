@@ -109,17 +109,14 @@ class VisiteurControleur{
         require ($rep.$vues['vueConnexion']);
     }
     
-    function ValidationFormulaire(array $dVueEreur) {
+    function ValidationFormulaire() {
         global $rep,$vues;
-    
-    
-        //si exception, ca remonte !!!
-        //$nom=$_POST['nom']; // txtNom = nom du champ texte dans le formulaire
+        $dVueEreur = array();
         $email=$_POST['email'];
         $mdp=$_POST['mdp'];
-        //Validation::val_form($nom,$email,$mdp,$dVueEreur);
+        Validation::val_form($nom,$email,$mdp,$dVueEreur);
         $model = new ModelVisiteur();
-        $data=$model->verifier_connexion($email,$mdp);
+        $data=$model->connexion($email,$mdp);
     
         //require ($rep.$vues['vueConnexion']);
         

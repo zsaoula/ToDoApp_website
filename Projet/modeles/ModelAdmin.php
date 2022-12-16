@@ -10,9 +10,8 @@ class ModelAdmin
 
         $gwUtilisateur = new UtilisateurGateway(new Connection($dsn,$username,$password));
         $hash = $gwUtilisateur->getCredentiale($email);
-        //password_verify($mdp,$hash[0]['mdp'])
         $nom = $hash[0]['nom'];
-        if(strcmp($mdp,$hash[0]['mdp'])){
+        if(password_verify($mdp,$hash[0]['mdp'])){
                $_SESSION['role']='admin';
                $_SESSION['login']=$hash[0]['nom'];
                return new Admin($nom,$email,$mdp);
