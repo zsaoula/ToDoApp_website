@@ -29,18 +29,20 @@ class ListeTaches{
         return $this->taches;
     }
 
-    public function getProgress() : int {
+    public function getProgress() : float {
         $cpt=0;
         if(empty($this->taches)){
             return 0;
         }
-        foreach($this->$taches as Tache::$tache){
-            $cpt++;
+        foreach($this->taches as $tache){
+            if(($tache->getChecked())==true){
+                $cpt++;
+            }     
         }
         if($cpt == 0){
             return 0;
         }
-        return $cpt/count($this->$taches);
+        return ($cpt/(count($this->taches)))*100;
     }
     
 }
