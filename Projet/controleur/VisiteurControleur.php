@@ -1,4 +1,4 @@
-<? 
+<?php
 
 class VisiteurControleur{
 
@@ -80,7 +80,7 @@ class VisiteurControleur{
 
     function AfficherTaches() {
         global $rep,$vues; // nécessaire pour utiliser variables globales
-        $mdl = new Model();
+        $mdl = new ModelVisiteur();
         $listesTachesPublic = array();
         $listesTachesPublic = $mdl->getListesPublic();
         require ($rep.$vues['vueAfficherTaches']);
@@ -118,7 +118,7 @@ class VisiteurControleur{
         $email=$_POST['email'];
         $mdp=$_POST['mdp'];
         //Validation::val_form($nom,$email,$mdp,$dVueEreur);
-        $model = new Model();
+        $model = new ModelVisiteur();
         $data=$model->verifier_connexion($email,$mdp);
     
         //require ($rep.$vues['vueConnexion']);
@@ -145,7 +145,7 @@ class VisiteurControleur{
         $email=$_POST['email'];
         $mdp=$_POST['mdp'];
         //Validation::val_form($nom,$email,$mdp,$dVueEreur);
-        $model = new Model();
+        $model = new ModelVisiteur();
         var_dump($mdp);
         $data=$model->inscription($nom,$email,$mdp);
     
@@ -154,7 +154,7 @@ class VisiteurControleur{
     
     function AjouterListeTache(){
         global $rep,$vues;
-        $mdl = new Model();
+        $mdl = new ModelVisiteur();
     
         $nom = $_POST['nomTache'];
         $mdl->ajoutListePublic($nom);
@@ -167,7 +167,7 @@ class VisiteurControleur{
     }
     function SupprimerListeTache(){
         global $rep,$vues;
-        $mdl = new Model();
+        $mdl = new ModelVisiteur();
     
         $id = $_REQUEST['id'];
         $mdl->supprimerListePublic($id);
@@ -178,7 +178,7 @@ class VisiteurControleur{
     
     function AjouterTachePublique(){
         global $rep,$vues;
-        $mdl = new Model();
+        $mdl = new ModelVisiteur();
 
         $nameTache = $_POST['nameTache'];
         $dateTache = date('Y-m-d', time());
@@ -192,7 +192,7 @@ class VisiteurControleur{
     
     function SupprimerTache(){
         global $rep,$vues;
-        $mdl = new Model();
+        $mdl = new ModelVisiteur();
     
         $idTache = $_REQUEST['idTache'];
         $mdl->supprimerTache($idTache);
@@ -203,7 +203,7 @@ class VisiteurControleur{
     
     function CheckTache(){
         global $rep,$vues;
-        $mdl = new Model();
+        $mdl = new ModelVisiteur();
     
         $tachesAChecker=array();
     
@@ -227,7 +227,7 @@ class VisiteurControleur{
 
     function EditerTache(){
         global $rep,$vues;
-        $mdl = new Model();
+        $mdl = new ModelVisiteur();
     
         $nameTache = $_POST['nameTache'];
         $typePriorite = $_POST['editPriorite'];

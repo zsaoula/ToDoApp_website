@@ -1,4 +1,4 @@
-<? 
+<?php
 
 class UtilisateurControleur{
 
@@ -13,10 +13,6 @@ class UtilisateurControleur{
             switch($action) {
                 case "ajoutListeTachePrivee":
                     $this->AjouterListeTachePrivee();
-                    break;
-
-                case "ajoutTachePrivee":
-                    $this->AjouterTachePrivee();
                     break;
 
                 case "deconnexion":
@@ -61,7 +57,7 @@ class UtilisateurControleur{
 
     function AjouterListeTachePrivee(){
         global $rep,$vues;
-        $mdl = new Model();
+        $mdl = new ModelUtilisateur();
 
         $nom = $_POST['nomTache'];
         $id = (int)$_SESSION['id'];
@@ -70,23 +66,9 @@ class UtilisateurControleur{
         $this->AfficherTachesPrivee();
     }
 
-    function AjouterTachePrivee(){
-        global $rep,$vues;
-        $mdl = new Model();
-
-        $nameTache = $_POST['nameTache'];
-        $dateTache = date('m-d-Y', time());
-        $typePriorite = "Important";
-        $listeTache = $_POST['listeTache'];
-        $mdl->ajouterTache($nameTache,$dateTache,$typePriorite,$listeTache);
-
-        $this->AfficherTachesPrivee();
-        //require ($rep.$vues['vueAfficherTaches']);
-    }
-
     function AfficherTachesPrivee(){
         global $rep,$vues; // nécessaire pour utiliser variables globales
-        $mdl = new Model();
+        $mdl = new ModelUtilisateur();
         $listesTachesPrivee = array();
         $id = (int)$_SESSION['id'];
         $listesTachesPrivee = $mdl->getListesPrivee($id);
