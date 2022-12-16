@@ -3,51 +3,10 @@
 		<title>Connexion</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-		<script type="text/javascript">
-		function clearForm(oForm) {
-		
-			var elements = oForm.elements; 
-				
-			oForm.reset();
-
-			for(i=0; i<elements.length; i++) {
-				
-				field_type = elements[i].type.toLowerCase();
-				
-				switch(field_type) {
-				
-					case "text": 
-					case "password": 
-					case "textarea":
-						case "hidden":	
-						
-						elements[i].value = ""; 
-						break;
-					
-					case "radio":
-					case "checkbox":
-						if (elements[i].checked) {
-							elements[i].checked = false; 
-						}
-						break;
-
-					case "select-one":
-					case "select-multi":
-								elements[i].selectedIndex = -1;
-						break;
-
-					default: 
-						break;
-				}
-			}
-		}
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 		</script>
 	</head>
 	<body>
-	<?php
-	// on v�rifie les donn�es provenant du mod�le
-	if (isset($dVue))
-	{?>
 		<nav
 			class="navbar navbar-expand-lg  bg-white border border-2 border-top-0 border-end-0 border-start-0 border-primary navbar-white p-4 shadow rounded position-sticky fixed-top">
 			<div class="container">
@@ -98,58 +57,43 @@
 					</div>
 				</div>
 			</nav>
-
-
-		<?php
-			if (isset($dVueEreur) && count($dVueEreur)>0) {
-			echo "<h2>ERREUR !!!!!</h2>";
-			foreach ($dVueEreur as $value){
-				echo $value;
-			}}
-		?>
 			<!-- Section: Design Block -->
 		<section class="justify-content-center d-flex py-3">
 				<div class="card">
 					<div class="card-body p-5 pb-1 shadow-5 text-center">
 						<h2 class="fw-bold mb-5">Sign up now</h2>
 						<form method="post">
-							<!-- 2 column grid layout with text inputs for the first and last names -->
-							<!-- <div class="row">
-								<div class="col-md-6 mb-4">
-								<div class="form-outline">
-									<input type="text"  name="name" class="form-control" />
-									<label class="form-label" >First name</label>
-								</div>
-								</div>
-								<div class="col-md-6 mb-4">
-								<div class="form-outline">
-									<input type="text" id="form3Example2" class="form-control" />
-									<label class="form-label" for="form3Example2">Last name</label>
-								</div>
-								</div>
-							</div> -->
-							<!-- Name input -->
-							<!-- <div class="form-outline mb-4">
-								<input type="text" name="name" class="form-control" />
-								<label class="form-label">Name</label>
-							</div> -->
 
 							<!-- Email input -->
-							<div class="form-outline mb-4">
-								<input type="text" name="name" class="form-control" />
-								<label class="form-label">Name</label>
+							<div class="form-groupe mb-4">
+								<input type="text" name="nom" class="form-control " placeholder="Nom" <?php if (isset($nom)) { echo 'value="'.$nom.'"';}  ?>/>
+								<?php if(isset($dVueEreur['nom'])){?>
+									<p class="p-0 m-0 text-danger"><?php echo $dVueEreur['nom']?> </p>
+								<?php }?>
 							</div>
 
 							<!-- Email input -->
-							<div class="form-outline mb-4">
-								<input type="email" name="email" class="form-control" />
-								<label class="form-label">Email address</label>
+							<div class="form-groupe mb-4">
+								<input type="email" name="email" id="email" class="form-control" placeholder="Email" <?php if (isset($email)) { echo 'value="'.$email.'"';}  ?>/>
+								<?php if(isset($dVueEreur['email'])){?>
+									<p class="p-0 m-0 text-danger"><?php echo $dVueEreur['email']?> </p>
+								<?php }?>
 							</div>
 
 							<!-- Password input -->
 							<div class="form-outline mb-4 ">
-								<input type="password" name="mdp" class="form-control m-0" placeholder="Password"/>
-								<label class="form-label">Password</label>
+								<input type="password" name="mdp" class="form-control m-0" placeholder="Password" <?php if (isset($mdp1)) { echo 'value="'.$mdp1.'"';}  ?>/>
+								<?php if(isset($dVueEreur['mdp1'])){?>
+									<p class="p-0 m-0 text-danger"><?php echo $dVueEreur['mdp1']?> </p>
+								<?php }?>
+							</div>
+
+							<!-- Password input -->
+							<div class="form-outline mb-4 ">
+								<input type="password" name="mdp2" class="form-control m-0" placeholder="Password" <?php if (isset($mdp2)) { echo 'value="'.$mdp2.'"';}  ?>/>
+								<?php if(isset($dVueEreur['mdp2'])){?>
+									<p class="p-0 m-0 text-danger"><?php echo $dVueEreur['mdp2']?> </p>
+								<?php }?>
 							</div>
 
 							<!-- Submit button -->
@@ -158,17 +102,14 @@
 							</button>
 
 							<input type="hidden" name="action" value="validationFormulaireI">
+					
+							<?php if(isset($dVueEreur['all'])){?>
+								<p class="p-0 m-0 text-danger"><?php echo $dVueEreur['all']?> </p>
+							<?php }?>
 						</form>
 					</div>
 			</div>
 		<!-- Jumbotron -->
 		</section>
-
-		
-		<?php }
-		else {
-			print ("erreur !!<br>");
-			print ("utilisation anormale de la vueConnexion");
-		} ?>
 	</body> 
 </html> 
