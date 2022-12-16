@@ -2,11 +2,6 @@
 
 class Model
 {
-    function get_data() : string
-    {
-    return "Mon modèle ne fait rien";
-    }
-
     function verifier_connexion($email,$mdp) 
     {
         global $dsn, $username, $password;

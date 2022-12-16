@@ -2,16 +2,14 @@
 
 class VisiteurControleur{
 
-    function __construct($action) {
+    function __construct() {
         global $rep,$vues; // nécessaire pour utiliser variables globales
-
-        // on démarre ou reprend la session si necessaire (préférez utiliser un modèle pour gérer vos session ou cookies)
-        session_start();
 
         //debut
 
         //on initialise un tableau d'erreur
         $dVueEreur = array ();
+        $action = $_REQUEST['action']??null;
 
         try{
 
@@ -21,34 +19,45 @@ class VisiteurControleur{
                 $this->Connexion();
                 break;
 
-            case "inscription":
-                $this->Inscription();
+            case "validationFormulaire":
+				$this->ValidationFormulaire($dVueEreur);
+				break;
+
+			case "afficherTaches":
+				$this->AfficherTaches();
+				break;
+
+			case "validationFormulaireI":
+				$this->ValidationFormulaireInscription($dVueEreur);
+				break;
+
+			case "inscription":
+				$this->Inscription();
+				break;
+
+			case "ajoutListeTache":
+				$this->AjouterListeTache();
+				break;
+
+			case "supprimerListeTache":
+				$this->SupprimerListeTache();
+				break;
+
+			case "ajoutTache":
+				$this->AjouterTachePublique();
+				break;
+
+			case "supprimerTache":
+				$this->SupprimerTache();
+				break;
+				
+            case "checkTache":
+				$this->CheckTache();
+				break;
+
+            case "editerTache":
+				$this->EditerTache();
                 break;
-
-            case "connection":
-                $this->Connexion();
-                break;
-            case "validationFormulaireConnexion":
-				$this->ValidationFormulaireConnexion($dVueEreur);
-			    break;
-            
-            case "validationFormulaireInscription":
-                $this->ValidationFormulaireInscription($dVueEreur);
-            break;
-
-			case "afficherTachesPubliques":
-				$this->AfficherTachesPubliques();
-			    break;
-            
-            case "afficherListePublique":
-
-            case "creerTachePublique":
-
-            case "supprimerTachePublique":
-
-            case "checkTachePublique":
-
-            case "uncheckTachePublique":
 
             //mauvaise action
             default:
@@ -74,20 +83,12 @@ class VisiteurControleur{
         exit(0);
     }
 
-    function AfficherTachesPubliques() {
+    function AfficherTaches() {
         global $rep,$vues; // nécessaire pour utiliser variables globales
         $mdl = new Model();
         $listesTachesPublic = array();
         $listesTachesPublic = $mdl->getListesPublic();
         require ($rep.$vues['vueAfficherTaches']);
-    }
-
-    function AfficherListePublique() {
-        global $rep,$vues; // nécessaire pour utiliser variables globales
-        $mdl = new Model();
-        $listesTachesPublic = array();
-        $listesTachesPublic = $mdl->getListesPublic();
-        require ($rep.$vues['vueAfficherListePublique']);
     }
     
     function Inscription() {
@@ -113,47 +114,136 @@ class VisiteurControleur{
         require ($rep.$vues['vueConnexion']);
     }
     
-    function ValidationFormulaireConnexion(array $dVueEreur) {
+    function ValidationFormulaire(array $dVueEreur) {
         global $rep,$vues;
     
     
         //si exception, ca remonte !!!
-        $nom=$_POST['txtNom']; // txtNom = nom du champ texte dans le formulaire
-        $email=$_POST['txtEmail'];
-        $mdp=$_POST['txtMdp'];
-        Validation::val_form($nom,$email,$mdp,$dVueEreur);
-    
+        //$nom=$_POST['nom']; // txtNom = nom du champ texte dans le formulaire
+        $email=$_POST['email'];
+        $mdp=$_POST['mdp'];
+        //Validation::val_form($nom,$email,$mdp,$dVueEreur);
         $model = new Model();
-        $data=$model->verifierConnexion();
+        $data=$model->verifier_connexion($email,$mdp);
     
-        $dVue = array (
-            'nom' => $nom,
-            'email' => $email,
-            'mdp' => $mdp,
-            'data' => $data,
-        );
-        require ($rep.$vues['vueConnexion']);
+        //require ($rep.$vues['vueConnexion']);
+        
+        if($data!=NULL){
+            $this->AfficherTaches();
+        }
+    
+        // $dVue = array (
+        // 	'nom' => $nom,
+        // 	'email' => $email,
+        // 	'mdp' => $mdp,
+        // 	'data' => $data,
+        // );
+        // require ($rep.$vues['vueConnexion']);
     }
     
     function ValidationFormulaireInscription(array $dVueEreur) {
         global $rep,$vues;
     
+    
         //si exception, ca remonte !!!
-        $nom=$_POST['txtNom']; // txtNom = nom du champ texte dans le formulaire
-        $email=$_POST['txtEmail'];
-        $mdp=$_POST['txtMdp'];
-        Validation::val_form($nom,$email,$mdp,$dVueEreur);
-    
+        $nom=$_POST['name']; 
+        $email=$_POST['email'];
+        $mdp=$_POST['mdp'];
+        //Validation::val_form($nom,$email,$mdp,$dVueEreur);
         $model = new Model();
-        $data=$model->verifierConnexion();
+        var_dump($mdp);
+        $data=$model->inscription($nom,$email,$mdp);
     
-        $dVue = array (
-            'nom' => $nom,
-            'email' => $email,
-            'mdp' => $mdp,
-            'data' => $data,
-        );
-        require ($rep.$vues['vueConnexion']);
+        $this->Connexion();
+    }
+    
+    function AjouterListeTache(){
+        global $rep,$vues;
+        $mdl = new Model();
+    
+        $nom = $_POST['nomTache'];
+        $mdl->ajoutListePublic($nom);
+    
+        
+    
+        $this->AfficherTaches();
+    
+        //require ($rep.$vues['vueAfficherTaches']);
+    }
+    function SupprimerListeTache(){
+        global $rep,$vues;
+        $mdl = new Model();
+    
+        $id = $_REQUEST['id'];
+        $mdl->supprimerListePublic($id);
+        
+        $this->AfficherTaches();
+        //require ($rep.$vues['vueAfficherTaches']);
+    }
+    
+    function AjouterTachePublique(){
+        global $rep,$vues;
+        $mdl = new Model();
+
+        $nameTache = $_POST['nameTache'];
+        $dateTache = date('Y-m-d', time());
+        $typePriorite = $_POST['ajoutPriorite'];
+        $listeTache = (int)$_POST['listeTache'];
+        $mdl->ajouterTache($nameTache,$dateTache,$typePriorite,$listeTache);
+
+        $this->AfficherTaches();
+    }
+    
+    
+    function SupprimerTache(){
+        global $rep,$vues;
+        $mdl = new Model();
+    
+        $idTache = $_REQUEST['idTache'];
+        $mdl->supprimerTache($idTache);
+    
+        $this->AfficherTaches();
+        //require ($rep.$vues['vueAfficherTaches']);
+    }
+    
+    function CheckTache(){
+        global $rep,$vues;
+        $mdl = new Model();
+    
+        $tachesAChecker=array();
+    
+        foreach ($_POST as $key => $value) {
+            if($key != 'action'){
+                if ($key == 'listeTache'){
+                $listeTache=$value;
+                }
+                else{
+                $tachesAChecker[] = $value;
+            }
+        
+        }
+        }
+    
+        $mdl->checkerTaches($listeTache,$tachesAChecker);
+    
+        $this->AfficherTaches();
+        //require ($rep.$vues['vueAfficherTaches']);
+    }
+
+    function EditerTache(){
+        global $rep,$vues;
+        $mdl = new Model();
+    
+        $nameTache = $_POST['nameTache'];
+        $typePriorite = $_POST['editPriorite'];
+        $idTache = $_POST['idTache'];
+        // var_dump($nameTache);
+        // var_dump($typePriorite);
+        // var_dump($idTache);
+        $mdl->editerTache($nameTache,$idTache,$typePriorite);
+    
+        $this->AfficherTaches();
+        //require ($rep.$vues['vueAfficherTaches']);
     }
 }
 ?>

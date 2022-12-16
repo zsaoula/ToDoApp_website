@@ -23,7 +23,7 @@ class UtilisateurGateway {
     }
 
     public function ajoutUtilisateur($nom,$email,$mdp): void{
-        $query = "INSERT INTO `utilisateur`(`nom`, `name`, `mdp`) VALUES ('$nom', '$email', '$mdp');";
+        $query = "INSERT INTO `utilisateur` (`nom`, `mail`, `mdp`,`role`) VALUES('$nom', '$email', '$mdp','NULL')";
         $this->con->executeQuery($query);
     }
 }

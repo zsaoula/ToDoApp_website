@@ -2,16 +2,11 @@
 
 class UtilisateurControleur{
 
-    function __construct($action) {
+    function __construct() {
         global $rep,$vues; // nécessaire pour utiliser variables globales
 
-        // on démarre ou reprend la session si necessaire (préférez utiliser un modèle pour gérer vos session ou cookies)
-        session_start();
-
-        //debut
-
-        //on initialise un tableau d'erreur
         $dVueEreur = array ();
+        $action = $_REQUEST['action']??null;
 
         try{
 
@@ -21,23 +16,21 @@ class UtilisateurControleur{
                 //$this->;
                 break;
 
-            case "ajouterListePrive":
+            case "ajoutListeTachePrivee":
+                $this->AjouterListeTachePrivee();
+				break;
 
-            case "supprimerListePrive":
-            
-            case "afficherListePrive":
-            
-            case "deconnecter":
+            case "ajoutTachePrivee":
+                $this->AjouterTachePrivee();
+				break;
 
-            case "creerTachePrive":
+            case "deconnexion":
+                $this->Deconnexion();
+				break;
 
-            case "supprimerTachePrive":
-
-            case "afficherTachesPrivees":
-
-            case "checkTachePrive":
-
-            case "uncheckTachePrive":
+            case "afficherTachesPrivee":
+                $this->AfficherTachesPrivee();
+				break;
 
             //mauvaise action
             default:
@@ -49,7 +42,6 @@ class UtilisateurControleur{
         }
          catch (PDOException $e)
 		{
-			//si erreur BD, pas le cas ici
 			$dVueEreur[] =	"Erreur inattendue!!! ";
 			require ($rep.$vues['erreur']);
 		}
@@ -61,6 +53,49 @@ class UtilisateurControleur{
 
         
         exit(0);
+    }
+
+    function Deconnexion() {
+        global $rep,$vues; // nécessaire pour utiliser variables globales
+
+        $model = new ModelUtilisateur();
+        $model->deconnexion();
+
+        $connexion = new VisiteurControleur();
+    }
+
+    function AjouterListeTachePrivee(){
+        global $rep,$vues;
+        $mdl = new Model();
+
+        $nom = $_POST['nomTache'];
+        $id = (int)$_SESSION['id'];
+        $mdl->ajoutListePrivee($nom, $id);
+
+        $this->AfficherTachesPrivee();
+    }
+
+    function AjouterTachePrivee(){
+        global $rep,$vues;
+        $mdl = new Model();
+
+        $nameTache = $_POST['nameTache'];
+        $dateTache = date('m-d-Y', time());
+        $typePriorite = "Important";
+        $listeTache = $_POST['listeTache'];
+        $mdl->ajouterTache($nameTache,$dateTache,$typePriorite,$listeTache);
+
+        $this->AfficherTachesPrivee();
+        //require ($rep.$vues['vueAfficherTaches']);
+    }
+
+    function AfficherTachesPrivee(){
+        global $rep,$vues; // nécessaire pour utiliser variables globales
+        $mdl = new Model();
+        $listesTachesPrivee = array();
+        $id = (int)$_SESSION['id'];
+        $listesTachesPrivee = $mdl->getListesPrivee($id);
+        require ($rep.$vues['vueAfficherTachesPrivee']);
     }
 }
 ?>

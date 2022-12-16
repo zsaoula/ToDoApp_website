@@ -50,19 +50,6 @@
 		</script>
 	</head>
 	<body>
-	
-	<?php
-	// on v�rifie les donn�es provenant du mod�le
-	if (isset($dVue))
-	{?>
-
-		<?php
-			if (isset($dVueEreur) && count($dVueEreur)>0) {
-			echo "<h2>ERREUR !!!!!</h2>";
-			foreach ($dVueEreur as $value){
-				echo $value;
-			}}
-		?>
 		<!-- Navbar -->
 		<nav
 			class="navbar navbar-expand-lg  bg-white border border-2 border-top-0 border-end-0 border-start-0 border-primary navbar-white p-4 shadow rounded position-sticky fixed-top">
@@ -193,11 +180,5 @@
 			</div>
 		<!-- Jumbotron -->
 		</section>
-
-		<?php }
-		else {
-			print ("erreur !!<br>");
-			print ("utilisation anormale de la vueConnexion");
-		} ?>
 	</body> 
 </html> 

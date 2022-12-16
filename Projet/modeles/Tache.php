@@ -31,6 +31,18 @@ class Tache{
         return $this->priorite;
     }
 
+    public function getCouleur() : string {
+        if($this->priorite == "Faible"){
+            return "bg-success";
+        }
+        elseif($this->priorite == "Moyen"){
+            return "bg-warning";
+        }
+        else{
+            return "bg-danger";
+        }
+    }
+
     public function getCreationTache() : string {
         return $this->creationDate;
     }

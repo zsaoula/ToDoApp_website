@@ -25,10 +25,10 @@ class ModelUtilisateur
     function isUtilisateur()
     {
         if(isset($_SESSION['login']) && isset($_SESSION['role'])){
-            $id = Nettoyer::nettoyer_string($_SESSION['id']);
-            $login = Nettoyer::nettoyer_string($_SESSION['login']);
-            $role = Nettoyer::nettoyer_string($_SESSION['role']);
-            return new Utilisateur($login,$role);
+            $id = Validation::nettoyer_string($_SESSION['id']);
+            $login = Validation::nettoyer_string($_SESSION['login']);
+            $role = Validation::nettoyer_string($_SESSION['role']);
+            return new Utilisateur($id,$login,$role);
         }
         else
             return NULL;

@@ -57,7 +57,7 @@
 	<nav
 			class="navbar navbar-expand-lg  bg-white border border-2 border-top-0 border-end-0 border-start-0 border-primary navbar-white p-4 shadow rounded position-sticky fixed-top">
 			<div class="container">
-				<a class="navbar-brand" href="#">TODO List</a>
+				<a class="navbar-brand" >TODO List</a>
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
@@ -139,10 +139,13 @@
 				<div class="col-md-12 col-xl-10">
 
 					<div class="card">
-					<div class="card-header p-3">
+					<div class="card-header p-3 d-flex justify-content-between align-items-center">
 						<h5 class="mb-0"><i class="fas fa-tasks me-2"></i>
-						<?php echo $listes->getNom();?>
-					</h5>
+							<?php echo $listes->getNom();?>
+						</h5>
+						<div class="progress w-50">
+  							<div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+						</div>
 					</div>
 						<div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative">
 
@@ -171,7 +174,7 @@
 										</span>
 									</td>
 									<td class="align-middle">
-										<h6 class="mb-0"><span class="badge bg-danger"><?php echo $tache->getPriorite(); ?></span></h6>
+										<h6 class="mb-0"><span class="badge <?php echo $tache->getCouleur(); ?>"><?php echo $tache->getPriorite(); ?></span></h6>
 									</td>
 									<td class="align-middle">
 										<form method="post" class="p-0 m-0">
@@ -187,7 +190,7 @@
 									</input> -->
 									</td>
 									<td class="align-middle">
-										<button type="button" onclick="showPopupEdit('<?php echo $tache->getNom(); ?>','<?php echo $tache->getId(); ?>','<?php echo $tache->getPriorite(); ?>')" class="text-info" data-mdb-toggle="tooltip" title="Edit todo">
+										<button class="border-0  bg-white text-primary" data-mdb-toggle="tooltip" type="button" onclick="showPopupEdit('<?php echo $tache->getNom(); ?>','<?php echo $tache->getId(); ?>','<?php echo $tache->getPriorite(); ?>')"   title="Edit todo">
 											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
   												<path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
 											</svg>
@@ -272,7 +275,7 @@
 
 
 
-                  						<a name="idSup" type="submit" href="index.php?action=supprimerTache&idTache=<?php echo $tache->getId();?>" class="text-danger" data-mdb-toggle="tooltip" title="Delete todo">
+                  						<a name="idSup" type="submit" href="index.php?action=supprimerTache&idTache=<?php echo $tache->getId();?>" data-mdb-toggle="tooltip" title="Delete todo">
 											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
   												<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
   												<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
@@ -290,8 +293,8 @@
 							</form>
 						</div>
 					<div class="card-footer text-end p-3">
-						<a class="me-2 btn btn-link" name="idSupListe" type="submit" href="index.php?action=supprimerListeTache&id=<?php echo $listes->getId();?>" >Cancel</a>
-									   <button onclick="showPopup('<?php echo $listes->getNom(); ?>','<?php echo $listes->getId(); ?> ')">Ajouter tâche</button>
+						<a class="me-2 btn btn-primary" name="idSupListe" type="submit" href="index.php?action=supprimerListeTache&id=<?php echo $listes->getId();?>" >Cancel</a>
+									   <button class="me-2 btn btn-primary" onclick="showPopup('<?php echo $listes->getNom(); ?>','<?php echo $listes->getId(); ?> ')">Ajouter tâche</button>
 
 											<!-- Fond flouté-->
 											<div class="overlay" id="overlay"></div>

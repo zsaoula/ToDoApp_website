@@ -98,7 +98,6 @@
 					</div>
 				</div>
 			</nav>
-		<div align="center">
 
 
 		<?php
@@ -108,55 +107,64 @@
 				echo $value;
 			}}
 		?>
-		<h2>Personne - formulaire</h2>
-		<hr>
-		<!-- affichage de donn�es provenant du mod�le --> 
-		<!-- <?= $dVue['data']  ?> -->
+			<!-- Section: Design Block -->
+		<section class="justify-content-center d-flex py-3">
+				<div class="card">
+					<div class="card-body p-5 pb-1 shadow-5 text-center">
+						<h2 class="fw-bold mb-5">Sign up now</h2>
+						<form method="post">
+							<!-- 2 column grid layout with text inputs for the first and last names -->
+							<!-- <div class="row">
+								<div class="col-md-6 mb-4">
+								<div class="form-outline">
+									<input type="text"  name="name" class="form-control" />
+									<label class="form-label" >First name</label>
+								</div>
+								</div>
+								<div class="col-md-6 mb-4">
+								<div class="form-outline">
+									<input type="text" id="form3Example2" class="form-control" />
+									<label class="form-label" for="form3Example2">Last name</label>
+								</div>
+								</div>
+							</div> -->
+							<!-- Name input -->
+							<!-- <div class="form-outline mb-4">
+								<input type="text" name="name" class="form-control" />
+								<label class="form-label">Name</label>
+							</div> -->
 
+							<!-- Email input -->
+							<div class="form-outline mb-4">
+								<input type="text" name="name" class="form-control" />
+								<label class="form-label">Name</label>
+							</div>
 
-		<form method="post" name="myform" id="myform">
-		<table> <tr>
-		<td>Nom</td>
-		<td><input name="txtNom" value="<?= $dVue['nom']  ?>" type="text" size="20"></td>
-		</tr>
-		<tr><td>Email</td>
-		<td><input name="txtEmail" value="<?= $dVue['email'] ?>" type="text" size="3" required></td>
-		</tr>
-		<tr><td>Mot De Passe</td>
-			<td><input name="txtMdp" value="<?= $dVue['mdp'] ?>" type="text" size="3" required></td>
-		</tr>
-		<tr>
-		</table>
-		<table> <tr>
-		<td><input type="submit" value="Envoyer"></td>
-		<td><input type="reset" value="Rétablir"></td>
-		<td><input type="button" value="Effacer" onclick="clearForm(this.form);">
-		</td> </tr> </table>
+							<!-- Email input -->
+							<div class="form-outline mb-4">
+								<input type="email" name="email" class="form-control" />
+								<label class="form-label">Email address</label>
+							</div>
 
-		<!-- action !!!!!!!!!! --> 
-		<input type="hidden" name="action" value="validationFormulaire">
-		</form></div>
-		<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos vero quis optio similique maxime distinctio facere tempore minus nihil laboriosam illum perferendis dignissimos, ipsa sapiente vitae magni amet libero cum?
-		Odio libero modi officiis vel commodi, accusamus aperiam, magni, amet molestiae neque a. Corrupti sed cumque, accusamus cum qui ea dolorem aspernatur explicabo itaque similique, ducimus rem beatae, aliquam sunt.
-		Ipsam ratione, blanditiis reiciendis quaerat provident ullam facilis, cupiditate nemo cumque doloremque sint soluta placeat maxime expedita cum fugiat nisi! Asperiores ipsam inventore incidunt modi aliquam impedit sit id eos.
-		Mollitia ad accusamus necessitatibus, ex aperiam libero corrupti dolorem harum similique consequatur in. Ad esse suscipit eius sit illum aut! Consequatur, accusamus? Iste, doloribus. Magnam voluptates porro itaque atque. Recusandae!
-		Optio adipisci inventore delectus enim corporis fugiat? Exercitationem illum, alias repellendus ab aspernatur nemo architecto mollitia quasi voluptas maxime! Voluptatum deserunt veniam quibusdam excepturi a, eum ipsa fugit praesentium mollitia.
-		Dignissimos aliquam sunt consequatur laudantium eaque voluptatem quo fuga. Incidunt et dicta atque, a debitis nam animi, possimus impedit totam, quisquam mollitia placeat. Nam numquam, aspernatur beatae ducimus unde fugit.
-		Quibusdam pariatur quas provident aliquid dolorum repudiandae dolores, ad mollitia possimus totam illo ipsa nesciunt ullam minus amet consectetur sapiente at? Id quasi amet iusto voluptatum magni quos voluptatibus repellat.
-		Quis doloremque labore molestiae corporis omnis culpa. Aliquam quos, quod repellat repudiandae commodi ad quidem odio maiores sequi cum quia. Eos numquam accusamus accusantium reprehenderit quaerat? Ullam odit cupiditate obcaecati!
-		Rerum assumenda doloremque architecto provident corporis est reprehenderit quo laudantium magni eligendi nostrum adipisci velit molestiae deserunt molestias, ipsam culpa incidunt, sint repudiandae in aut, nulla odio. Iusto, quae autem.
-		Consequatur consequuntur, repellat aspernatur harum cupiditate velit hic, dolor facilis enim, dignissimos quia praesentium ipsam similique obcaecati provident optio repellendus. Sapiente adipisci quia nisi, soluta eligendi ex culpa eos modi.
-		Ipsum illo molestias, minima sunt tenetur debitis saepe nisi a quaerat qui tempora corporis, soluta dolore dignissimos nesciunt obcaecati laborum eligendi modi magni tempore possimus rem iusto quas! Commodi, ut?
-		Nostrum corrupti, odit quas adipisci quaerat minima asperiores obcaecati nemo blanditiis laboriosam sed, pariatur voluptate magnam laudantium ipsum ipsam sapiente culpa molestiae perspiciatis minus! Animi quisquam delectus fugit vero et?
-		Exercitationem consequuntur dolorem nemo reiciendis accusantium! Magni ullam beatae voluptatibus consequatur sapiente natus odit sint soluta. Laudantium, alias iure corrupti veritatis dolorum magnam odit enim ab iusto, maiores consequatur. Iste.
-		Veniam iure optio aliquid adipisci, omnis hic maiores culpa quod! Aliquid esse excepturi velit labore provident iusto molestiae pariatur ad, delectus eos impedit, suscipit saepe, consectetur in et eveniet veniam?
-		Qui nostrum tempora similique molestiae officiis, aspernatur possimus, quibusdam cum, placeat autem optio minus minima incidunt? Laborum eligendi cum excepturi, tenetur officiis, distinctio sint, inventore dolores iusto dolorem sed nemo!
-		Cupiditate quam incidunt nihil vero doloremque quos praesentium accusamus nam delectus nobis. Placeat quas quis est non aperiam. Quis, consequuntur nihil. Temporibus ipsa ipsam placeat fuga consequuntur sint consectetur laborum.
-		Voluptatum ut nihil dolorem porro adipisci esse, ab molestiae necessitatibus mollitia laudantium eligendi quod ad id unde, nam facere deserunt, nemo dolor? Labore iusto quasi, illum eaque quisquam voluptates eius?
-		Perspiciatis temporibus ratione maiores quod, tempora quidem et cumque beatae expedita deleniti incidunt perferendis earum explicabo consequuntur vitae quas officiis quasi quia veritatis voluptatum repellendus nulla, dolorem porro atque. A?
-		Vel, culpa sunt error commodi doloribus voluptates officiis voluptatibus, harum enim accusamus pariatur asperiores, aliquam odit magni? Deleniti perferendis at blanditiis illo expedita ipsa iste, odio quisquam voluptatem consequatur ipsum!
-		Soluta praesentium incidunt odit ab quod, amet repellendus iure deserunt maiores doloremque sunt reprehenderit cupiditate. Alias illum earum explicabo corporis adipisci voluptatibus beatae, excepturi temporibus, delectus commodi optio nemo unde!</p>
+							<!-- Password input -->
+							<div class="form-outline mb-4 ">
+								<input type="password" name="mdp" class="form-control m-0" placeholder="Password"/>
+								<label class="form-label">Password</label>
+							</div>
 
+							<!-- Submit button -->
+							<button type="submit" class="btn btn-primary btn-block mb-4">
+								Sign up
+							</button>
+
+							<input type="hidden" name="action" value="validationFormulaireI">
+						</form>
+					</div>
+			</div>
+		<!-- Jumbotron -->
+		</section>
+
+		
 		<?php }
 		else {
 			print ("erreur !!<br>");
