@@ -12,7 +12,7 @@ class Model
         $hash = $gwUtilisateur->getCredentiale($email);
         //password_verify($mdp,$hash[0]['mdp'])
         $nom = $hash[0]['nom'];
-        if(strcmp($mdp,$hash[0]['mdp'])){
+        if($mdp==$hash[0]['mdp']){
                $_SESSION['role']='utilisateur';
                $_SESSION['login']=$hash[0]['nom'];
                $_SESSION['id']=$hash[0]['id'];
