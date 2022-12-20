@@ -1,5 +1,7 @@
 <?php
 
+
+
 class ModelVisiteur
 {
 
@@ -77,13 +79,18 @@ class ModelVisiteur
         global $dsn, $username, $password;
         $gwUtilisateur = new UtilisateurGateway(new Connection($dsn,$username,$password));
         $hash = $gwUtilisateur->getCredentiale($email);
+        if(!isset($hash[0]['nom']))
+        {
+            return NULL;
+        }
         $nom = $hash[0]['nom'];
         $mdpHash = $hash[0]['mdp'];
+        $id = $hash[0]['id'];
         if(password_verify($mdp,$mdpHash)){
             $_SESSION['role']='utilisateur';
-            $_SESSION['login']=$hash[0]['nom'];
-            $_SESSION['id']=$hash[0]['id'];
-            return new Utilisateur($hash[0]['id'],$nom,$email);
+            $_SESSION['login']=$nom;
+            $_SESSION['id']=$id;
+            return new Utilisateur($id,$nom,$email);
         }
         return NULL;
     }

@@ -3,12 +3,11 @@
 class FrontControleur{
     public function __construct(){
         session_start();
-        $liste_actions_utilisateur = array('ajoutListeTachePrivee','deconnexion','afficherTachesPrivee');
+        $liste_actions_utilisateur = array('ajouterTachePrivee','ajoutListeTachePrivee','deconnexion','afficherTachesPrivee');
         $liste_actions_visiteur = array('validationFormulaire','afficherTaches','validationFormulaireI','connexion','inscription','ajoutListeTache','supprimerListeTache','ajoutTache','supprimerTache','checkTache');
         global $rep,$vues;
         try{
             $MdlUtilisateur = new ModelUtilisateur();
-            $admin= 'NULL';
             $utilisateur = $MdlUtilisateur->isUtilisateur();
 
             $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : null;

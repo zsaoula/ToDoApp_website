@@ -9,11 +9,14 @@ class VisiteurControleur{
 
         //on initialise un tableau d'erreur
         $dVueEreur = array ();
-        $action = $_REQUEST['action']??null;
-
+        $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : NULL;
         try{
 
             switch($action) {
+                case NULL:
+                    $this->Connexion();
+                     break;
+
                 case "validationFormulaire":
                     $this->ValidationFormulaire($dVueEreur);
                     break;
@@ -81,8 +84,8 @@ class VisiteurControleur{
         exit(0);
     }
 
-    function AfficherTaches() {
-        global $rep,$vues; // nécessaire pour utiliser variables globales
+    function AfficherTaches(array $dVueEreur = array()) {
+        global $rep,$vues; 
         $mdl = new ModelVisiteur();
         $listesTachesPublic = array();
         $listesTachesPublic = $mdl->getListesPublic();
@@ -90,11 +93,11 @@ class VisiteurControleur{
     }
     
     function Inscription() {
-        global $rep,$vues; // nécessaire pour utiliser variables globales
+        global $rep,$vues; 
         require ($rep.$vues['vueInscription']);
     }
     
-    function Connexion() {
+    static function Connexion() {
         global $rep,$vues; 
         require ($rep.$vues['vueConnexion']);
     }
@@ -138,7 +141,6 @@ class VisiteurControleur{
         }
         else{
             $model->inscription($nom,$email,$mdp);
-            var_dump($dVueEreur);
             $this->Connexion();
         }
     }
@@ -146,49 +148,73 @@ class VisiteurControleur{
     function AjouterListeTache(){
         global $rep,$vues;
         $mdl = new ModelVisiteur();
-    
+        $dVueEreur = array();
         $nom = $_POST['nomTache'];
-        $mdl->ajoutListePublic($nom);
-    
-        $this->AfficherTaches();
+        Validation::val_form_ajout($nom,$dVueEreur);
+
+        if(empty($dVueEreur))
+        {
+            $mdl->ajoutListePublic($nom);
+        }
+        $this->AfficherTaches($dVueEreur);
     }
 
     function SupprimerListeTache(){
         global $rep,$vues;
         $mdl = new ModelVisiteur();
+        $mdlUtilisateur = new ModelUtilisateur();
         $id = $_REQUEST['id'];
         $mdl->supprimerListePublic($id);
         
-        $this->AfficherTaches();
+        if($mdlUtilisateur->isUtilisateur()){
+            UtilisateurControleur::AfficherTachesPrivee();
+        }
+        else{
+            $this->AfficherTaches();
+        }
     }
     
     function AjouterTachePublique(){
         global $rep,$vues;
         $mdl = new ModelVisiteur();
+        $mdlU = new ModelUtilisateur();
+        $dVueEreur = array ();
 
         $nameTache = $_POST['nameTache'];
         $dateTache = date('Y-m-d', time());
-        $typePriorite = $_POST['ajoutPriorite'];
+        if(!isset($_POST['ajoutPriorite'])){
+            $typePriorite = "Faible";
+        }
+        else {
+            $typePriorite = $_POST['ajoutPriorite'];
+        }
         $listeTache = (int)$_POST['listeTache'];
+        Validation::val_form_ajout_tache($nameTache,$typePriorite,$dVueEreur);
         $mdl->ajouterTache($nameTache,$dateTache,$typePriorite,$listeTache);
 
-        $this->AfficherTaches();
+        $this->AfficherTaches();   
     }
     
     
     function SupprimerTache(){
         global $rep,$vues;
         $mdl = new ModelVisiteur();
-    
+        $mdlUtilisateur = new ModelUtilisateur();
         $idTache = $_REQUEST['idTache'];
         $mdl->supprimerTache($idTache);
 
-        require ($rep.$vues['vueAfficherTaches']);
+        if($mdlUtilisateur->isUtilisateur()){
+            UtilisateurControleur::AfficherTachesPrivee();
+        }
+        else{
+            $this->AfficherTaches();
+        }
     }
     
     function CheckTache(){
         global $rep,$vues;
         $mdl = new ModelVisiteur();
+        $mdlUtilisateur = new ModelUtilisateur();
     
         $tachesAChecker=array();
     
@@ -205,20 +231,31 @@ class VisiteurControleur{
         }
     
         $mdl->checkerTaches($listeTache,$tachesAChecker);
-    
-        $this->AfficherTaches();
+
+        if($mdlUtilisateur->isUtilisateur()){
+            UtilisateurControleur::AfficherTachesPrivee();
+        }
+        else{
+            $this->AfficherTaches();
+        }
     }
 
     function EditerTache(){
         global $rep,$vues;
         $mdl = new ModelVisiteur();
+        $mdlUtilisateur = new ModelUtilisateur();
     
         $nameTache = $_POST['nameTache'];
         $typePriorite = $_POST['editPriorite'];
         $idTache = $_POST['idTache'];
         $mdl->editerTache($nameTache,$idTache,$typePriorite);
     
-        $this->AfficherTaches();
+        if($mdlUtilisateur->isUtilisateur()){
+            UtilisateurControleur::AfficherTachesPrivee();
+        }
+        else{
+            $this->AfficherTaches();
+        }
     }
 }
 ?>

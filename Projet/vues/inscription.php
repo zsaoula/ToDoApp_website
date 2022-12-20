@@ -26,23 +26,6 @@
 								<a class="nav-link" href="index.php?action=afficherTachesPrivee">Listes Privées</a>
 							</li>
 						<?php } ?>
-						<!-- <li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-							aria-expanded="false">
-							Dropdown
-						</a>
-						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="#">Action</a></li>
-							<li><a class="dropdown-item" href="#">Another action</a></li>
-							<li>
-							<hr class="dropdown-divider">
-							</li>
-							<li><a class="dropdown-item" href="#">Something else here</a></li>
-						</ul>
-						</li> -->
-						<!-- <li class="nav-item">
-						<a class="nav-link disabled">Disabled</a>
-						</li> -->
 					</ul>
 					<ul class="d-flex mb-lg-0">
 						<?php
@@ -61,7 +44,7 @@
 		<section class="justify-content-center d-flex py-3">
 				<div class="card">
 					<div class="card-body p-5 pb-1 shadow-5 text-center">
-						<h2 class="fw-bold mb-5">Sign up now</h2>
+						<h2 class="fw-bold mb-5">Inscription</h2>
 						<form method="post">
 
 							<!-- Email input -->
@@ -74,7 +57,7 @@
 
 							<!-- Email input -->
 							<div class="form-groupe mb-4">
-								<input type="email" name="email" id="email" class="form-control" placeholder="Email" <?php if (isset($email)) { echo 'value="'.$email.'"';}  ?>/>
+								<input type="text" name="email" id="email" class="form-control" placeholder="Email" <?php if (isset($email)) { echo 'value="'.$email.'"';}  ?>/>
 								<?php if(isset($dVueEreur['email'])){?>
 									<p class="p-0 m-0 text-danger"><?php echo $dVueEreur['email']?> </p>
 								<?php }?>
@@ -82,7 +65,7 @@
 
 							<!-- Password input -->
 							<div class="form-outline mb-4 ">
-								<input type="password" name="mdp" class="form-control m-0" placeholder="Password" <?php if (isset($mdp1)) { echo 'value="'.$mdp1.'"';}  ?>/>
+								<input type="password" name="mdp" class="form-control m-0" placeholder="Mot de passe" <?php if (isset($mdp1)) { echo 'value="'.$mdp1.'"';}  ?>/>
 								<?php if(isset($dVueEreur['mdp1'])){?>
 									<p class="p-0 m-0 text-danger"><?php echo $dVueEreur['mdp1']?> </p>
 								<?php }?>
@@ -90,7 +73,7 @@
 
 							<!-- Password input -->
 							<div class="form-outline mb-4 ">
-								<input type="password" name="mdp2" class="form-control m-0" placeholder="Password" <?php if (isset($mdp2)) { echo 'value="'.$mdp2.'"';}  ?>/>
+								<input type="password" name="mdp2" class="form-control m-0" placeholder="Mot de passe" <?php if (isset($mdp2)) { echo 'value="'.$mdp2.'"';}  ?>/>
 								<?php if(isset($dVueEreur['mdp2'])){?>
 									<p class="p-0 m-0 text-danger"><?php echo $dVueEreur['mdp2']?> </p>
 								<?php }?>
@@ -98,7 +81,7 @@
 
 							<!-- Submit button -->
 							<button type="submit" class="btn btn-primary btn-block mb-4">
-								Sign up
+								S'inscrire
 							</button>
 
 							<input type="hidden" name="action" value="validationFormulaireI">

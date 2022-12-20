@@ -88,12 +88,17 @@
 		<div class="d-flex justify-content-center m-2 p-2">
             <div class="card">
                 <div class="card-body m-0">
-                  	<form class="d-flex flex-row align-items-center p-0 m-0" method="post">
-						<input type="text" class="form-control form-control-lg me-2" name="nomTache" id="exampleFormControlInput1"
-						placeholder="Nom">
-						<div>
-						<input type="submit" class="btn btn-primary" value="Ajouter">
+                  	<form class="d-flex flex-column align-items-center p-0 m-0" method="post">
+						<div class="d-flex flex-row align-items-center">
+							<input type="text" class="form-control form-control-lg me-2" name="nomTache" id="exampleFormControlInput1"
+							placeholder="Nom">
+							<div>
+								<input type="submit" class="btn btn-primary" value="Ajouter">
+							</div>
 						</div>
+						<?php if(isset($dVueEreur['nom'])){?>
+							<p class="p-0 m-0 text-danger"><?php echo $dVueEreur['nom']?> </p>
+						<?php }?>
 						<input type="hidden" name="action" value="ajoutListeTache">
 				   	</form>
                 </div>
@@ -141,7 +146,7 @@
 												</td>
 												<td class="align-middle">
 													<form method="post" class="p-0 m-0">
-														<?php //var_dump($tache->getChecked()) ;
+														<?php 
 												
 														if(($tache->getChecked()) == 1){
 															echo '<input type="checkbox" checked="true" name="tacheAlreadyChecked'. $tache->getId(). '" value="' .$tache->getId(). '"></input>';
@@ -149,8 +154,6 @@
 														else {
 															echo '<input type="checkbox" name="tacheChecked'. $tache->getId(). '" value="' .$tache->getId(). '"></input>';
 														}?>
-													<!-- <input type="checkbox" name="tacheChecked" value="1">
-													</input> -->
 												</td>
 												<td class="align-middle">
 													<button class="border-0  bg-white text-primary" data-mdb-toggle="tooltip" type="button" onclick="showPopupEdit('<?php echo $tache->getNom(); ?>','<?php echo $tache->getId(); ?>','<?php echo $tache->getPriorite(); ?>')"   title="Edit todo">
@@ -175,7 +178,7 @@
 							</form>
 							</div>
 							<div class="card-footer text-end p-3">
-								<a class="me-2 btn btn-primary" name="idSupListe" type="submit" href="index.php?action=supprimerListeTache&id=<?php echo $listes->getId();?>" >Quitter</a>
+								<a class="me-2 btn btn-primary" name="idSupListe" type="submit" href="index.php?action=supprimerListeTache&id=<?php echo $listes->getId();?>" >Supprimer</a>
 								<button class="me-2 btn btn-primary" onclick="showPopup('<?php echo $listes->getNom(); ?>','<?php echo $listes->getId(); ?> ')">Ajouter tâche</button>
 
 								<!-- Fond flouté-->
@@ -190,7 +193,7 @@
 												<div class="popup-content" id="popup-content"></div>
 												<button type="button" class="btn-close" onclick="hidePopup()" aria-label="Close"></button>
      										</div>
-											<div class="d-flex flex-colunm align-items-start pt-2">
+											<div class="d-flex flex-column align-items-start pt-2">
 												<form  method="post">
 													<input type="text" class="form-control w-30 " name="nameTache" placeholder="Nom">
 													<div class="popup-body d-flex flex-row">
@@ -198,7 +201,7 @@
 														<span class="mb-0 pe-2">
 															Priorité:
 														</span>
-														<div lass="d-flex flex-colunm align-items-start">
+														<div class="d-flex flex-column align-items-start">
 															<div>
 																<input type="radio" name="ajoutPriorite" value="Important">
 																<label>Important</label>

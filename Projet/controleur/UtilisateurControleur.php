@@ -19,6 +19,10 @@ class UtilisateurControleur{
                     $this->Deconnexion();
                     break;
 
+                case "ajouterTachePrivee":
+                    $this->AjouterTachePrivee();
+                    break;
+
                 case "afficherTachesPrivee":
                     $this->AfficherTachesPrivee();
                     break;
@@ -52,21 +56,27 @@ class UtilisateurControleur{
         $model = new ModelUtilisateur();
         $model->deconnexion();
 
-        $connexion = new VisiteurControleur();
+        $action = "connexion";
+
+        VisiteurControleur::Connexion();
     }
 
     function AjouterListeTachePrivee(){
         global $rep,$vues;
         $mdl = new ModelUtilisateur();
-
+        $dVueEreur = array();
         $nom = $_POST['nomTache'];
         $id = (int)$_SESSION['id'];
-        $mdl->ajoutListePrivee($nom, $id);
+        Validation::val_form_ajout($nom,$dVueEreur);
 
-        $this->AfficherTachesPrivee();
+        if(empty($dVueEreur))
+        {
+            $mdl->ajoutListePrivee($nom, $id);
+        }
+        $this->AfficherTachesPrivee($dVueEreur);
     }
 
-    function AfficherTachesPrivee(){
+    static function AfficherTachesPrivee(array $dVueEreur= array()){
         global $rep,$vues; // nécessaire pour utiliser variables globales
         $mdl = new ModelUtilisateur();
         $listesTachesPrivee = array();
@@ -74,6 +84,21 @@ class UtilisateurControleur{
         $listesTachesPrivee = $mdl->getListesPrivee($id);
         
         require ($rep.$vues['vueAfficherTachesPrivee']);
+    }
+
+    function AjouterTachePrivee(){
+        global $rep,$vues;
+        $mdl = new ModelVisiteur();
+        $mdlU = new ModelUtilisateur();
+
+
+        $nameTache = $_POST['nameTache'];
+        $dateTache = date('Y-m-d', time());
+        $typePriorite = $_POST['ajoutPriorite'];
+        $listeTache = (int)$_POST['listeTache'];
+        $mdl->ajouterTache($nameTache,$dateTache,$typePriorite,$listeTache);
+
+        $this->AfficherTachesPrivee();   
     }
 }
 ?>

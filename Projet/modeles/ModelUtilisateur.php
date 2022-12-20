@@ -2,21 +2,6 @@
 
 class ModelUtilisateur
 {
-    function connexion($email,$mdp) 
-    {
-        global $dsn, $username, $password;
-        $gwUtilisateur = new UtilisateurGateway(new Connection($dsn,$username,$password));
-        $hash = $gwUtilisateur->getCredentiale($email);
-        $nom = $hash[0]['nom'];
-        $mdpHash = $hash[0]['mdp'];
-        if(password_verify($mdp,$mdpHash)){
-            $_SESSION['role']='utilisateur';
-            $_SESSION['login']=$hash[0]['nom'];
-            $_SESSION['id']=$hash[0]['id'];
-            return new Utilisateur($hash[0]['id'],$nom,$email);
-        }
-        return NULL;
-    }
 
     function isUtilisateur()
     {

@@ -96,12 +96,31 @@ class Validation {
 
     static function val_form_ajout(string &$nom, array &$dVueEreur) {
         if (!isset($nom)||$nom=="") {
-            $dVueEreur[] =	"Le nom de tache est manquant.";
+            $dVueEreur["nom"] =	"Le nom de liste est manquant.";
         }
 
-        $nom = $this->nettoyer_string($nom);
+        $nom = Validation::nettoyer_string($nom);
         if(!$nom){
-            $dVueEreur[] =	"Le nom de tache est invalide.";
+            $dVueEreur["nom"] =	"Le nom de liste est invalide.";
+        }
+    }
+
+    static function val_form_ajout_tache(string &$nameTache,string &$typePriorite, array &$dVueEreur) {
+        if (!isset($nameTache)||$nameTache=="") {
+            $dVueEreur["nom"] =	"Le nom de tache est manquant.";
+        }
+
+        $nameTache = Validation::nettoyer_string($nameTache);
+        if(!$nameTache){
+            $dVueEreur["nom"] =	"Le nom de tache est invalide.";
+        }
+
+        if (!isset($typePriorite)||$typePriorite=="") {
+            $dVueEreur["pritypePrioriteorite"] =	"La priorité est manquante.";
+        }
+
+        if ($typePriorite !== "Important" || $typePriorite !== "Faible" || $typePriorite !== "Moyen"){
+            $dVueEreur["typePriorite"] =	"La priorité est manquante.";
         }
     }
 }

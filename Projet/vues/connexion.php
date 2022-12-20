@@ -9,45 +9,6 @@
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-		<script type="text/javascript">
-		function clearForm(oForm) {
-		
-			var elements = oForm.elements; 
-				
-			oForm.reset();
-
-			for(i=0; i<elements.length; i++) {
-				
-				field_type = elements[i].type.toLowerCase();
-				
-				switch(field_type) {
-				
-					case "text": 
-					case "password": 
-					case "textarea":
-						case "hidden":	
-						
-						elements[i].value = ""; 
-						break;
-					
-					case "radio":
-					case "checkbox":
-						if (elements[i].checked) {
-							elements[i].checked = false; 
-						}
-						break;
-
-					case "select-one":
-					case "select-multi":
-								elements[i].selectedIndex = -1;
-						break;
-
-					default: 
-						break;
-				}
-			}
-		}
-		</script>
 	</head>
 	<body>
 		<!-- Navbar -->
@@ -109,17 +70,16 @@
 						backdrop-filter: blur(30px);
 						">
 					<div class="card-body p-5 pb-1 shadow-5 text-center">
-						<h2 class="fw-bold mb-5">Sign up now</h2>
+						<h2 class="fw-bold mb-5">Connexion</h2>
 						<form method="post">
 						<div class="form-groupe mb-4">
-								<input type="email" name="email" id="email" class="form-control" placeholder="Email" <?php if (isset($email)) { echo 'value="'.$email.'"';}  ?>/>
+								<input type="text" name="email" id="email" class="form-control" placeholder="Email" <?php if (isset($email)) { echo 'value="'.$email.'"';}  ?>/>
 								<?php if(isset($dVueEreur['email'])){?>
 									<p class="p-0 m-0 text-danger"><?php echo $dVueEreur['email']?> </p>
 								<?php }?>
-								<!-- <label class="form-label">Email address</label> -->
 							</div>
 						<div class="form-outline mb-4 ">
-								<input type="password" name="mdp" class="form-control m-0" placeholder="Password" <?php if (isset($mdp)) { echo 'value="'.$mdp.'"';}  ?>/>
+								<input type="password" name="mdp" class="form-control m-0" placeholder="Mot de passe" <?php if (isset($mdp)) { echo 'value="'.$mdp.'"';}  ?>/>
 								<?php if(isset($dVueEreur['mdp'])){?>
 									<p class="p-0 m-0 text-danger"><?php echo $dVueEreur['mdp']?> </p>
 								<?php }?>
@@ -127,7 +87,7 @@
 
 						<!-- Submit button -->
 						<button type="submit" class="btn btn-primary btn-block mb-4">
-							Sign up
+							Se connecter
 						</button>
 
 						<input type="hidden" name="action" value="validationFormulaire">
@@ -135,7 +95,7 @@
 								<p class="p-0 m-0 text-danger"><?php echo $dVueEreur['all']?> </p>
 							<?php }?>
 						<?php if(isset($dVueEreur['all2'])){?>
-							<p class="p-0 m-0 text-danger"><?php echo $dVueEreur['all']?> </p>
+							<p class="p-0 m-0 text-danger"><?php echo $dVueEreur['all2']?> </p>
 						<?php }?>
 						</form>
 					</div>
@@ -148,7 +108,6 @@
 				</div>
 				</div>
 			</div>
-		<!-- Jumbotron -->
 		</section>
 	</body> 
 </html> 

@@ -18,7 +18,7 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 						<li class="nav-item">
-                            <a class="btn btn-outline-primary" href="index.php?action=connexion" type="submit">Connexion</a>
+                        <a class="nav-link" href="index.php?action=afficherTaches">Listes Publics</a>
 						</li>
 						<?php
 							if(isset($_SESSION['login'])){ ?>
@@ -33,7 +33,7 @@
 								<a class="btn btn-outline-primary" href="index.php?action=deconnexion" type="submit">Deconnexion</a>
 						<?php }
 							else { ?>
-								<a class="btn btn-outline-primary" href="index.php" type="submit">Connexion</a>
+								<a class="btn btn-outline-primary" href="index.php?action=connexion" type="submit">Connexion</a>
 								<a class="btn btn-outline-primary ms-3" href="index.php?action=inscription" type="submit">Inscription</a>
 						<?php } ?>
 					</ul>
@@ -43,10 +43,13 @@
 
         <?php
             foreach ($dVueEreur as $value){?>
-                <div class="alert alert-success" role="alert">
-                    <h4 class="alert-heading">Well done!</h4>
-                    <p> <?php echo $value?></p>
-                </div>
+				<section class="p-4">
+					<div class="alert alert-success" role="alert">
+						<h4 class="alert-heading">Une erreur est survenue!</h4>
+						<p>En voici la description: </p>
+						<p> <?php echo $value?></p>
+					</div>
+				</section>
         <?php }?>
     </body> 
 </html>

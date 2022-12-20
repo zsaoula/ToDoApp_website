@@ -6,6 +6,25 @@
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
   		<link rel="stylesheet" href="css/mdb.min.css" />
+		<script>
+			$(document).ready(function () {
+				var theHREF;
+
+				$(".confirmModalLink").click(function(e) {
+					e.preventDefault();
+					theHREF = $(this).attr("href");
+					$("#confirmModal").modal("show");
+				});
+
+				$("#confirmModalNo").click(function(e) {
+					$("#confirmModal").modal("hide");
+				});
+
+				$("#confirmModalYes").click(function(e) {
+					window.location.href = theHREF;
+				});
+			});
+		</script>
 		<style>
 			/* Mise en forme du fond flouté */
 			.overlay {
@@ -88,13 +107,19 @@
 		<div class="d-flex justify-content-center m-2 p-2">
             <div class="card">
                 <div class="card-body m-0">
-                  	<form class="d-flex flex-row align-items-center p-0 m-0" method="post">
-						<input type="text" class="form-control form-control-lg me-2" name="nomTache" id="exampleFormControlInput1"
-						placeholder="Nom">
-						<div>
-						<input type="submit" class="btn btn-primary" value="Ajouter">
+                  	<form class="d-flex flex-column align-items-center p-0 m-0" method="post">
+					  	<div class="d-flex flex-row align-items-center">
+							<input type="text" class="form-control form-control-lg me-2" name="nomTache" id="exampleFormControlInput1"
+							placeholder="Nom">
+				
+							<div>
+							<input type="submit" class="btn btn-primary" value="Ajouter">
+							</div>
 						</div>
-						<input type="hidden" name="action" value="ajoutListeTache">
+						<?php if(isset($dVueEreur['nom'])){?>
+							<p class="p-0 m-0 text-danger"><?php echo $dVueEreur['nom']?> </p>
+						<?php }?>
+						<input type="hidden" name="action" value="ajoutListeTachePrivee">
 				   	</form>
                 </div>
             </div>
@@ -158,7 +183,21 @@
 															<path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
 														</svg>
 													</button>
-													<a name="idSup" type="submit" href="index.php?action=supprimerTache&idTache=<?php echo $tache->getId();?>" data-mdb-toggle="tooltip" title="Delete todo">
+													<div class="modal hide fade" id="confirmModal">
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+														<h3>Confirmation de la suppression</h3>
+														</div>
+														<div class="modal-body">
+															<p>Etes-vous sûr de vouloir supprimer cet élément ?</p>
+														</div>
+														<div class="modal-footer">
+															<a href="#" class="btn" id="confirmModalNo">Non</a>
+															<a href="index.php?action=supprimerTache&idTache=<?php echo $tache->getId();?>" " class="btn btn-primary" id="confirmModalYes">Oui</a>
+														</div>
+													</div>
+
+													<a name="idSup" class="confirmModalLink"  type="submit" href="index.php?action=supprimerTache&idTache=<?php echo $tache->getId();?>" data-mdb-toggle="tooltip" title="Delete todo">
 														<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
 															<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
 															<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
@@ -175,7 +214,7 @@
 							</form>
 							</div>
 							<div class="card-footer text-end p-3">
-								<a class="me-2 btn btn-primary" name="idSupListe" type="submit" href="index.php?action=supprimerListeTache&id=<?php echo $listes->getId();?>" >Quitter</a>
+								<a class="me-2 btn btn-primary" name="idSupListe" type="submit" href="index.php?action=supprimerListeTache&id=<?php echo $listes->getId();?>" >Supprimer</a>
 								<button class="me-2 btn btn-primary" onclick="showPopup('<?php echo $listes->getNom(); ?>','<?php echo $listes->getId(); ?> ')">Ajouter tâche</button>
 
 								<!-- Fond flouté-->
@@ -190,7 +229,7 @@
 												<div class="popup-content" id="popup-content"></div>
 												<button type="button" class="btn-close" onclick="hidePopup()" aria-label="Close"></button>
      										</div>
-											<div class="d-flex flex-colunm align-items-start pt-2">
+											<div class="d-flex flex-column align-items-start pt-2">
 												<form  method="post">
 													<input type="text" class="form-control w-30 " name="nameTache" placeholder="Nom">
 													<div class="popup-body d-flex flex-row">
@@ -198,7 +237,7 @@
 														<span class="mb-0 pe-2">
 															Priorité:
 														</span>
-														<div lass="d-flex flex-colunm align-items-start">
+														<div class="d-flex flex-column align-items-start">
 															<div>
 																<input type="radio" name="ajoutPriorite" value="Important">
 																<label>Important</label>
@@ -219,7 +258,7 @@
 													<div class="py-3 ">
 														<button type="button" class="btn btn-secondary" onclick="hidePopup()">Quitter</button>
 														<input type="submit" class="btn btn-primary" >
-														<input type="hidden" name="action" value="ajoutListeTachePrivee">
+														<input type="hidden" name="action" value="ajouterTachePrivee">
 													</div>
 				   								</form>
 											</div>		
@@ -302,30 +341,31 @@
 </div>
 <script>
 	function showPopupEdit(nomTache,idTache,priorite) {
-	// Afficher le fond flouté et le pop-up
-	document.getElementById('overlayEdit').style.display = 'block';
-	document.getElementById('popupEdit').style.display = 'block';
-	document.getElementById('idTache').value=idTache;
-	document.getElementById('nomTache').value=nomTache;
-	var tache = document.getElementById('popup-contentEdit');
-	tache.innerHTML=nomTache;
-	if (priorite=="Important"){
-		document.getElementById('radioImportant').checked=true;
-	}
-	if (priorite=="Moyen"){
-		document.getElementById('radioMoyen').checked=true;
-	}
-	if (priorite=="Faible"){
-		document.getElementById('radioFaible').checked=true;
-	}
-	
+		// Afficher le fond flouté et le pop-up
+		document.getElementById('overlayEdit').style.display = 'block';
+		document.getElementById('popupEdit').style.display = 'block';
+		document.getElementById('idTache').value=idTache;
+		document.getElementById('nomTache').value=nomTache;
+		var tache = document.getElementById('popup-contentEdit');
+		tache.innerHTML=nomTache;
+		if (priorite=="Important"){
+			document.getElementById('radioImportant').checked=true;
+		}
+		if (priorite=="Moyen"){
+			document.getElementById('radioMoyen').checked=true;
+		}
+		if (priorite=="Faible"){
+			document.getElementById('radioFaible').checked=true;
+		}
 	}
 
+
 	function hidePopupEdit() {
-	// Masquer le fond flouté et le pop-up
-	document.getElementById('overlayEdit').style.display = 'none';
-	document.getElementById('popupEdit').style.display = 'none';
+		// Masquer le fond flouté et le pop-up
+		document.getElementById('overlayEdit').style.display = 'none';
+		document.getElementById('popupEdit').style.display = 'none';
 	}
+
 
 </script>
 	</body> 
