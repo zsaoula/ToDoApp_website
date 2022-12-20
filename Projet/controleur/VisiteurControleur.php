@@ -163,9 +163,8 @@ class VisiteurControleur{
         global $rep,$vues;
         $mdl = new ModelVisiteur();
         $mdlUtilisateur = new ModelUtilisateur();
-        $id = $_REQUEST['id'];
+        $id = $_POST['id'];
         $mdl->supprimerListePublic($id);
-        
         if($mdlUtilisateur->isUtilisateur()){
             UtilisateurControleur::AfficherTachesPrivee();
         }
@@ -200,7 +199,7 @@ class VisiteurControleur{
         global $rep,$vues;
         $mdl = new ModelVisiteur();
         $mdlUtilisateur = new ModelUtilisateur();
-        $idTache = $_REQUEST['idTache'];
+        $idTache = $_POST['idTache'];
         $mdl->supprimerTache($idTache);
 
         if($mdlUtilisateur->isUtilisateur()){

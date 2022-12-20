@@ -214,7 +214,9 @@
 							</form>
 							</div>
 							<div class="card-footer text-end p-3">
-								<a class="me-2 btn btn-primary" name="idSupListe" type="submit" href="index.php?action=supprimerListeTache&id=<?php echo $listes->getId();?>" >Supprimer</a>
+								<button class="me-2 btn btn-primary" onclick="showPopupSuppression('<?php echo $listes->getNom(); ?>','<?php echo $listes->getId(); ?>')">Supprimer</button>
+
+								<!-- <a class="me-2 btn btn-primary" name="idSupListe" type="submit" href="index.php?action=supprimerListeTache&id=<?php echo $listes->getId();?>" >Supprimer</a> -->
 								<button class="me-2 btn btn-primary" onclick="showPopup('<?php echo $listes->getNom(); ?>','<?php echo $listes->getId(); ?> ')">Ajouter tâche</button>
 
 								<!-- Fond flouté-->
@@ -368,5 +370,49 @@
 
 
 </script>
+
+<!-- Fond flouté-->
+<div class="overlay" id="overlayS"></div>
+
+<!--Pop-up-->
+<div class="popup rounded" id="popupS">
+	<div class="popup-dialog">
+		<div class="popup-content">
+			<div class="popup-header d-flex flex-row justify-content-between align-items-center border-bottom">
+				<h5 class="popup-title" id="staticBackdropLabel">Voulez-vous vraiment supprimer cette tâche ?</h5>
+				<div class="popup-content" id="popup-contentS"></div>
+				<!-- <button type="button" class="btn-close" onclick="hidePopup()" aria-label="Close"></button> -->
+			 </div>
+			<div class="d-flex flex-column align-items-start pt-2">
+				<form  method="post">
+						<input type="hidden" class="form-control form-control-lg" name="id" id="tacheListeSupp">
+					<div class="py-3 ">
+						<button type="button" class="btn btn-secondary" onclick="hidePopupSuppression()">Annuler</button>
+						<input type="hidden" name="action" value="supprimerListeTache">
+						<input type="submit" class="btn btn-primary" value="Confirmer">
+					</div>
+				   </form>
+			</div>		
+		</div>	
+	</div>	
+</div>
+<script>
+	function showPopupSuppression(nomListe,idListe) {
+		// Afficher le fond flouté et le pop-up
+		document.getElementById('overlayS').style.display = 'block';
+		document.getElementById('popupS').style.display = 'block';
+		var liste = document.getElementById('popup-contentS');
+		liste.innerHTML=nomListe;
+		document.getElementById('tacheListeSupp').value=idListe;
+	}
+
+	function hidePopupSuppression() {
+		// Masquer le fond flouté et le pop-up
+		document.getElementById('overlayS').style.display = 'none';
+		document.getElementById('popupS').style.display = 'none';
+	}
+
+</script>
+
 	</body> 
 </html> 
