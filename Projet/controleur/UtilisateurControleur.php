@@ -78,7 +78,7 @@ class UtilisateurControleur{
 
         $action = "connexion";
 
-        VisiteurControleur::Connexion();
+        header("Location: index.php?action=connexion");
     }
 
     function AjouterListeTachePrivee(){
@@ -96,7 +96,7 @@ class UtilisateurControleur{
         $this->AfficherTachesPrivee($dVueEreur);
     }
 
-    static function AfficherTachesPrivee(array $dVueEreur= array()){
+    function AfficherTachesPrivee(array $dVueEreur= array()){
         global $rep,$vues; // nécessaire pour utiliser variables globales
         $mdl = new ModelUtilisateur();
         $listesTachesPrivee = array();
@@ -123,7 +123,7 @@ class UtilisateurControleur{
         Validation::val_form_ajout_tache($nameTache,$typePriorite,$dVueEreur);
         $mdl->ajouterTache($nameTache,$dateTache,$typePriorite,$listeTache);
 
-        $this->AfficherTachesPrivee();   
+        header("Location: index.php?action=afficherTachesPrivee");  
     }
 
     function SupprimerListeTache(){
@@ -131,7 +131,7 @@ class UtilisateurControleur{
         $mdl = new ModelVisiteur();
         $id = $_REQUEST['id'];
         $mdl->supprimerListePublic($id);
-        $this->AfficherTachesPrivee();
+        header("Location: index.php?action=afficherTachesPrivee");
     }
 
     function SupprimerTache(){
@@ -140,7 +140,7 @@ class UtilisateurControleur{
         $idTache = $_POST['idTache'];
         $mdl->supprimerTache($idTache);
 
-        $this->AfficherTachesPrivee();
+        header("Location: index.php?action=afficherTachesPrivee");
     }
     
     function CheckTache(){
@@ -162,9 +162,9 @@ class UtilisateurControleur{
     
         $mdl->checkerTaches($listeTache,$tachesAChecker);
 
-        $this->AfficherTachesPrivee();
+        header("Location: index.php?action=afficherTachesPrivee");
     }
-    
+
     function EditerTache(){
         global $rep,$vues;
         $mdl = new ModelVisiteur();
@@ -180,7 +180,7 @@ class UtilisateurControleur{
         Validation::val_form_ajout_tache($nameTache,$typePriorite,$dVueEreur);
         $mdl->editerTache($nameTache,$idTache,$typePriorite);
     
-        $this->AfficherTachesPrivee();
+        header("Location: index.php?action=afficherTachesPrivee");
     }
 
     

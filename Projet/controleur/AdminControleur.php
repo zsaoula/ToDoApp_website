@@ -64,7 +64,7 @@ class AdminControleur{
         $mdl = new ModelVisiteur();
         $id = $_REQUEST['id'];
         $mdl->supprimerListePublic($id);
-        $this->AfficherAdminTaches();
+        header("Location: index.php?action=afficherTachesAdmin");
     }
 
     function SupprimerTache(){
@@ -72,8 +72,8 @@ class AdminControleur{
         $mdl = new ModelVisiteur();
         $idTache = $_POST['idTache'];
         $mdl->supprimerTache($idTache);
-
-        $this->AfficherAdminTaches();
+        header("index.php");
+        header("Location: index.php?action=afficherTachesAdmin");
     }
 
     function EditerTache(){
@@ -90,8 +90,9 @@ class AdminControleur{
         $idTache = $_POST['idTache'];
         Validation::val_form_ajout_tache($nameTache,$typePriorite,$dVueEreur);
         $mdl->editerTache($nameTache,$idTache,$typePriorite);
-    
-        $this->AfficherAdminTaches();
+        
+        header("index.php");
+        header("Location: index.php?action=afficherTachesAdmin");
     }
 }
 ?>

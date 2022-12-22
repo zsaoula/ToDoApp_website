@@ -117,7 +117,7 @@ class VisiteurControleur{
         else{
             $data=$model->connexion($email,$mdp);
             if($data!=NULL){
-                $this->AfficherTaches();
+                header("Location: index.php?action=afficherTaches");
             }
             else{
                 $dVueEreur['all2'] = "Mot de passe ou adresse mail incorrect!";
@@ -141,7 +141,7 @@ class VisiteurControleur{
         }
         else{
             $model->inscription($nom,$email,$mdp);
-            $this->Connexion();
+            header("Location: index.php?action=connexion");
         }
     }
     
@@ -164,7 +164,7 @@ class VisiteurControleur{
         $mdl = new ModelVisiteur();
         $id = $_POST['id'];
         $mdl->supprimerListePublic($id);
-        $this->AfficherTaches();
+        header("Location: index.php?action=afficherTaches");
     }
     
     function AjouterTachePublique(){
@@ -183,8 +183,7 @@ class VisiteurControleur{
         $listeTache = (int)$_POST['listeTache'];
         Validation::val_form_ajout_tache($nameTache,$typePriorite,$dVueEreur);
         $mdl->ajouterTache($nameTache,$dateTache,$typePriorite,$listeTache);
-
-        $this->AfficherTaches();   
+        header("Location: index.php?action=afficherTaches");  
     }
     
     
@@ -194,7 +193,7 @@ class VisiteurControleur{
         $idTache = $_POST['idTache'];
         $mdl->supprimerTache($idTache);
 
-        $this->AfficherTaches();
+        header("Location: index.php?action=afficherTaches");
     }
     
     function CheckTache(){
@@ -217,7 +216,7 @@ class VisiteurControleur{
     
         $mdl->checkerTaches($listeTache,$tachesAChecker);
 
-        $this->AfficherTaches();
+        header("Location: index.php?action=afficherTaches");
     }
 
     function EditerTache(){
@@ -235,7 +234,7 @@ class VisiteurControleur{
         Validation::val_form_ajout_tache($nameTache,$typePriorite,$dVueEreur);
         $mdl->editerTache($nameTache,$idTache,$typePriorite);
     
-        $this->AfficherTaches();
+        header("Location: index.php?action=afficherTaches");
     }
 }
 ?>
