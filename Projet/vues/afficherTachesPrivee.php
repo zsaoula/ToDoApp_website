@@ -386,8 +386,8 @@
 				document.getElementById('popupEdit').style.display = 'block';
 				document.getElementById('idTache').value=idTache;
 				document.getElementById('nomTache').value=nomTache;
-				var tache = document.getElementById('popup-contentEdit');
-				tache.innerHTML=nomTache;
+				// var tache = document.getElementById('popup-contentEdit');
+				// tache.innerHTML=nomTache;
 				if (priorite=="Important"){
 					document.getElementById('radioImportant').checked=true;
 				}
