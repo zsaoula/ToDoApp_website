@@ -2,7 +2,7 @@
 
 require_once "config/Connection.php";
 
-class UtilisateurGateway {
+class AdminGateway {
     protected Connection $con;
 
     public function __construct(Connection $con)

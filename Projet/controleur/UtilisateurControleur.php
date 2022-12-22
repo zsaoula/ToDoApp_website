@@ -49,7 +49,7 @@ class UtilisateurControleur{
 
                 //mauvaise action
                 default:
-                        $dVueEreur[] =	"Erreur d'appel php";
+                        $dVueEreur[] =	"Erreur d'appel php (utilisateur)";
                         require ($rep.$vues['erreur']);
                         break;
             }
@@ -109,13 +109,18 @@ class UtilisateurControleur{
     function AjouterTachePrivee(){
         global $rep,$vues;
         $mdl = new ModelVisiteur();
-        $mdlU = new ModelUtilisateur();
-
+        $dVueEreur = array ();
 
         $nameTache = $_POST['nameTache'];
         $dateTache = date('Y-m-d', time());
-        $typePriorite = $_POST['ajoutPriorite'];
+        if(!isset($_POST['ajoutPriorite'])){
+            $typePriorite = "Faible";
+        }
+        else {
+            $typePriorite = $_POST['ajoutPriorite'];
+        }
         $listeTache = (int)$_POST['listeTache'];
+        Validation::val_form_ajout_tache($nameTache,$typePriorite,$dVueEreur);
         $mdl->ajouterTache($nameTache,$dateTache,$typePriorite,$listeTache);
 
         $this->AfficherTachesPrivee();   
@@ -141,8 +146,6 @@ class UtilisateurControleur{
     function CheckTache(){
         global $rep,$vues;
         $mdl = new ModelVisiteur();
-        $mdlUtilisateur = new ModelUtilisateur();
-    
         $tachesAChecker=array();
     
         foreach ($_POST as $key => $value) {
@@ -161,11 +164,10 @@ class UtilisateurControleur{
 
         $this->AfficherTachesPrivee();
     }
-
+    
     function EditerTache(){
         global $rep,$vues;
         $mdl = new ModelVisiteur();
-        $mdlUtilisateur = new ModelUtilisateur();
         $dVueEreur = array();
         $nameTache = $_POST['nameTache'];
         if(!isset($_POST['editPriorite'])){
@@ -180,5 +182,7 @@ class UtilisateurControleur{
     
         $this->AfficherTachesPrivee();
     }
+
+    
 }
 ?>

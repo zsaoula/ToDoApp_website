@@ -172,13 +172,11 @@
 														</svg>
 													</button>
 													<button class="border-0  bg-white text-primary" type="button" data-mdb-toggle="tooltip" title="Delete todo" onclick="showPopupSuppressionT('<?php echo $tache->getNom(); ?>','<?php echo $tache->getId(); ?>')">
-													<!-- <a name="idSup" type="submit" href="index.php?action=supprimerTache&idTache=<?php //echo $tache->getId();?>" data-mdb-toggle="tooltip" title="Delete todo"> -->
 														<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
 															<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
 															<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
 														</svg>
 													</button>
-													</a>
 												</td>
 											</tr>
 										</tbody>
@@ -187,10 +185,9 @@
 								<input type="hidden" name="listeTache" value="<?php echo $listes->getId(); ?>"/>
 								<input type="hidden" name="action" value="checkTache"/>
 								<input type="submit" class="btn btn-primary" value="Confirmer Tache Check"/>
-							</form>
+								</form>
 							</div>
 							<div class="card-footer text-end p-3">
-								<!-- <a class="me-2 btn btn-primary" name="idSupListe" type="submit" href="index.php?action=supprimerListeTache&id=<?php //echo $listes->getId();?>" >Supprimer</a> -->
 								<button class="me-2 btn btn-primary" onclick="showPopupSuppression('<?php echo $listes->getNom(); ?>','<?php echo $listes->getId(); ?>')">Supprimer</button>
 
 								<button class="me-2 btn btn-primary" onclick="showPopup('<?php echo $listes->getNom(); ?>','<?php echo $listes->getId(); ?>')">Ajouter tâche</button>
@@ -242,196 +239,188 @@
 											</div>		
 										</div>	
 									</div>	
-								</div>			
-
-								<script>
-									function showPopup(nomListe,idListe) {
-										// Afficher le fond flouté et le pop-up
-										document.getElementById('overlay').style.display = 'block';
-										document.getElementById('popup').style.display = 'block';
-										var liste = document.getElementById('popup-content');
-										liste.innerHTML=nomListe;
-										document.getElementById('tacheListe').value=idListe;
-									}
-
-									function hidePopup() {
-										// Masquer le fond flouté et le pop-up
-										document.getElementById('overlay').style.display = 'none';
-										document.getElementById('popup').style.display = 'none';
-									}
-								
-								</script>
+								</div>
 							</div>			
 						</div>
+					</div>
+				</div>
 			</section>
-			<?php }?>
+		<?php }?>
 
 		<!-- Fond flouté-->
 		<div class="overlay" id="overlayEdit"></div>
 
-<!--Pop-up-->
-<div class="popup rounded pb-0" id="popupEdit">
-	<div class="popup-dialog">
-		<div class="popup-content">
-      		<div class="popup-header d-flex flex-row justify-content-between align-items-center border-bottom">
-			  	<h5 class="popup-title" id="staticBackdropLabel">Editer tâche</h5>
-				<button type="button" class="btn-close" onclick="hidePopupEdit()" aria-label="Close"></button>
-     		</div>
-			<div>
-				<form class="d-flex flex-column " method="post" >
-					<span>Nom</span>
-					<input type="text" class="form-control w-30" id="nomTache" name="nameTache"/>
-					<div class="popup-body d-flex flex-row">
-						
-						<input type="hidden" class="form-control form-control-lg" name="idTache" id="idTache"/>
-						<span class="mb-0 pe-2">
-							Priorité:
-						</span>
-						<div >
-							<div>
-								<input type="radio" id="radioImportant" name="editPriorite" value="Important">
-								<label>Important</label>
-							</div>
-
-							<div>
-								<input type="radio" id="radioMoyen" name="editPriorite" value="Moyen">
-								<label>Moyen</label>
-							</div>
-
-							<div>
-								<input type="radio" id="radioFaible" name="editPriorite" value="Faible">
-								<label>Faible</label>
-							</div>
-						</div>
+		<!--Pop-up-->
+		<div class="popup rounded pb-0" id="popupEdit">
+			<div class="popup-dialog">
+				<div class="popup-content">
+					<div class="popup-header d-flex flex-row justify-content-between align-items-center border-bottom">
+						<h5 class="popup-title" id="staticBackdropLabel">Editer tâche</h5>
+						<button type="button" class="btn-close" onclick="hidePopupEdit()" aria-label="Close"></button>
 					</div>
+					<div>
+						<form class="d-flex flex-column " method="post" >
+							<span>Nom</span>
+							<input type="text" class="form-control w-30" id="nomTache" name="nameTache"/>
+							<div class="popup-body d-flex flex-row">
+								
+								<input type="hidden" class="form-control form-control-lg" name="idTache" id="idTache"/>
+								<span class="mb-0 pe-2">
+									Priorité:
+								</span>
+								<div >
+									<div>
+										<input type="radio" id="radioImportant" name="editPriorite" value="Important">
+										<label>Important</label>
+									</div>
 
-					<div class="py-3 pb-0 d-flex justify-content-between">
-						<button type="button" class="btn btn-secondary" onclick="hidePopupEdit()">Quitter</button>
-						<input type="submit" class="btn btn-primary" value="Editer">
+									<div>
+										<input type="radio" id="radioMoyen" name="editPriorite" value="Moyen">
+										<label>Moyen</label>
+									</div>
+
+									<div>
+										<input type="radio" id="radioFaible" name="editPriorite" value="Faible">
+										<label>Faible</label>
+									</div>
+								</div>
+							</div>
+
+							<div class="py-3 pb-0 d-flex justify-content-between">
+								<button type="button" class="btn btn-secondary" onclick="hidePopupEdit()">Quitter</button>
+								<input type="submit" class="btn btn-primary" value="Editer">
+							</div>
+
+
+							<input type="hidden" name="action" value="editerTache">
+						</form>
 					</div>
-
-
-					<input type="hidden" name="action" value="editerTache">
-				</form>
+				</div>
 			</div>
 		</div>
-	</div>
-</div>
-<script>
-	function showPopupEdit(nomTache,idTache,priorite) {
-	// Afficher le fond flouté et le pop-up
-	document.getElementById('overlayEdit').style.display = 'block';
-	document.getElementById('popupEdit').style.display = 'block';
-	document.getElementById('idTache').value=idTache;
-	document.getElementById('nomTache').value=nomTache;
-	var tache = document.getElementById('popup-contentEdit');
-	tache.innerHTML=nomTache;
-	if (priorite=="Important"){
-		document.getElementById('radioImportant').checked=true;
-	}
-	if (priorite=="Moyen"){
-		document.getElementById('radioMoyen').checked=true;
-	}
-	if (priorite=="Faible"){
-		document.getElementById('radioFaible').checked=true;
-	}
-	
-	}
 
-	function hidePopupEdit() {
-	// Masquer le fond flouté et le pop-up
-	document.getElementById('overlayEdit').style.display = 'none';
-	document.getElementById('popupEdit').style.display = 'none';
-	}
+		<!-- Fond flouté-->
+		<div class="overlay" id="overlayS"></div>
 
-</script>
-
-<!-- Fond flouté-->
-<div class="overlay" id="overlayS"></div>
-
-<!--Pop-up-->
-<div class="popup rounded pb-0" id="popupS">
-	<div class="popup-dialog">
-		<div class="popup-content">
-			<div class="popup-header d-flex flex-row justify-content-between align-items-center border-bottom">
-				<h5 class="popup-title text-center" id="staticBackdropLabel">Voulez-vous vraiment supprimer cette liste de taches ?</h5>
-				<div class="popup-content" id="popup-contentS"></div>
-			 </div>
-			<div class="d-flex flex-column pt-2">
-				<form  method="post">
-						<input type="hidden" class="form-control form-control-lg" name="id" id="tacheListeSupp">
-					<div class="py-3 pb-0 d-flex justify-content-between">
-						<button type="button" class="btn btn-secondary" onclick="hidePopupSuppression()">Annuler</button>
-						<input type="hidden" name="action" value="supprimerListeTache">
-						<input type="submit" class="btn btn-primary" value="Confirmer">
+		<!--Pop-up-->
+		<div class="popup rounded pb-0" id="popupS">
+			<div class="popup-dialog">
+				<div class="popup-content">
+					<div class="popup-header d-flex flex-row justify-content-between align-items-center border-bottom">
+						<h5 class="popup-title text-center" id="staticBackdropLabel">Voulez-vous vraiment supprimer cette liste de taches ?</h5>
+						<div class="popup-content" id="popup-contentS"></div>
 					</div>
-				   </form>
-			</div>		
-		</div>	
-	</div>	
-</div>
-<script>
-	function showPopupSuppression(nomListe,idListe) {
-		// Afficher le fond flouté et le pop-up
-		document.getElementById('overlayS').style.display = 'block';
-		document.getElementById('popupS').style.display = 'block';
-		var liste = document.getElementById('popup-contentS');
-		liste.innerHTML=nomListe;
-		document.getElementById('tacheListeSupp').value=idListe;
-	}
+					<div class="d-flex flex-column pt-2">
+						<form  method="post">
+								<input type="hidden" class="form-control form-control-lg" name="id" id="tacheListeSupp">
+							<div class="py-3 pb-0 d-flex justify-content-between">
+								<button type="button" class="btn btn-secondary" onclick="hidePopupSuppression()">Annuler</button>
+								<input type="hidden" name="action" value="supprimerListeTache">
+								<input type="submit" class="btn btn-primary" value="Confirmer">
+							</div>
+						</form>
+					</div>		
+				</div>	
+			</div>	
+		</div>
 
-	function hidePopupSuppression() {
-		// Masquer le fond flouté et le pop-up
-		document.getElementById('overlayS').style.display = 'none';
-		document.getElementById('popupS').style.display = 'none';
-	}
+		<!-- Fond flouté-->
+		<div class="overlay" id="overlayST"></div>
 
-</script>
-
-<!-- Fond flouté-->
-<div class="overlay" id="overlayST"></div>
-
-<!--Pop-up-->
-<div class="popup rounded pb-0" id="popupST">
-	<div class="popup-dialog">
-		<div class="popup-content">
-			<div class="popup-header d-flex flex-row text-center border-bottom">
-				<h5 class="popup-title text-center" id="staticBackdropLabel">Voulez-vous vraiment supprimer cette tache ?</h5>
-				<div class="popup-content" id="popup-contentST"></div>
-				<!-- <button type="button" class="btn-close" onclick="hidePopup()" aria-label="Close"></button> -->
-			 </div>
-			<div class="d-flex flex-column pt-2">
-				<form  method="post">
-						<input type="hidden" class="form-control form-control-lg" name="idTache" id="tacheSuppT">
-					<div class="py-3 pb-0 d-flex justify-content-between">
-						<button type="button" class="btn btn-secondary" onclick="hidePopupSuppressionT()">Annuler</button>
-						<input type="hidden" name="action" value="supprimerTache">
-						<input type="submit" class="btn btn-primary" value="Confirmer">
+		<!--Pop-up-->
+		<div class="popup rounded pb-0" id="popupST">
+			<div class="popup-dialog">
+				<div class="popup-content">
+					<div class="popup-header d-flex flex-row text-center border-bottom">
+						<h5 class="popup-title text-center" id="staticBackdropLabel">Voulez-vous vraiment supprimer cette tache ?</h5>
+						<div class="popup-content" id="popup-contentST"></div>
+						<!-- <button type="button" class="btn-close" onclick="hidePopup()" aria-label="Close"></button> -->
 					</div>
-				   </form>
-			</div>		
-		</div>	
-	</div>	
-</div>
-<script>
-	function showPopupSuppressionT(nomTache,idTache) {
-		// Afficher le fond flouté et le pop-up
-		document.getElementById('overlayST').style.display = 'block';
-		document.getElementById('popupST').style.display = 'block';
-		var liste = document.getElementById('popup-contentST');
-		liste.innerHTML=nomTache;
-		document.getElementById('tacheSuppT').value=idTache;
-	}
+					<div class="d-flex flex-column pt-2">
+						<form  method="post">
+								<input type="hidden" class="form-control form-control-lg" name="idTache" id="tacheSuppT">
+							<div class="py-3 pb-0 d-flex justify-content-between">
+								<button type="button" class="btn btn-secondary" onclick="hidePopupSuppressionT()">Annuler</button>
+								<input type="hidden" name="action" value="supprimerTache">
+								<input type="submit" class="btn btn-primary" value="Confirmer">
+							</div>
+						</form>
+					</div>		
+				</div>	
+			</div>	
+		</div>
+		<script>
+			function showPopupSuppressionT(nomTache,idTache) {
+				// Afficher le fond flouté et le pop-up
+				document.getElementById('overlayST').style.display = 'block';
+				document.getElementById('popupST').style.display = 'block';
+				var liste = document.getElementById('popup-contentST');
+				liste.innerHTML=nomTache;
+				document.getElementById('tacheSuppT').value=idTache;
+			}
 
-	function hidePopupSuppressionT() {
-		// Masquer le fond flouté et le pop-up
-		document.getElementById('overlayST').style.display = 'none';
-		document.getElementById('popupST').style.display = 'none';
-	}
+			function hidePopupSuppressionT() {
+				// Masquer le fond flouté et le pop-up
+				document.getElementById('overlayST').style.display = 'none';
+				document.getElementById('popupST').style.display = 'none';
+			}
 
-</script>
+			function showPopupSuppression(nomListe,idListe) {
+				// Afficher le fond flouté et le pop-up
+				document.getElementById('overlayS').style.display = 'block';
+				document.getElementById('popupS').style.display = 'block';
+				var liste = document.getElementById('popup-contentS');
+				liste.innerHTML=nomListe;
+				document.getElementById('tacheListeSupp').value=idListe;
+			}
 
+			function hidePopupSuppression() {
+				// Masquer le fond flouté et le pop-up
+				document.getElementById('overlayS').style.display = 'none';
+				document.getElementById('popupS').style.display = 'none';
+			}
 
+			function showPopupEdit(nomTache,idTache,priorite) {
+				// Afficher le fond flouté et le pop-up
+				document.getElementById('overlayEdit').style.display = 'block';
+				document.getElementById('popupEdit').style.display = 'block';
+				document.getElementById('idTache').value=idTache;
+				document.getElementById('nomTache').value=nomTache;
+				var tache = document.getElementById('popup-contentEdit');
+				tache.innerHTML=nomTache;
+				if (priorite=="Important"){
+					document.getElementById('radioImportant').checked=true;
+				}
+				if (priorite=="Moyen"){
+					document.getElementById('radioMoyen').checked=true;
+				}
+				if (priorite=="Faible"){
+					document.getElementById('radioFaible').checked=true;
+				}
+			
+			}
 
+			function hidePopupEdit() {
+				// Masquer le fond flouté et le pop-up
+				document.getElementById('overlayEdit').style.display = 'none';
+				document.getElementById('popupEdit').style.display = 'none';
+			}
+
+			function showPopup(nomListe,idListe) {
+				// Afficher le fond flouté et le pop-up
+				document.getElementById('overlay').style.display = 'block';
+				document.getElementById('popup').style.display = 'block';
+				var liste = document.getElementById('popup-content');
+				liste.innerHTML=nomListe;
+				document.getElementById('tacheListe').value=idListe;
+			}
+
+			function hidePopup() {
+				// Masquer le fond flouté et le pop-up
+				document.getElementById('overlay').style.display = 'none';
+				document.getElementById('popup').style.display = 'none';
+			}
+
+		</script>
 	</body> 
 </html> 

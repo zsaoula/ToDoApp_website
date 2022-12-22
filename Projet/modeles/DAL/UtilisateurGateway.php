@@ -1,6 +1,5 @@
 <?php
 
-require_once "config/Connection.php";
 
 class UtilisateurGateway {
     protected Connection $con;

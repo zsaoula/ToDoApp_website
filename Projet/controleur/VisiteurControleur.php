@@ -63,7 +63,7 @@ class VisiteurControleur{
 
                 //mauvaise action
                 default:
-                        $dVueEreur[] =	"Erreur d'appel php";
+                        $dVueEreur[] =	"Erreur d'appel php (Visiteur)";
                         require ($rep.$vues['erreur']);
                         break;
             }
@@ -162,7 +162,6 @@ class VisiteurControleur{
     function SupprimerListeTache(){
         global $rep,$vues;
         $mdl = new ModelVisiteur();
-        $mdlUtilisateur = new ModelUtilisateur();
         $id = $_POST['id'];
         $mdl->supprimerListePublic($id);
         $this->AfficherTaches();
@@ -171,7 +170,6 @@ class VisiteurControleur{
     function AjouterTachePublique(){
         global $rep,$vues;
         $mdl = new ModelVisiteur();
-        $mdlU = new ModelUtilisateur();
         $dVueEreur = array ();
 
         $nameTache = $_POST['nameTache'];
@@ -193,7 +191,6 @@ class VisiteurControleur{
     function SupprimerTache(){
         global $rep,$vues;
         $mdl = new ModelVisiteur();
-        $mdlUtilisateur = new ModelUtilisateur();
         $idTache = $_POST['idTache'];
         $mdl->supprimerTache($idTache);
 
@@ -203,7 +200,6 @@ class VisiteurControleur{
     function CheckTache(){
         global $rep,$vues;
         $mdl = new ModelVisiteur();
-        $mdlUtilisateur = new ModelUtilisateur();
     
         $tachesAChecker=array();
     
@@ -227,7 +223,6 @@ class VisiteurControleur{
     function EditerTache(){
         global $rep,$vues;
         $mdl = new ModelVisiteur();
-        $mdlUtilisateur = new ModelUtilisateur();
         $dVueEreur = array();
         $nameTache = $_POST['nameTache'];
         if(!isset($_POST['editPriorite'])){

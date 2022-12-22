@@ -64,48 +64,48 @@
 			<!-- Jumbotron -->
 			<div class="container  py-3">
 				<div class="row  g-0 align-items-center">
-				<div class="col-lg-6 mb-5 mb-lg-5 ">
-					<div class="card cascading-right" style="
-						background: hsla(0, 0%, 100%, 0.55);
-						backdrop-filter: blur(30px);
-						">
-					<div class="card-body p-5 pb-1 shadow-5 text-center">
-						<h2 class="fw-bold mb-5">Connexion</h2>
-						<form method="post">
-						<div class="form-groupe mb-4">
-								<input type="text" name="email" id="email" class="form-control" placeholder="Email" <?php if (isset($email)) { echo 'value="'.$email.'"';}  ?>/>
-								<?php if(isset($dVueEreur['email'])){?>
-									<p class="p-0 m-0 text-danger"><?php echo $dVueEreur['email']?> </p>
-								<?php }?>
+					<div class="col-lg-6 mb-5 mb-lg-5 ">
+						<div class="card cascading-right" style="
+							background: hsla(0, 0%, 100%, 0.55);
+							backdrop-filter: blur(30px);
+							">
+							<div class="card-body p-5 pb-1 shadow-5 text-center">
+								<h2 class="fw-bold mb-5">Connexion</h2>
+								<form method="post">
+								<div class="form-groupe mb-4">
+									<input type="text" name="email" id="email" class="form-control" placeholder="Email" <?php if (isset($email)) { echo 'value="'.$email.'"';}  ?>/>
+									<?php if(isset($dVueEreur['email'])){?>
+										<p class="p-0 m-0 text-danger"><?php echo $dVueEreur['email']?> </p>
+									<?php }?>
+								</div>
+								<div class="form-outline mb-4 ">
+									<input type="password" name="mdp" class="form-control m-0" placeholder="Mot de passe" <?php if (isset($mdp)) { echo 'value="'.$mdp.'"';}  ?>/>
+									<?php if(isset($dVueEreur['mdp'])){?>
+										<p class="p-0 m-0 text-danger"><?php echo $dVueEreur['mdp']?> </p>
+									<?php }?>
+								</div>
+
+								<!-- Submit button -->
+								<button type="submit" class="btn btn-primary btn-block mb-4">
+									Se connecter
+								</button>
+
+								<input type="hidden" name="action" value="validationFormulaire">
+									<?php if(isset($dVueEreur['all'])){?>
+											<p class="p-0 m-0 text-danger"><?php echo $dVueEreur['all']?> </p>
+										<?php }?>
+									<?php if(isset($dVueEreur['all2'])){?>
+										<p class="p-0 m-0 text-danger"><?php echo $dVueEreur['all2']?> </p>
+									<?php }?>
+								</form>
 							</div>
-						<div class="form-outline mb-4 ">
-								<input type="password" name="mdp" class="form-control m-0" placeholder="Mot de passe" <?php if (isset($mdp)) { echo 'value="'.$mdp.'"';}  ?>/>
-								<?php if(isset($dVueEreur['mdp'])){?>
-									<p class="p-0 m-0 text-danger"><?php echo $dVueEreur['mdp']?> </p>
-								<?php }?>
-							</div>
-
-						<!-- Submit button -->
-						<button type="submit" class="btn btn-primary btn-block mb-4">
-							Se connecter
-						</button>
-
-						<input type="hidden" name="action" value="validationFormulaire">
-						<?php if(isset($dVueEreur['all'])){?>
-								<p class="p-0 m-0 text-danger"><?php echo $dVueEreur['all']?> </p>
-							<?php }?>
-						<?php if(isset($dVueEreur['all2'])){?>
-							<p class="p-0 m-0 text-danger"><?php echo $dVueEreur['all2']?> </p>
-						<?php }?>
-						</form>
+						</div>
 					</div>
-					</div>
-				</div>
 
-				<div class="col-lg-6 mb-2 mb-lg-0 ">
-					<img src="./vues/todo.png" class=" rounded-4 shadow-4"
-					alt="" />
-				</div>
+					<div class="col-lg-6 mb-2 mb-lg-0 ">
+						<img src="./vues/todo.png" class=" rounded-4 shadow-4"
+						alt="" />
+					</div>
 				</div>
 			</div>
 		</section>

@@ -3,7 +3,7 @@
 class FrontControleur{
     public function __construct(){
         session_start();
-        $liste_actions_admin = array('afficherTachesAdmin');
+        $liste_actions_admin = array('afficherTachesAdmin','supprimerListeTacheAdmin','supprimerTacheAdmin','editerTacheAdmin');
         $liste_actions_utilisateur = array('ajouterTachePrivee','ajoutListeTachePrivee','deconnexion','afficherTachesPrivee','supprimerListeTachePrivee','ajoutTachePrivee','supprimerTachePrivee','checkTachePrivee','editerTachePrivee');
         $liste_actions_visiteur = array('validationFormulaire','editerTache','afficherTaches','validationFormulaireI','connexion','inscription','ajoutListeTache','supprimerListeTache','ajoutTache','supprimerTache','checkTache');
         global $rep,$vues;

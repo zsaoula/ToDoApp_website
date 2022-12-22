@@ -7,13 +7,11 @@
 		</script>
 	</head>
 	<body>
-		<nav
-			class="navbar navbar-expand-lg  bg-white border border-2 border-top-0 border-end-0 border-start-0 border-primary navbar-white p-4 shadow rounded position-sticky fixed-top">
+		<nav class="navbar navbar-expand-lg  bg-white border border-2 border-top-0 border-end-0 border-start-0 border-primary navbar-white p-4 shadow rounded position-sticky fixed-top">
 			<div class="container">
 				<a class="navbar-brand" href="#">TODO List</a>
-				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-				aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -37,62 +35,61 @@
 								<a class="btn btn-primary ms-3" href="index.php?action=inscription" type="submit">Inscription</a>
 						<?php } ?>
 					</ul>
-					</div>
 				</div>
-			</nav>
-			<!-- Section: Design Block -->
-		<section class="justify-content-center d-flex py-3">
-				<div class="card">
-					<div class="card-body p-5 pb-1 shadow-5 text-center">
-						<h2 class="fw-bold mb-5">Inscription</h2>
-						<form method="post">
-
-							<!-- Email input -->
-							<div class="form-groupe mb-4">
-								<input type="text" name="nom" class="form-control " placeholder="Nom" <?php if (isset($nom)) { echo 'value="'.$nom.'"';}  ?>/>
-								<?php if(isset($dVueEreur['nom'])){?>
-									<p class="p-0 m-0 text-danger"><?php echo $dVueEreur['nom']?> </p>
-								<?php }?>
-							</div>
-
-							<!-- Email input -->
-							<div class="form-groupe mb-4">
-								<input type="text" name="email" id="email" class="form-control" placeholder="Email" <?php if (isset($email)) { echo 'value="'.$email.'"';}  ?>/>
-								<?php if(isset($dVueEreur['email'])){?>
-									<p class="p-0 m-0 text-danger"><?php echo $dVueEreur['email']?> </p>
-								<?php }?>
-							</div>
-
-							<!-- Password input -->
-							<div class="form-outline mb-4 ">
-								<input type="password" name="mdp" class="form-control m-0" placeholder="Mot de passe" <?php if (isset($mdp1)) { echo 'value="'.$mdp1.'"';}  ?>/>
-								<?php if(isset($dVueEreur['mdp1'])){?>
-									<p class="p-0 m-0 text-danger"><?php echo $dVueEreur['mdp1']?> </p>
-								<?php }?>
-							</div>
-
-							<!-- Password input -->
-							<div class="form-outline mb-4 ">
-								<input type="password" name="mdp2" class="form-control m-0" placeholder="Mot de passe" <?php if (isset($mdp2)) { echo 'value="'.$mdp2.'"';}  ?>/>
-								<?php if(isset($dVueEreur['mdp2'])){?>
-									<p class="p-0 m-0 text-danger"><?php echo $dVueEreur['mdp2']?> </p>
-								<?php }?>
-							</div>
-
-							<!-- Submit button -->
-							<button type="submit" class="btn btn-primary btn-block mb-4">
-								S'inscrire
-							</button>
-
-							<input type="hidden" name="action" value="validationFormulaireI">
-					
-							<?php if(isset($dVueEreur['all'])){?>
-								<p class="p-0 m-0 text-danger"><?php echo $dVueEreur['all']?> </p>
-							<?php }?>
-						</form>
-					</div>
 			</div>
-		<!-- Jumbotron -->
+		</nav>
+		<!-- Section: Design Block -->
+		<section class="justify-content-center d-flex py-3">
+			<div class="card">
+				<div class="card-body p-5 pb-1 shadow-5 text-center">
+					<h2 class="fw-bold mb-5">Inscription</h2>
+					<form method="post">
+
+						<!-- Email input -->
+						<div class="form-groupe mb-4">
+							<input type="text" name="nom" class="form-control " placeholder="Nom" <?php if (isset($nom)) { echo 'value="'.$nom.'"';}  ?>/>
+							<?php if(isset($dVueEreur['nom'])){?>
+								<p class="p-0 m-0 text-danger"><?php echo $dVueEreur['nom']?> </p>
+							<?php }?>
+						</div>
+
+						<!-- Email input -->
+						<div class="form-groupe mb-4">
+							<input type="text" name="email" id="email" class="form-control" placeholder="Email" <?php if (isset($email)) { echo 'value="'.$email.'"';}  ?>/>
+							<?php if(isset($dVueEreur['email'])){?>
+								<p class="p-0 m-0 text-danger"><?php echo $dVueEreur['email']?> </p>
+							<?php }?>
+						</div>
+
+						<!-- Password input -->
+						<div class="form-outline mb-4 ">
+							<input type="password" name="mdp" class="form-control m-0" placeholder="Mot de passe" <?php if (isset($mdp1)) { echo 'value="'.$mdp1.'"';}  ?>/>
+							<?php if(isset($dVueEreur['mdp1'])){?>
+								<p class="p-0 m-0 text-danger"><?php echo $dVueEreur['mdp1']?> </p>
+							<?php }?>
+						</div>
+
+						<!-- Password input -->
+						<div class="form-outline mb-4 ">
+							<input type="password" name="mdp2" class="form-control m-0" placeholder="Mot de passe" <?php if (isset($mdp2)) { echo 'value="'.$mdp2.'"';}  ?>/>
+							<?php if(isset($dVueEreur['mdp2'])){?>
+								<p class="p-0 m-0 text-danger"><?php echo $dVueEreur['mdp2']?> </p>
+							<?php }?>
+						</div>
+
+						<!-- Submit button -->
+						<button type="submit" class="btn btn-primary btn-block mb-4">
+							S'inscrire
+						</button>
+
+						<input type="hidden" name="action" value="validationFormulaireI">
+				
+						<?php if(isset($dVueEreur['all'])){?>
+							<p class="p-0 m-0 text-danger"><?php echo $dVueEreur['all']?> </p>
+						<?php }?>
+					</form>
+				</div>
+			</div>
 		</section>
 	</body> 
 </html> 
