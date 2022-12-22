@@ -14,16 +14,10 @@ class UtilisateurGateway {
         $query="SELECT * FROM `utilisateur` WHERE mail='$email' ";
         $this->con->executeQuery($query);
         return $this->con->getResults();
-        // if($this->con->getResults() != 0){
-        //     return $this->con->getResults();
-        // }
-        // else{
-        //     throw new ErrorException("Erreur connexion bdd");
-        // }
     }
 
     public function ajoutUtilisateur($nom,$email,$mdp): void{
-        $query = "INSERT INTO `utilisateur` (`nom`, `mail`, `mdp`,`role`) VALUES('$nom', '$email', '$mdp','NULL')";
+        $query = "INSERT INTO `utilisateur` (`nom`, `mail`, `mdp`,`role`) VALUES('$nom', '$email', '$mdp','Utilisateur')";
         $this->con->executeQuery($query);
     }
 }

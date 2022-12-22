@@ -12,31 +12,6 @@ class TacheGateway {
     }
 
 
-
-    /*public function saveTask(): void
-    {
-        if (!empty($_POST)) {
-            $id = $_POST['id'];
-            $content = $_POST['content'];
-            $finish = $_POST['finish'];
-            $idList = $_POST['idList'];
-
-            $query = "SELECT id FROM listeTaches WHERE id=$id";
-            $this->con->executeQuery($query);
-            $result = $this->con->getResults();
-
-            if (empty($result)){
-                $query= "INSERT INTO tache(id,author,content,idList) VALUES ($id,$content,$finish,$idList)";
-                $this->con->executeQuery($query);
-                echo "Insert Completed";
-            }else{
-                echo "This list didn't exist yet";
-            }
-
-        }
-    }*/
-
-
     public function getTaches(int $noListe): array
     {
         $query = "SELECT * FROM tache WHERE noListe=$noListe";

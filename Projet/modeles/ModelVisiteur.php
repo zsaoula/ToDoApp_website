@@ -87,10 +87,16 @@ class ModelVisiteur
         $mdpHash = $hash[0]['mdp'];
         $id = $hash[0]['id'];
         if(password_verify($mdp,$mdpHash)){
-            $_SESSION['role']='utilisateur';
             $_SESSION['login']=$nom;
             $_SESSION['id']=$id;
-            return new Utilisateur($id,$nom,$email);
+            if($hash[0]['role'] == "admin"){
+                $_SESSION['role']='admin';
+                return new Admin($id,$nom,$email);
+            }
+            else{
+                $_SESSION['role']='utilisateur';
+                return new Utilisateur($id,$nom,$email);
+            }
         }
         return NULL;
     }

@@ -50,6 +50,10 @@
 			.popup-content {
 				font-size: 16px;
 			}
+
+			#popup-contentS, #popup-contentST, #popup-content  {
+				visibility: hidden;
+			}
 		</style>
 	</head>
 	<body>
@@ -62,13 +66,19 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 						<li class="nav-item">
-							<a class="nav-link" href="index.php?action=afficherTaches">Listes Publics</a>
+							<a class="nav-link text-primary" href="index.php?action=afficherTaches">Listes Publics</a>
 						</li>
 						<?php
 							if(isset($_SESSION['login'])){ ?>
-							<li class="nav-item">
-								<a class="nav-link" href="index.php?action=afficherTachesPrivee">Listes Privées</a>
-							</li>
+								<li class="nav-item">
+									<a class="nav-link" href="index.php?action=afficherTachesPrivee">Listes Privées</a>
+								</li>
+								<?php
+										if($_SESSION['role'] === "admin"){ ?>
+											<li class="nav-item">
+												<a class="nav-link" href="index.php?action=afficherTachesAdmin">Listes Admin</a>
+											</li>
+								<?php   } ?>
 						<?php } ?>
 					</ul>
 					<ul class="d-flex mb-lg-0">
@@ -189,7 +199,7 @@
 								<div class="overlay" id="overlay"></div>
 
 								<!--Pop-up-->
-								<div class="popup rounded" id="popup">
+								<div class="popup rounded pb-0" id="popup">
 									<div class="popup-dialog">
 										<div class="popup-content">
 											<div class="popup-header d-flex flex-row justify-content-between align-items-center border-bottom">
@@ -197,7 +207,7 @@
 												<div class="popup-content" id="popup-content"></div>
 												<button type="button" class="btn-close" onclick="hidePopup()" aria-label="Close"></button>
      										</div>
-											<div class="d-flex flex-column align-items-start pt-2">
+											<div class="d-flex flex-column pt-2">
 												<form  method="post">
 													<input type="text" class="form-control w-30 " name="nameTache" placeholder="Nom">
 													<div class="popup-body d-flex flex-row">
@@ -223,7 +233,7 @@
 														</div>
 													</div>
 
-													<div class="py-3 ">
+													<div class="py-3 pb-0 d-flex justify-content-between">
 														<button type="button" class="btn btn-secondary" onclick="hidePopup()">Quitter</button>
 														<input type="submit" class="btn btn-primary" >
 														<input type="hidden" name="action" value="ajoutTache">
@@ -260,7 +270,7 @@
 		<div class="overlay" id="overlayEdit"></div>
 
 <!--Pop-up-->
-<div class="popup rounded" id="popupEdit">
+<div class="popup rounded pb-0" id="popupEdit">
 	<div class="popup-dialog">
 		<div class="popup-content">
       		<div class="popup-header d-flex flex-row justify-content-between align-items-center border-bottom">
@@ -268,7 +278,7 @@
 				<button type="button" class="btn-close" onclick="hidePopupEdit()" aria-label="Close"></button>
      		</div>
 			<div>
-				<form class="d-flex flex-column align-items-start " method="post" >
+				<form class="d-flex flex-column " method="post" >
 					<span>Nom</span>
 					<input type="text" class="form-control w-30" id="nomTache" name="nameTache"/>
 					<div class="popup-body d-flex flex-row">
@@ -277,7 +287,7 @@
 						<span class="mb-0 pe-2">
 							Priorité:
 						</span>
-						<div>
+						<div >
 							<div>
 								<input type="radio" id="radioImportant" name="editPriorite" value="Important">
 								<label>Important</label>
@@ -295,7 +305,7 @@
 						</div>
 					</div>
 
-					<div class="py-3 ">
+					<div class="py-3 pb-0 d-flex justify-content-between">
 						<button type="button" class="btn btn-secondary" onclick="hidePopupEdit()">Quitter</button>
 						<input type="submit" class="btn btn-primary" value="Editer">
 					</div>
@@ -340,18 +350,17 @@
 <div class="overlay" id="overlayS"></div>
 
 <!--Pop-up-->
-<div class="popup rounded" id="popupS">
+<div class="popup rounded pb-0" id="popupS">
 	<div class="popup-dialog">
 		<div class="popup-content">
 			<div class="popup-header d-flex flex-row justify-content-between align-items-center border-bottom">
-				<h5 class="popup-title" id="staticBackdropLabel">Voulez-vous vraiment supprimer cette liste de taches ?</h5>
+				<h5 class="popup-title text-center" id="staticBackdropLabel">Voulez-vous vraiment supprimer cette liste de taches ?</h5>
 				<div class="popup-content" id="popup-contentS"></div>
-				<!-- <button type="button" class="btn-close" onclick="hidePopup()" aria-label="Close"></button> -->
 			 </div>
-			<div class="d-flex flex-column align-items-start pt-2">
+			<div class="d-flex flex-column pt-2">
 				<form  method="post">
 						<input type="hidden" class="form-control form-control-lg" name="id" id="tacheListeSupp">
-					<div class="py-3 ">
+					<div class="py-3 pb-0 d-flex justify-content-between">
 						<button type="button" class="btn btn-secondary" onclick="hidePopupSuppression()">Annuler</button>
 						<input type="hidden" name="action" value="supprimerListeTache">
 						<input type="submit" class="btn btn-primary" value="Confirmer">
@@ -383,18 +392,18 @@
 <div class="overlay" id="overlayST"></div>
 
 <!--Pop-up-->
-<div class="popup rounded" id="popupST">
+<div class="popup rounded pb-0" id="popupST">
 	<div class="popup-dialog">
 		<div class="popup-content">
-			<div class="popup-header d-flex flex-row justify-content-between align-items-center border-bottom">
-				<h5 class="popup-title" id="staticBackdropLabel">Voulez-vous vraiment supprimer cette tache ?</h5>
+			<div class="popup-header d-flex flex-row text-center border-bottom">
+				<h5 class="popup-title text-center" id="staticBackdropLabel">Voulez-vous vraiment supprimer cette tache ?</h5>
 				<div class="popup-content" id="popup-contentST"></div>
 				<!-- <button type="button" class="btn-close" onclick="hidePopup()" aria-label="Close"></button> -->
 			 </div>
-			<div class="d-flex flex-column align-items-start pt-2">
+			<div class="d-flex flex-column pt-2">
 				<form  method="post">
 						<input type="hidden" class="form-control form-control-lg" name="idTache" id="tacheSuppT">
-					<div class="py-3 ">
+					<div class="py-3 pb-0 d-flex justify-content-between">
 						<button type="button" class="btn btn-secondary" onclick="hidePopupSuppressionT()">Annuler</button>
 						<input type="hidden" name="action" value="supprimerTache">
 						<input type="submit" class="btn btn-primary" value="Confirmer">

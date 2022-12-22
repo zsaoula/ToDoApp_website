@@ -22,9 +22,15 @@
 						</li>
 						<?php
 							if(isset($_SESSION['login'])){ ?>
-							<li class="nav-item">
-								<a class="nav-link" href="index.php?action=afficherTachesPrivee">Listes Privées</a>
-							</li>
+								<li class="nav-item">
+									<a class="nav-link" href="index.php?action=afficherTachesPrivee">Listes Privées</a>
+								</li>
+								<?php
+                                    if($_SESSION['role'] === "admin"){ ?>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="index.php?action=afficherTachesAdmin">Listes Admin</a>
+                                        </li>
+                                <?php   } ?>
 						<?php } ?>
 					</ul>
 					<ul class="d-flex mb-lg-0">

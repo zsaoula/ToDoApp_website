@@ -20,6 +20,15 @@ class ListeTachesGateway {
         return $this->con->getResults();
     }
 
+    public function getAdminLists(): array
+    {
+        $query = "SELECT * FROM listetaches ";
+
+        $this->con->executeQuery($query);
+
+        return $this->con->getResults();
+    }
+
     public function getPriveeLists($idUtilisateur): array
     {
         $query = "SELECT * FROM `listetaches` WHERE type='0' AND `idutilisateur`=$idUtilisateur ";

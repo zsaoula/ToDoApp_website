@@ -5,10 +5,6 @@ $rep=__DIR__.'/../';
 
 // liste des modules à inclure
 
-//$dConfig['includes']= array('controleur/Validation.php');
-
-
-
 //BD
 
 $dsn="mysql:host=localhost;dbname=dbnorandon;port=3308;";
@@ -25,4 +21,5 @@ $vues['vueConnexion']='vues/connexion.php';
 $vues['vueInscription']='vues/inscription.php';
 $vues['vueAfficherTaches']='vues/afficherTaches.php';
 $vues['vueAfficherTachesPrivee']='vues/afficherTachesPrivee.php';
+$vues['vueAfficherTachesAdmin']='vues/afficherTachesAdmin.php';
 ?>

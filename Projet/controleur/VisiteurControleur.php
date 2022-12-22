@@ -165,12 +165,7 @@ class VisiteurControleur{
         $mdlUtilisateur = new ModelUtilisateur();
         $id = $_POST['id'];
         $mdl->supprimerListePublic($id);
-        if($mdlUtilisateur->isUtilisateur()){
-            UtilisateurControleur::AfficherTachesPrivee();
-        }
-        else{
-            $this->AfficherTaches();
-        }
+        $this->AfficherTaches();
     }
     
     function AjouterTachePublique(){
@@ -202,12 +197,7 @@ class VisiteurControleur{
         $idTache = $_POST['idTache'];
         $mdl->supprimerTache($idTache);
 
-        if($mdlUtilisateur->isUtilisateur()){
-            UtilisateurControleur::AfficherTachesPrivee();
-        }
-        else{
-            $this->AfficherTaches();
-        }
+        $this->AfficherTaches();
     }
     
     function CheckTache(){
@@ -231,30 +221,26 @@ class VisiteurControleur{
     
         $mdl->checkerTaches($listeTache,$tachesAChecker);
 
-        if($mdlUtilisateur->isUtilisateur()){
-            UtilisateurControleur::AfficherTachesPrivee();
-        }
-        else{
-            $this->AfficherTaches();
-        }
+        $this->AfficherTaches();
     }
 
     function EditerTache(){
         global $rep,$vues;
         $mdl = new ModelVisiteur();
         $mdlUtilisateur = new ModelUtilisateur();
-    
+        $dVueEreur = array();
         $nameTache = $_POST['nameTache'];
-        $typePriorite = $_POST['editPriorite'];
+        if(!isset($_POST['editPriorite'])){
+            $typePriorite = "Faible";
+        }
+        else {
+            $typePriorite = $_POST['editPriorite'];
+        }
         $idTache = $_POST['idTache'];
+        Validation::val_form_ajout_tache($nameTache,$typePriorite,$dVueEreur);
         $mdl->editerTache($nameTache,$idTache,$typePriorite);
     
-        if($mdlUtilisateur->isUtilisateur()){
-            UtilisateurControleur::AfficherTachesPrivee();
-        }
-        else{
-            $this->AfficherTaches();
-        }
+        $this->AfficherTaches();
     }
 }
 ?>

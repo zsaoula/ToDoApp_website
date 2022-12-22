@@ -1,15 +1,15 @@
 <?php
 
-class ModelUtilisateur
+class ModelAdmin extends ModelUtilisateur
 {
 
-    function isUtilisateur()
+    function isAdmin()
     {
         if(isset($_SESSION['login']) && isset($_SESSION['role'])){
             $id = Validation::nettoyer_string($_SESSION['id']);
             $login = Validation::nettoyer_string($_SESSION['login']);
             $role = Validation::nettoyer_string($_SESSION['role']);
-            return new Utilisateur($id,$login,$role);
+            return new Admin($id,$login,$role);
         }
         else
             return NULL;
@@ -22,19 +22,13 @@ class ModelUtilisateur
         $_SESSION = array();
     }
 
-    function ajoutListePrivee($nom,$id) : void {
-        global $dsn, $username, $password;
-        $gwListeTache = new ListeTachesGateway(new Connection($dsn,$username,$password));
-        $gwListeTache->ajoutListePrivee($nom,$id);
-    }
-
-    public function getListesPrivee(int $id): array {
+    public function getListesAdmin(): array {
         global $dsn, $username, $password;
 
         $gwTache = new TacheGateway(new Connection($dsn,$username,$password));
         $gwListeTache = new ListeTachesGateway(new Connection($dsn,$username,$password));
 
-        $listePublic = $gwListeTache->getPriveeLists($id);
+        $listePublic = $gwListeTache->getAdminLists();
         
         $listeTacheTableau = array();
 

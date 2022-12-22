@@ -6,7 +6,7 @@ class UtilisateurControleur{
         global $rep,$vues; // nécessaire pour utiliser variables globales
 
         $dVueEreur = array ();
-        $action = $_REQUEST['action']??null;
+        $action = $_REQUEST['action'] ?? null;
 
         try{
 
@@ -25,6 +25,26 @@ class UtilisateurControleur{
 
                 case "afficherTachesPrivee":
                     $this->AfficherTachesPrivee();
+                    break;
+
+                case "supprimerListeTachePrivee":
+                    $this->SupprimerListeTache();
+                    break;
+                
+                case "ajoutTachePrivee":
+                    $this->AjouterTachePrivee();
+                    break;
+                
+                case "supprimerTachePrivee":
+                    $this->SupprimerTache();
+                    break;
+                
+                case "editerTachePrivee":
+                    $this->EditerTache();
+                    break;
+                
+                case "checkTachePrivee":
+                    $this->CheckTache();
                     break;
 
                 //mauvaise action
@@ -99,6 +119,66 @@ class UtilisateurControleur{
         $mdl->ajouterTache($nameTache,$dateTache,$typePriorite,$listeTache);
 
         $this->AfficherTachesPrivee();   
+    }
+
+    function SupprimerListeTache(){
+        global $rep,$vues;
+        $mdl = new ModelVisiteur();
+        $id = $_REQUEST['id'];
+        $mdl->supprimerListePublic($id);
+        $this->AfficherTachesPrivee();
+    }
+
+    function SupprimerTache(){
+        global $rep,$vues;
+        $mdl = new ModelVisiteur();
+        $idTache = $_POST['idTache'];
+        $mdl->supprimerTache($idTache);
+
+        $this->AfficherTachesPrivee();
+    }
+    
+    function CheckTache(){
+        global $rep,$vues;
+        $mdl = new ModelVisiteur();
+        $mdlUtilisateur = new ModelUtilisateur();
+    
+        $tachesAChecker=array();
+    
+        foreach ($_POST as $key => $value) {
+            if($key != 'action'){
+                if ($key == 'listeTache'){
+                $listeTache=$value;
+                }
+                else{
+                $tachesAChecker[] = $value;
+            }
+        
+        }
+        }
+    
+        $mdl->checkerTaches($listeTache,$tachesAChecker);
+
+        $this->AfficherTachesPrivee();
+    }
+
+    function EditerTache(){
+        global $rep,$vues;
+        $mdl = new ModelVisiteur();
+        $mdlUtilisateur = new ModelUtilisateur();
+        $dVueEreur = array();
+        $nameTache = $_POST['nameTache'];
+        if(!isset($_POST['editPriorite'])){
+            $typePriorite = "Faible";
+        }
+        else {
+            $typePriorite = $_POST['editPriorite'];
+        }
+        $idTache = $_POST['idTache'];
+        Validation::val_form_ajout_tache($nameTache,$typePriorite,$dVueEreur);
+        $mdl->editerTache($nameTache,$idTache,$typePriorite);
+    
+        $this->AfficherTachesPrivee();
     }
 }
 ?>
